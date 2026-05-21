@@ -102,7 +102,7 @@ export const siteConfig = {
       "Acredito que um bom produto precisa unir performance, design moderno e uma experiência intuitiva para realmente se destacar.",
 
     highlights: [
-      { value: 15, suffix: "+", label: "projetos criados" },
+      { value: 1, suffix: "+", label: "projetos criados" },
       { value: 100, suffix: "%", label: "responsivo" },
       { value: 24, suffix: "/7", label: "aprendendo" }
     ]

@@ -7,7 +7,7 @@ export function SiteFooter() {
     <footer className="border-t border-border px-4 py-8 sm:px-6">
       <div className="mx-auto flex max-w-7xl flex-col gap-6 text-sm text-muted md:flex-row md:items-center md:justify-between">
         <p>
-          © {new Date().getFullYear()} {siteConfig.name}. Replace all placeholder content before publishing.
+          © {new Date().getFullYear()} {siteConfig.name}. Todos os direitos reservados.
         </p>
         <div className="flex flex-wrap gap-3">
           {siteConfig.socialLinks.map((link) => {
