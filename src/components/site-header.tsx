@@ -12,7 +12,7 @@ export function SiteHeader() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 py-4 sm:px-6">
-      <div className="relative mx-auto flex w-full max-w-xs items-center justify-between rounded-full border border-border/70 bg-background/75 px-3 py-2 shadow-soft backdrop-blur-2xl sm:max-w-7xl">
+      <div className="relative mx-auto flex w-full max-w-sm items-center justify-between gap-2 rounded-full border border-border/70 bg-background/75 px-3 py-2 shadow-soft backdrop-blur-2xl sm:max-w-7xl">
         <a href="#" className="flex items-center gap-3 rounded-full pl-1 pr-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
           <span className="grid size-9 place-items-center rounded-full bg-foreground text-sm font-semibold text-background">
             {siteConfig.name.slice(0, 1)}
@@ -41,21 +41,23 @@ export function SiteHeader() {
           </MagneticButton>
         </div>
 
+        <div className="flex items-center gap-2 xl:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            className="inline-flex size-10 items-center justify-center rounded-full border border-border bg-surface text-foreground shadow-sm transition hover:border-accent/60 hover:bg-subtle"
+            aria-label="Toggle navigation"
+            aria-expanded={open}
+            onClick={() => setOpen((value) => !value)}
+          >
+            {open ? <X className="size-4" /> : <Menu className="size-4" />}
+          </button>
+        </div>
       </div>
-
-      <button
-        type="button"
-        className="fixed left-36 top-6 z-[60] inline-flex size-10 items-center justify-center rounded-full border border-border bg-surface text-foreground shadow-sm xl:hidden"
-        aria-label="Toggle navigation"
-        aria-expanded={open}
-        onClick={() => setOpen((value) => !value)}
-      >
-        {open ? <X className="size-4" /> : <Menu className="size-4" />}
-      </button>
 
       <div
         className={cn(
-          "mx-auto mt-3 max-w-7xl overflow-hidden rounded-3xl border border-border bg-background/95 shadow-soft backdrop-blur-2xl transition-all duration-300 xl:hidden",
+          "mx-auto mt-3 max-w-sm overflow-hidden rounded-3xl border border-border bg-background/95 shadow-soft backdrop-blur-2xl transition-all duration-300 sm:max-w-7xl xl:hidden",
           open ? "max-h-96 opacity-100" : "max-h-0 border-transparent opacity-0"
         )}
       >
@@ -71,7 +73,6 @@ export function SiteHeader() {
             </a>
           ))}
           <div className="flex items-center justify-between border-t border-border pt-3">
-            <ThemeToggle />
             <MagneticButton href={`mailto:${siteConfig.email}`} className="min-h-10 px-4" showArrow={false}>
               {siteConfig.headerCta}
             </MagneticButton>
