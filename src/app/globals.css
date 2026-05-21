@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --font-sans: "Inter", "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    linear-gradient(rgb(var(--color-background) / 0.94), rgb(var(--color-background) / 0.94)),
+    radial-gradient(circle at top left, rgb(var(--color-accent-soft) / 0.9), transparent 32rem);
+  color: rgb(var(--color-foreground));
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  content: "";
+  opacity: 0.05;
+  background-image:
+    linear-gradient(rgb(var(--color-foreground) / 0.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--color-foreground) / 0.6) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+
+::selection {
+  background: rgb(var(--color-accent));
+  color: white;
+}
+
+img {
+  max-width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
