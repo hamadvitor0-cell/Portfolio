@@ -3,6 +3,7 @@ import { siteConfig } from "@/config/site";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { WhatsappFloatingButton } from "@/components/whatsapp-floating-button";
 import "./globals.css";
 
 const light = siteConfig.theme.light;
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     url: siteConfig.seo.siteUrl,
     siteName: siteConfig.name,
     images: [{ url: siteConfig.seo.ogImage, width: 1200, height: 630 }],
-    locale: "en_US",
+    locale: "pt_BR",
     type: "website"
   },
   twitter: {
@@ -67,7 +68,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="pt-BR" suppressHydrationWarning>
       <head>
         <meta name="darkreader-lock" />
         <style suppressHydrationWarning dangerouslySetInnerHTML={{ __html: themeStyle }} />
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <SiteHeader />
           {children}
           <SiteFooter />
+          <WhatsappFloatingButton />
         </ThemeProvider>
       </body>
     </html>

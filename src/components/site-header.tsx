@@ -36,7 +36,7 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-2 xl:flex">
           <ThemeToggle />
-          <MagneticButton href={`mailto:${siteConfig.email}`} className="min-h-10 px-4" showArrow={false}>
+          <MagneticButton href={siteConfig.whatsapp.messageHref} className="min-h-10 px-4" showArrow={false}>
             {siteConfig.headerCta}
           </MagneticButton>
         </div>
@@ -73,7 +73,7 @@ export function SiteHeader() {
             </a>
           ))}
           <div className="flex items-center justify-between border-t border-border pt-3">
-            <MagneticButton href={`mailto:${siteConfig.email}`} className="min-h-10 px-4" showArrow={false}>
+            <MagneticButton href={siteConfig.whatsapp.messageHref} className="min-h-10 px-4" showArrow={false}>
               {siteConfig.headerCta}
             </MagneticButton>
           </div>

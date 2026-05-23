@@ -12,20 +12,31 @@ export type IconName =
   | "Twitter"
   | "Dribbble"
   | "Mail"
-  | "Globe2";
+  | "Globe2"
+  | "MessageCircle";
 
 export type IconMap = Record<IconName, LucideIcon>;
 
+const whatsappMessage =
+  "Olá, Vitor! Vi seu portfólio e gostaria de conversar sobre um projeto.";
+
 export const siteConfig = {
-  // Basic personal or studio identity. Replace these with your real details.
+  // Identidade principal exibida no portfólio.
   name: "Vitor Hamad",
   role: "Desenvolvedor Web Full Stack",
   location: "Brasil",
   email: "hamadvitor0@gmail.com",
-  availability: "Disponível para projetos freelance",
-  headerCta: "Vamos conversar",
+  availability: "Workflow acelerado por IA · Disponível para projetos freelance",
+  headerCta: "Chamar no WhatsApp",
 
-  // Brand and navigation. Keep labels short for mobile.
+  whatsapp: {
+    number: "+55 41 99141-6887",
+    href: "https://wa.me/5541991416887",
+    message: whatsappMessage,
+    messageHref:
+      "https://wa.me/5541991416887?text=Ol%C3%A1%2C%20Vitor%21%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+  },
+
   nav: [
     { label: "Projetos", href: "#work" },
     { label: "Sobre", href: "#about" },
@@ -33,25 +44,24 @@ export const siteConfig = {
     { label: "Contato", href: "#contact" }
   ],
 
-  // SEO metadata used by Next.js in src/app/layout.tsx.
   seo: {
-    title: "Vitor Hamad - Desenvolvedor Web Full Stack",
+    title: "Vitor Hamad | Desenvolvedor Web Full Stack",
     description:
-      "Portfólio moderno de Vitor Hamad, jovem desenvolvedor web full stack especializado em interfaces modernas, aplicações responsivas e experiências digitais premium.",
-    siteUrl: "https://your-domain.com",
+      "Portfólio de Vitor Hamad, desenvolvedor web full stack especializado em sites modernos, aplicações web, interfaces premium e desenvolvimento com workflow acelerado por IA.",
+    siteUrl: "https://vitorhamad.vercel.app",
     ogImage: "/images/og-image.svg",
     keywords: [
-      "portfolio desenvolvedor",
-      "desenvolvedor full stack",
-      "next.js",
-      "react",
-      "tailwind css",
-      "portfolio moderno"
+      "Vitor Hamad",
+      "desenvolvedor web full stack",
+      "desenvolvimento com IA assistida",
+      "sites modernos",
+      "aplicações web",
+      "Next.js",
+      "React",
+      "Tailwind CSS"
     ]
   },
 
-  // Theme colors are RGB values so Tailwind can apply opacity with CSS variables.
-  // Edit these to quickly rebrand the full site.
   theme: {
     light: {
       background: "248 248 245",
@@ -75,13 +85,12 @@ export const siteConfig = {
     }
   },
 
-  // Hero section content. CTA buttons can point to anchors, email, calendar, or external links.
   hero: {
-    headline: "Criando experiências web modernas, rápidas e impactantes.",
+    headline: "Sites e aplicações full stack com design premium e entrega ágil.",
     description:
-      "Sou Vitor Hamad, um jovem desenvolvedor web full stack apaixonado por criar sites modernos, aplicações interativas e interfaces premium com foco em performance e design.",
-    primaryCta: { label: "Ver projetos", href: "#work" },
-    secondaryCta: { label: "Entrar em contato", href: "mailto:contato@vitorhamad.dev" },
+      "Sou Vitor Hamad, um jovem desenvolvedor web full stack apaixonado por criar sites modernos, aplicações interativas e interfaces premium com foco em performance, design e velocidade de entrega usando um workflow moderno com IA.",
+    primaryCta: { label: "Vamos criar seu projeto", href: "https://wa.me/5541991416887?text=Ol%C3%A1%2C%20Vitor%21%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." },
+    secondaryCta: { label: "Ver projetos", href: "#work" },
     floatingProjects: [
       "/images/project-atlas.svg",
       "/images/project-orbit.svg",
@@ -89,26 +98,30 @@ export const siteConfig = {
     ]
   },
 
-  // About section copy and image. Place replacement files in /public/images.
   about: {
     image: "/images/vitor-profile.png",
     shortBio:
-      "Sou um jovem desenvolvedor web full stack focado em criar experiências modernas, interfaces elegantes e aplicações performáticas para web.",
-
+      "Sou Vitor Hamad, desenvolvedor web full stack com foco em interfaces modernas, aplicações performáticas e experiências digitais bem construídas.",
     body:
-      "Meu foco é desenvolver sites e aplicações modernas utilizando tecnologias atuais como Next.js, React, TypeScript e Tailwind CSS. Gosto de transformar ideias em experiências digitais rápidas, responsivas e visualmente impactantes.",
-
+      "Também utilizo IA como apoio no meu fluxo de desenvolvimento para acelerar protótipos, revisar código, encontrar bugs, melhorar interfaces e transformar ideias em produtos digitais reais com mais agilidade. A direção visual, validação técnica e decisões finais continuam sendo feitas por mim.",
     approach:
-      "Acredito que um bom produto precisa unir performance, design moderno e uma experiência intuitiva para realmente se destacar.",
-
+      "IA é uma ferramenta estratégica no meu processo, não um substituto da responsabilidade técnica. O objetivo é ganhar velocidade sem abrir mão de qualidade, clareza e validação humana.",
     highlights: [
-      { value: 1, suffix: "+", label: "projetos criados" },
-      { value: 100, suffix: "%", label: "responsivo" },
-      { value: 24, suffix: "/7", label: "aprendendo" }
+      {
+        value: "Projetos reais",
+        label: "sites, sistemas e aplicações com foco em publicação"
+      },
+      {
+        value: "Interfaces responsivas",
+        label: "experiências pensadas para desktop e mobile"
+      },
+      {
+        value: "Aprendizado constante",
+        label: "evolução técnica com boas práticas e validação"
+      }
     ]
   },
 
-  // Client or publication logos. The template uses a text-based marquee so buyers can replace names quickly.
   clients: [
     "Next.js",
     "React",
@@ -117,161 +130,187 @@ export const siteConfig = {
     "PostgreSQL",
     "Tailwind",
     "Prisma",
-    "Docker"
+    "Vercel"
   ],
 
-  // Main section titles. Edit these to rename the visible homepage headings.
   sectionHeadings: {
-    workTitle: "Projetos em destaque com apresentação premium.",
-    workDescription: "",
-    aboutTitle: "Desenvolvimento web com foco em design, performance e experiência.",
-    servicesTitle: "Soluções para sites modernos, aplicações e interfaces profissionais.",
-    processTitle: "Um processo claro para transformar ideia em projeto publicado.",
-    testimonialsTitle: "Depoimentos com aparência elegante e profissional.",
-    playgroundTitle: "Experimentos, estudos e projetos paralelos."
+    workTitle: "Projetos reais com foco em sistemas, interfaces e aplicações web.",
+    workDescription:
+      "Trabalhos que mostram desenvolvimento além de landing pages: autenticação, dashboards, banco de dados, painéis administrativos e interfaces responsivas.",
+    aboutTitle: "Desenvolvimento web com direção humana e IA como apoio estratégico.",
+    servicesTitle: "Soluções para transformar ideias em produtos digitais publicados.",
+    processTitle: "Um workflow moderno para sair da ideia e chegar ao projeto no ar.",
+    testimonialsTitle: "Como trabalho"
   },
-  
-    // Featured project cards. Use categories to group work or leave the array empty.
+
   projects: [
-  {
-    title: "Centro da Juventude Platform",
-    category: "Full Stack Web Application",
-    year: "2026",
-
-    description:
-      "Plataforma web full stack desenvolvida para o Centro da Juventude, incluindo autenticação, painel administrativo, gerenciamento de conteúdo, banco de dados e interface moderna responsiva.",
-
-    image: "/images/CJ_logo_project.jpg",
-    imageFit: "contain",
-
-    href: "https://cjtamandare.vercel.app/",
-    liveUrl: "https://cjtamandare.vercel.app/",
-    repoUrl: "https://github.com/hamadvitor0-cell",
-
-    tags: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Node.js",
-      "Database",
-      "Authentication",
-      "Admin Dashboard"
-    ]
-  }
-],
-
-  // Services and capabilities. Icon names map to Lucide icons in src/lib/icons.ts.
-  services: [
     {
-      icon: "Code2" as IconName,
-      title: "Desenvolvimento Full Stack",
+      title: "Centro da Juventude Almirante Tamandaré",
+      category: "Sistema full stack institucional",
+      year: "2026",
       description:
-        "Criação de aplicações modernas, rápidas e escaláveis utilizando tecnologias atuais."
+        "Plataforma web desenvolvida para o Centro da Juventude, incluindo autenticação, painel administrativo, gerenciamento de conteúdo, banco de dados e interface moderna responsiva.",
+      image: "/images/CJ_logo_project.jpg",
+      imageFit: "contain",
+      href: "https://cjtamandare.vercel.app/",
+      liveUrl: "https://cjtamandare.vercel.app/",
+      tags: [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Node.js",
+        "Banco de dados",
+        "Autenticação",
+        "Painel administrativo"
+      ]
     },
     {
-      icon: "Palette" as IconName,
-      title: "UI/UX Moderno",
+      title: "NexusDesk",
+      category: "SaaS / sistema interno",
+      year: "2026",
       description:
-        "Interfaces modernas, minimalistas e responsivas focadas em experiência do usuário."
+        "Aplicação web com foco em operação, dashboard e fluxo de trabalho para demonstrar experiência em produto digital, estrutura full stack e interfaces profissionais.",
+      image: "/images/project-atlas.svg",
+      imageFit: "cover",
+      href: "https://nexusdesk-app.vercel.app/",
+      liveUrl: "https://nexusdesk-app.vercel.app/",
+      repoUrl: "https://github.com/hamadvitor0-cell/NexusDesk",
+      tags: ["Next.js", "React", "TypeScript", "SaaS", "Dashboard", "UI responsiva"]
     },
     {
-      icon: "Rocket" as IconName,
-      title: "Landing Pages",
+      title: "Portfólio profissional",
+      category: "Portfólio / presença digital",
+      year: "2026",
       description:
-        "Landing pages otimizadas para conversão, performance e SEO."
-    },
-    {
-      icon: "Layers3" as IconName,
-      title: "Componentização",
-      description:
-        "Código limpo, reutilizável e organizado para facilitar manutenção e crescimento."
+        "Portfólio moderno com animações, design responsivo, SEO, tema claro e escuro, componentes reutilizáveis e fluxo de contato integrado ao WhatsApp.",
+      image: "/images/project-lumen.svg",
+      imageFit: "cover",
+      href: "https://vitorhamad.vercel.app/",
+      liveUrl: "https://vitorhamad.vercel.app/",
+      repoUrl: "https://github.com/hamadvitor0-cell/Portfolio",
+      tags: ["Next.js", "Framer Motion", "Tailwind CSS", "SEO", "Responsivo"]
     }
   ],
 
-  // Process section. Keep each step concise for the editorial layout.
+  services: [
+    {
+      icon: "Globe2" as IconName,
+      title: "Sites modernos",
+      description:
+        "Criação de sites institucionais, landing pages e portfólios com visual premium, responsividade e foco em conversão."
+    },
+    {
+      icon: "Code2" as IconName,
+      title: "Aplicações web",
+      description:
+        "Desenvolvimento de sistemas web interativos com painéis, autenticação, banco de dados e funcionalidades personalizadas."
+    },
+    {
+      icon: "Palette" as IconName,
+      title: "Interfaces premium",
+      description:
+        "Criação de interfaces modernas, limpas e responsivas, com atenção a detalhes visuais, microinterações e experiência do usuário."
+    },
+    {
+      icon: "Sparkles" as IconName,
+      title: "Desenvolvimento com IA assistida",
+      description:
+        "Uso ferramentas de IA para acelerar prototipagem, refinar interfaces, revisar código e transformar ideias em aplicações modernas com mais velocidade, sem abrir mão da qualidade técnica."
+    },
+    {
+      icon: "Rocket" as IconName,
+      title: "Deploy e publicação",
+      description:
+        "Configuração de deploy, domínio, hospedagem e publicação do projeto para que ele fique pronto para ser usado."
+    }
+  ],
+
   process: [
     {
       title: "Planejamento",
       description:
-        "Entendimento da ideia, estrutura do projeto e objetivos principais."
+        "Entendo o objetivo do projeto, público, funcionalidades e identidade visual."
     },
     {
-      title: "Design & Interface",
+      title: "Design e experiência",
       description:
-        "Criação de uma interface moderna, intuitiva e responsiva."
+        "Crio interfaces modernas, responsivas e fáceis de usar."
     },
     {
       title: "Desenvolvimento",
       description:
-        "Construção do projeto com foco em performance, organização e qualidade."
+        "Transformo a ideia em uma aplicação funcional, usando boas práticas de código e arquitetura."
     },
     {
-      title: "Deploy & Otimização",
+      title: "IA como apoio estratégico",
       description:
-        "Publicação online com otimizações para SEO, velocidade e experiência do usuário."
+        "Uso IA para explorar soluções, gerar protótipos, revisar código, identificar melhorias, testar ideias e acelerar etapas repetitivas, mantendo foco em qualidade, performance e experiência do usuário."
+    },
+    {
+      title: "Deploy e entrega",
+      description:
+        "Publico o projeto, testo responsividade, performance e deixo tudo pronto para uso."
     }
   ],
 
-  // Testimonials from clients or collaborators. Replace with real names before publishing.
-  testimonials: [
+  workPrinciples: [
     {
-      quote:
-        "O Vitor conseguiu transformar ideias em uma interface moderna, rápida e extremamente profissional. O resultado ficou acima do esperado.",
-
-      name: "Lucas Andrade",
-      role: "Cliente Freelance"
-    },
-
-    {
-      quote:
-        "Projeto muito bem organizado, visual moderno e excelente atenção aos detalhes. A experiência final ficou incrível tanto no desktop quanto no mobile.",
-
-      name: "Mariana Costa",
-      role: "UI/UX Designer"
-    },
-
-    {
-      quote:
-        "Além de um design moderno, o desenvolvimento foi extremamente rápido e otimizado. Recomendo para qualquer projeto web.",
-
-      name: "Rafael Martins",
-      role: "Empreendedor Digital"
-    }
-  ],
-  // Optional creative experiments, tools, side projects, or writing.
-  playground: [
-    {
-      title: "Motion Experiments",
+      title: "Comunicação clara",
       description:
-        "Micro animações, transições suaves e efeitos modernos para interfaces web.",
-      href: "https://example.com"
+        "Organizo o escopo, explico decisões técnicas e mantenho o projeto fácil de acompanhar."
     },
-
     {
-      title: "Creative Interfaces",
+      title: "Foco em resultado",
       description:
-        "Exploração de layouts modernos, componentes premium e experiências digitais imersivas.",
-      href: "https://example.com"
+        "Priorizo funcionalidades que ajudam o projeto a ficar útil, rápido e pronto para ser publicado."
     },
-
     {
-      title: "Side Projects",
+      title: "Visual moderno",
       description:
-        "Projetos paralelos, ideias experimentais e aplicações construídas por curiosidade.",
-      href: "https://example.com"
+        "Cuido da composição visual, responsividade, microinterações e experiência de navegação."
+    },
+    {
+      title: "Código organizado",
+      description:
+        "Uso componentes reutilizáveis, tipagem, estrutura clara e validação antes da entrega."
+    },
+    {
+      title: "Entrega publicada",
+      description:
+        "Configuro build, deploy e testes finais para o projeto ficar acessível online."
     }
   ],
 
   contact: {
-    headline: "Vamos criar algo incrível juntos?",
+    headline: "Vamos transformar sua ideia em um projeto real?",
     description:
-      "Entre em contato para projetos, freelances ou oportunidades relacionadas a desenvolvimento web.",
-    buttonLabel: "Entrar em contato",
-    formEnabled: true
+      "Tem uma ideia de site, sistema ou aplicação? Me chama no WhatsApp e vamos conversar sobre como transformar isso em um projeto real.",
+    buttonLabel: "Solicitar orçamento pelo WhatsApp",
+    formButtonLabel: "Enviar pelo WhatsApp",
+    formEnabled: true,
+    projectTypes: [
+      "Site institucional",
+      "Landing page",
+      "Aplicação web",
+      "Sistema com login",
+      "Dashboard ou painel",
+      "Outro"
+    ],
+    budgetOptions: [
+      "Ainda não definido",
+      "Até R$ 1.000",
+      "R$ 1.000 a R$ 3.000",
+      "R$ 3.000 a R$ 6.000",
+      "Acima de R$ 6.000"
+    ]
   },
 
-  // Social links. Use supported icon names or add more in src/lib/icons.ts.
   socialLinks: [
+    {
+      label: "WhatsApp",
+      href: "https://wa.me/5541991416887?text=Ol%C3%A1%2C%20Vitor%21%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto.",
+      icon: "MessageCircle" as IconName
+    },
     {
       label: "GitHub",
       href: "https://github.com/hamadvitor0-cell",
@@ -284,7 +323,7 @@ export const siteConfig = {
     },
     {
       label: "Email",
-      href: "hamadvitor0@gmail.com",
+      href: "mailto:hamadvitor0@gmail.com",
       icon: "Mail" as IconName
     }
   ]

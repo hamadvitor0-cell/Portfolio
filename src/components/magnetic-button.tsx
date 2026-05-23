@@ -48,7 +48,7 @@ export function MagneticButton({
         className
       )}
     >
-      <span>{children}</span>
+      <span className="inline-flex items-center gap-2">{children}</span>
       {showArrow ? (
         <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
       ) : null}

@@ -78,15 +78,17 @@ export function FeaturedWorkSection() {
                     <MagneticButton href={project.liveUrl} className="min-h-11 px-4">
                       Ver projeto
                     </MagneticButton>
-                    <a
-                      href={project.repoUrl}
-                      target={isExternalHref(project.repoUrl) ? "_blank" : undefined}
-                      rel={isExternalHref(project.repoUrl) ? "noreferrer" : undefined}
-                      aria-label={`${project.title} repository`}
-                      className="inline-flex size-11 items-center justify-center rounded-full border border-border text-muted transition hover:border-accent/50 hover:text-foreground"
-                    >
-                      <Github className="size-4" />
-                    </a>
+                    {"repoUrl" in project && project.repoUrl ? (
+                      <a
+                        href={project.repoUrl}
+                        target={isExternalHref(project.repoUrl) ? "_blank" : undefined}
+                        rel={isExternalHref(project.repoUrl) ? "noreferrer" : undefined}
+                        aria-label={`${project.title} repository`}
+                        className="inline-flex size-11 items-center justify-center rounded-full border border-border text-muted transition hover:border-accent/50 hover:text-foreground"
+                      >
+                        <Github className="size-4" />
+                      </a>
+                    ) : null}
                     <a
                       href={project.href}
                       target={isExternalHref(project.href) ? "_blank" : undefined}

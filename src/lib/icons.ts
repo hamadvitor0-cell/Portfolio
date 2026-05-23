@@ -6,6 +6,7 @@ import {
   Layers3,
   Linkedin,
   Mail,
+  MessageCircle,
   Palette,
   PenTool,
   Rocket,
@@ -26,5 +27,6 @@ export const iconMap: IconMap = {
   Twitter,
   Dribbble,
   Mail,
-  Globe2
+  Globe2,
+  MessageCircle
 };

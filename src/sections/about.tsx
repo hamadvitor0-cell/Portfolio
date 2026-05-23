@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { siteConfig } from "@/config/site";
-import { AnimatedNumber } from "@/components/animated-number";
 import { SectionReveal } from "@/components/section-reveal";
 
 export function AboutSection() {
@@ -31,8 +30,8 @@ export function AboutSection() {
           <SectionReveal delay={0.08} className="mt-10 grid gap-4 sm:grid-cols-3">
             {siteConfig.about.highlights.map((item) => (
               <div key={item.label} className="rounded-[1.5rem] border border-border bg-surface/70 p-6">
-                <div className="text-4xl font-medium text-foreground">
-                  <AnimatedNumber value={item.value} suffix={item.suffix} />
+                <div className="text-2xl font-medium leading-tight text-foreground">
+                  {item.value}
                 </div>
                 <p className="mt-2 text-sm text-muted">{item.label}</p>
               </div>
