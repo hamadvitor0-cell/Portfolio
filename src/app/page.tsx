@@ -3,6 +3,7 @@ import { ClientsSection } from "@/sections/clients";
 import { ContactSection } from "@/sections/contact";
 import { FeaturedWorkSection } from "@/sections/featured-work";
 import { HeroSection } from "@/sections/hero";
+import { InvestmentSection } from "@/sections/investment";
 import { ProcessSection } from "@/sections/process";
 import { ServicesSection } from "@/sections/services";
 import { TestimonialsSection } from "@/sections/testimonials";
@@ -14,6 +15,7 @@ export default function Home() {
       <FeaturedWorkSection />
       <AboutSection />
       <ServicesSection />
+      <InvestmentSection />
       <ProcessSection />
       <ClientsSection />
       <TestimonialsSection />

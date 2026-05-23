@@ -88,7 +88,7 @@ export const siteConfig = {
   hero: {
     headline: "Sites e aplicações full stack com design premium e entrega ágil.",
     description:
-      "Sou Vitor Hamad, um jovem desenvolvedor web full stack apaixonado por criar sites modernos, aplicações interativas e interfaces premium com foco em performance, design e velocidade de entrega usando um workflow moderno com IA.",
+      "Sou Vitor Hamad, um jovem desenvolvedor web full stack apaixonado por criar sites modernos, aplicações interativas e interfaces premium com foco em performance, design e velocidade de entrega usando IA como apoio estratégico no workflow.",
     primaryCta: { label: "Vamos criar seu projeto", href: "https://wa.me/5541991416887?text=Ol%C3%A1%2C%20Vitor%21%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." },
     secondaryCta: { label: "Ver projetos", href: "#work" },
     floatingProjects: [
@@ -139,6 +139,7 @@ export const siteConfig = {
       "Trabalhos que mostram desenvolvimento além de landing pages: autenticação, dashboards, banco de dados, painéis administrativos e interfaces responsivas.",
     aboutTitle: "Desenvolvimento web com direção humana e IA como apoio estratégico.",
     servicesTitle: "Soluções para transformar ideias em produtos digitais publicados.",
+    investmentTitle: "Investimento",
     processTitle: "Um workflow moderno para sair da ideia e chegar ao projeto no ar.",
     testimonialsTitle: "Como trabalho"
   },
@@ -200,7 +201,7 @@ export const siteConfig = {
     },
     {
       icon: "Sparkles" as IconName,
-      title: "Desenvolvimento com IA assistida",
+      title: "Desenvolvimento com IA Assistida",
       description:
         "Uso ferramentas de IA para acelerar prototipagem, refinar interfaces, revisar código e transformar ideias em aplicações modernas com mais velocidade, sem abrir mão da qualidade técnica."
     },
@@ -231,7 +232,7 @@ export const siteConfig = {
     {
       title: "IA como apoio estratégico",
       description:
-        "Uso IA para explorar soluções, gerar protótipos, revisar código, identificar melhorias, testar ideias e acelerar etapas repetitivas, mantendo foco em qualidade, performance e experiência do usuário."
+        "Uso IA para explorar soluções, gerar protótipos, revisar código, identificar melhorias e acelerar etapas repetitivas, mantendo foco em qualidade, performance e experiência do usuário."
     },
     {
       title: "Deploy e entrega",
@@ -245,11 +246,6 @@ export const siteConfig = {
       title: "Comunicação clara",
       description:
         "Organizo o escopo, explico decisões técnicas e mantenho o projeto fácil de acompanhar."
-    },
-    {
-      title: "Foco em resultado",
-      description:
-        "Priorizo funcionalidades que ajudam o projeto a ficar útil, rápido e pronto para ser publicado."
     },
     {
       title: "Visual moderno",
@@ -267,6 +263,38 @@ export const siteConfig = {
         "Configuro build, deploy e testes finais para o projeto ficar acessível online."
     }
   ],
+
+  investment: {
+    plans: [
+      {
+        title: "Portfólio / Landing Page",
+        price: "A partir de R$ 1.000",
+        description:
+          "Página premium, responsiva e otimizada para apresentar serviços, projetos ou uma oferta específica."
+      },
+      {
+        title: "Site Institucional",
+        price: "A partir de R$ 1.500",
+        description:
+          "Site completo para empresas, profissionais ou negócios locais, com seções estratégicas e contato integrado."
+      },
+      {
+        title: "Sistema Web Full Stack",
+        price: "A partir de R$ 3.000",
+        description:
+          "Aplicações com login, painéis, banco de dados, dashboards e funcionalidades personalizadas."
+      },
+      {
+        title: "Manutenção mensal",
+        price: "A partir de R$ 150/mês",
+        description:
+          "Ajustes, melhorias, atualizações e suporte contínuo para manter o projeto evoluindo."
+      }
+    ],
+    note:
+      "Projetos mais complexos, SaaS, e-commerces, sistemas com pagamentos, múltiplos usuários, integrações externas ou regras avançadas recebem orçamento personalizado.",
+    ctaLabel: "Pedir orçamento no WhatsApp"
+  },
 
   contact: {
     headline: "Vamos transformar sua ideia em um projeto real?",
