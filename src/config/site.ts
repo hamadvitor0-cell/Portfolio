@@ -122,6 +122,26 @@ export const siteConfig = {
     ]
   },
 
+  education: {
+    title: "Formação",
+    subtitle:
+      "Base técnica em desenvolvimento de sistemas, combinando estudo formal, prática em projetos reais e aprendizado contínuo.",
+    items: [
+      {
+        title: "Ensino Médio Técnico em Análise e Desenvolvimento de Sistemas",
+        period: "Base técnica",
+        description:
+          "Minha jornada começou no Ensino Médio Técnico em Análise e Desenvolvimento de Sistemas, onde tive meus primeiros contatos com lógica, programação, banco de dados e desenvolvimento web."
+      },
+      {
+        title: "Análise e Desenvolvimento de Sistemas na PUCPR EAD",
+        period: "Graduação atual",
+        description:
+          "Atualmente curso Análise e Desenvolvimento de Sistemas na PUCPR EAD, aprofundando meus conhecimentos em desenvolvimento de software, arquitetura de sistemas, banco de dados e aplicações web."
+      }
+    ]
+  },
+
   clients: [
     "Next.js",
     "React",
