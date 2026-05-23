@@ -165,19 +165,6 @@ export const siteConfig = {
       ]
     },
     {
-      title: "NexusDesk",
-      category: "SaaS / sistema interno",
-      year: "2026",
-      description:
-        "Aplicação web com foco em operação, dashboard e fluxo de trabalho para demonstrar experiência em produto digital, estrutura full stack e interfaces profissionais.",
-      image: "/images/project-atlas.svg",
-      imageFit: "cover",
-      href: "https://nexusdesk-app.vercel.app/",
-      liveUrl: "https://nexusdesk-app.vercel.app/",
-      repoUrl: "https://github.com/hamadvitor0-cell/NexusDesk",
-      tags: ["Next.js", "React", "TypeScript", "SaaS", "Dashboard", "UI responsiva"]
-    },
-    {
       title: "Portfólio profissional",
       category: "Portfólio / presença digital",
       year: "2026",
