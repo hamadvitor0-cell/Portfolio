@@ -4,7 +4,7 @@ import { SectionReveal } from "@/components/section-reveal";
 const steps = [
   {
     title: "Descoberta",
-    description: "Entendo sua ideia, objetivos e público."
+    description: "Entendo sua ideia, objetivos, público e contexto."
   },
   {
     title: "Planejamento",
@@ -12,19 +12,19 @@ const steps = [
   },
   {
     title: "Design & Prototipação",
-    description: "Crio wireframes e interfaces modernas."
+    description: "Crio wireframes, fluxos e interfaces modernas."
   },
   {
     title: "Desenvolvimento",
-    description: "Transformo o projeto em sistema funcional."
+    description: "Transformo o projeto em um sistema funcional."
   },
   {
     title: "Testes & Ajustes",
-    description: "Testamos, validamos e ajustamos tudo."
+    description: "Testamos, validamos e ajustamos a experiência."
   },
   {
     title: "Deploy & Entrega",
-    description: "Seu sistema publicado e pronto para uso."
+    description: "Publico o sistema e deixo tudo pronto para uso."
   }
 ];
 
@@ -55,13 +55,13 @@ export function ProcessSection() {
                   </span>
                 </>
               ) : null}
-              <article className="relative h-full min-h-[14rem] rounded-[1.15rem] border border-white/10 bg-[#0b1220]/82 p-6 transition duration-300 hover:-translate-y-1 hover:border-[#7c6cff]/45 hover:bg-white/[0.055]">
+              <article className="relative flex h-full min-h-[18.5rem] flex-col rounded-[1.15rem] border border-white/10 bg-[#0b1220]/82 p-6 transition duration-300 hover:-translate-y-1 hover:border-[#7c6cff]/45 hover:bg-white/[0.055]">
                 <span className="relative z-10 mb-6 grid size-14 place-items-center rounded-full border border-[#7c6cff]/35 bg-[#121a34] text-base font-semibold text-[#a99cff] shadow-[0_0_34px_rgba(124,108,255,0.26)]">
                   {index + 1}
                 </span>
                 <h3 className="text-base font-semibold text-white">{step.title}</h3>
-                <p className="mt-3 text-[0.95rem] leading-7 text-slate-300">{step.description}</p>
-                <CheckCircle2 className="mt-5 size-4 text-emerald-400/80" />
+                <p className="mt-3 min-h-[5.25rem] text-[0.95rem] leading-7 text-slate-300">{step.description}</p>
+                <CheckCircle2 className="mt-auto size-4 text-emerald-400/80" />
               </article>
             </SectionReveal>
           ))}
