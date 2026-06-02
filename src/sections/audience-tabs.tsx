@@ -146,7 +146,7 @@ function ProjectVisual() {
                 alt="Centro da Juventude Almirante Tamandaré"
                 width={1100}
                 height={840}
-                className="h-auto w-full object-contain drop-shadow-[0_28px_60px_rgba(0,0,0,0.45)]"
+                className="h-auto w-full object-contain drop-shadow-[0_28px_60px_rgba(0,0,0,0.45)] lg:-translate-x-10"
               />
             </div>
           </div>
