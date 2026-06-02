@@ -39,9 +39,11 @@ export function ProcessSection() {
         </SectionReveal>
 
         <div className="relative grid gap-5 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6">
-          <div className="absolute left-8 right-8 top-10 hidden border-t border-dashed border-white/18 2xl:block" />
           {steps.map((step, index) => (
-            <SectionReveal key={step.title} delay={index * 0.04}>
+            <SectionReveal key={step.title} delay={index * 0.04} className="relative">
+              {index < steps.length - 1 ? (
+                <span className="pointer-events-none absolute left-[calc(100%+0.45rem)] top-10 hidden w-[0.9rem] border-t border-dashed border-white/20 2xl:block" />
+              ) : null}
               <article className="relative h-full min-h-[14rem] rounded-[1.15rem] border border-white/10 bg-[#0b1220]/82 p-6 transition duration-300 hover:-translate-y-1 hover:border-[#7c6cff]/45 hover:bg-white/[0.055]">
                 <span className="relative z-10 mb-6 grid size-14 place-items-center rounded-full border border-[#7c6cff]/35 bg-[#121a34] text-base font-semibold text-[#a99cff] shadow-[0_0_34px_rgba(124,108,255,0.26)]">
                   {index + 1}

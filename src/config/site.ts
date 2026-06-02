@@ -88,7 +88,7 @@ export const siteConfig = {
   },
 
   hero: {
-    headline: "Crio sites e sistemas web que parecem premium, funcionam de verdade e saem do papel rápido.",
+    headline: "Crio sites e sistemas web premium, funcionam de verdade e saem do papel rápido.",
     description:
       "Desenvolvo interfaces modernas, painéis administrativos, autenticação, banco de dados e experiências digitais publicadas usando IA como apoio para acelerar o processo, sem perder direção técnica humana.",
     art: {
@@ -177,7 +177,7 @@ export const siteConfig = {
       year: "2026",
       description:
         "Plataforma web desenvolvida para o Centro da Juventude, incluindo autenticação, painel administrativo, gerenciamento de conteúdo, banco de dados e interface moderna responsiva.",
-      image: "/images/CJ_logo_project.jpg",
+      image: "/images/cj-logo-premium.png",
       imageFit: "contain",
       href: "https://cjtamandare.vercel.app/",
       liveUrl: "https://cjtamandare.vercel.app/",

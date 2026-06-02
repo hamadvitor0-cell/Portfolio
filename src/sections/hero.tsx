@@ -79,7 +79,7 @@ export function HeroSection() {
             <span className="bg-gradient-to-r from-[#c5d2ff] to-[#8b5cf6] bg-clip-text text-transparent">
               sistemas
             </span>{" "}
-            web que parecem premium,{" "}
+            web premium,{" "}
             <span className="text-[#9b8cff]">funcionam de verdade</span> e{" "}
             <span className="text-[#7c6cff]">saem do papel rápido.</span>
           </motion.h1>

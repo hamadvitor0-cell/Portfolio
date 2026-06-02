@@ -140,13 +140,13 @@ function ProjectVisual() {
           </div>
           <div className="relative min-h-[300px] bg-gradient-to-br from-slate-900 via-[#0a1c2a] to-[#1b1742] p-8 pt-20 sm:min-h-[390px]">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_30%,rgba(34,211,238,0.18),transparent_18rem),radial-gradient(circle_at_80%_60%,rgba(124,108,255,0.2),transparent_18rem)]" />
-            <div className="relative mx-auto flex h-full min-h-[250px] max-w-[32rem] items-center justify-center rounded-2xl border border-white/10 bg-white p-5">
+            <div className="relative mx-auto flex h-full min-h-[250px] max-w-[32rem] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-black p-3 sm:p-5">
               <Image
-                src="/images/CJ_logo_project.jpg"
+                src={siteConfig.projects[0].image}
                 alt="Centro da Juventude Almirante Tamandaré"
                 width={1100}
                 height={840}
-                className="h-auto w-full object-contain"
+                className="h-auto w-full scale-[1.7] rounded-xl object-contain sm:scale-[1.82]"
               />
             </div>
           </div>

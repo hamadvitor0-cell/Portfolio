@@ -1,4 +1,4 @@
-import { Cloud, Database, KeyRound, LayoutDashboard, ShieldCheck } from "lucide-react";
+import { Database, KeyRound, LayoutDashboard } from "lucide-react";
 import { SectionReveal } from "@/components/section-reveal";
 
 const items = [
@@ -16,16 +16,6 @@ const items = [
     icon: LayoutDashboard,
     title: "Painel administrativo",
     description: "CRUDs, permissões, filtros, relatórios e exportação de dados."
-  },
-  {
-    icon: Cloud,
-    title: "Deploy em produção",
-    description: "Ambiente online, seguro, responsivo e pronto para acesso real."
-  },
-  {
-    icon: ShieldCheck,
-    title: "Boas práticas",
-    description: "Código organizado, componentização, tipagem e padrões modernos."
   }
 ];
 
@@ -39,7 +29,7 @@ export function TechnicalBackstageSection() {
           </div>
         </SectionReveal>
 
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <div className="grid gap-4 md:grid-cols-3">
           {items.map((item, index) => {
             const Icon = item.icon;
             return (

@@ -38,7 +38,7 @@ export function FeaturedWorkSection() {
                   rel={isExternalHref(project.href) ? "noreferrer" : undefined}
                   className={cn(
                     "relative block min-h-[320px] overflow-hidden md:min-h-[430px]",
-                    project.imageFit === "contain" && "flex items-center justify-center bg-white p-8 sm:p-12"
+                    project.imageFit === "contain" && "flex items-center justify-center bg-[#050912] p-8 sm:p-12"
                   )}
                 >
                   <Image
@@ -49,7 +49,7 @@ export function FeaturedWorkSection() {
                     className={cn(
                       "h-full w-full transition duration-700 group-hover:scale-105",
                       project.imageFit === "contain"
-                        ? "h-auto max-h-[82%] max-w-[94%] object-contain"
+                        ? "h-auto max-h-[82%] max-w-[94%] scale-[1.5] object-contain group-hover:scale-[1.58]"
                         : "object-cover"
                     )}
                   />
