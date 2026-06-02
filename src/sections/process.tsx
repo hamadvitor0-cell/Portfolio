@@ -31,23 +31,23 @@ const steps = [
 export function ProcessSection() {
   return (
     <section id="process" className="scroll-mt-28 px-4 py-8 sm:px-6">
-      <div className="mx-auto max-w-[76rem] rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-7">
+      <div className="mx-auto max-w-[94rem] rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-7">
         <SectionReveal>
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#7c6cff]/25 bg-[#7c6cff]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#a89cff]">
             Como sua ideia vira um projeto publicado
           </div>
         </SectionReveal>
 
-        <div className="relative grid gap-5 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6 2xl:gap-9">
+        <div className="relative grid gap-5 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6 2xl:gap-16">
           {steps.map((step, index) => (
             <SectionReveal key={step.title} delay={index * 0.04} className="group relative">
               {index < steps.length - 1 ? (
                 <>
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute left-[calc(100%+1.125rem)] top-[4.8rem] z-20 hidden -translate-x-1/2 items-center 2xl:flex"
+                    className="pointer-events-none absolute left-[calc(100%+2rem)] top-1/2 z-20 hidden -translate-x-1/2 -translate-y-1/2 items-center 2xl:flex"
                   >
-                    <span className="relative flex h-6 w-11 items-center justify-end overflow-hidden rounded-full border border-[#7c6cff]/20 bg-[#07101d]/70 pr-1.5 shadow-[0_0_20px_rgba(124,108,255,0.12)] backdrop-blur-xl transition duration-300 group-hover:border-[#9b8cff]/45 group-hover:bg-[#111936]/80 group-hover:shadow-[0_0_26px_rgba(124,108,255,0.22)]">
+                    <span className="relative flex h-7 w-10 items-center justify-end overflow-hidden rounded-full border border-[#7c6cff]/20 bg-[#07101d]/72 pr-1.5 shadow-[0_0_20px_rgba(124,108,255,0.12)] backdrop-blur-xl transition duration-300 group-hover:border-[#9b8cff]/45 group-hover:bg-[#111936]/80 group-hover:shadow-[0_0_26px_rgba(124,108,255,0.22)]">
                       <span className="absolute left-1.5 right-4 top-1/2 h-px -translate-y-1/2 rounded-full bg-gradient-to-r from-[#7c6cff]/20 via-[#9b8cff]/75 to-[#22d3ee]/45" />
                       <span className="absolute left-1.5 top-1/2 size-1 -translate-y-1/2 rounded-full bg-[#7c6cff]/60 shadow-[0_0_10px_rgba(124,108,255,0.5)]" />
                       <ArrowRight className="relative size-3.5 text-[#c4bbff] transition duration-300 group-hover:translate-x-0.5 group-hover:text-white" />
