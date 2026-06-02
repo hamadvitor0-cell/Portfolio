@@ -91,6 +91,10 @@ export const siteConfig = {
     headline: "Crio sites e sistemas web que parecem premium, funcionam de verdade e saem do papel rápido.",
     description:
       "Desenvolvo interfaces modernas, painéis administrativos, autenticação, banco de dados e experiências digitais publicadas usando IA como apoio para acelerar o processo, sem perder direção técnica humana.",
+    art: {
+      src: "/images/hero-dashboard-art.png",
+      alt: "Arte premium com notebook e celular mostrando dashboard de sistema web publicado"
+    },
     primaryCta: { label: "Ver projetos", href: "#work" },
     secondaryCta: { label: "Ver projetos", href: "#work" },
     floatingProjects: [
