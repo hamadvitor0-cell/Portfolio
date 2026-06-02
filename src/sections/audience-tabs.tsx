@@ -88,8 +88,8 @@ function AudienceToggle({ active, onChange }: { active: Audience; onChange: (val
   ];
 
   return (
-    <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.035] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.28)]">
-      <p className="mb-4 text-center text-sm font-medium text-slate-300">
+    <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.035] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.28)] sm:p-4">
+      <p className="mb-4 text-center text-[0.95rem] font-medium leading-6 text-slate-300 sm:text-sm">
         Dois jeitos de conhecer meu trabalho. Escolha o seu:
       </p>
       <div className="grid gap-3 md:grid-cols-2">
@@ -105,7 +105,7 @@ function AudienceToggle({ active, onChange }: { active: Audience; onChange: (val
               aria-selected={selected}
               onClick={() => onChange(tab.value)}
               className={[
-                "group relative overflow-hidden rounded-2xl border p-4 text-left transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+                "group relative min-h-[6.4rem] overflow-hidden rounded-2xl border p-4 text-left transition duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent sm:min-h-0",
                 selected
                   ? "border-[#7c6cff] bg-[#20264d]/70 shadow-[0_0_32px_rgba(124,108,255,0.32)]"
                   : "border-white/10 bg-[#0b1220]/70 hover:border-[#7c6cff]/55 hover:bg-white/[0.055]"
@@ -117,8 +117,8 @@ function AudienceToggle({ active, onChange }: { active: Audience; onChange: (val
                   <Icon className="size-5" />
                 </span>
                 <span>
-                  <span className="block text-sm font-semibold text-white">{tab.label}</span>
-                  <span className="mt-1 block text-xs leading-5 text-slate-400">{tab.description}</span>
+                  <span className="block text-base font-semibold text-white sm:text-sm">{tab.label}</span>
+                  <span className="mt-1 block text-sm leading-6 text-slate-400 sm:text-xs sm:leading-5">{tab.description}</span>
                 </span>
               </span>
             </button>
@@ -448,7 +448,7 @@ export function AudienceTabsSection() {
   }, []);
 
   return (
-    <section id="work" className="scroll-mt-28 px-4 pb-8 pt-1 sm:px-6 sm:pt-2">
+    <section id="work" className="scroll-mt-28 px-4 pb-8 pt-8 sm:px-6 sm:pt-2">
       <span id="devs" className="block scroll-mt-28" aria-hidden="true" />
       <div className="mx-auto max-w-[76rem]">
         <AudienceToggle active={active} onChange={setActive} />

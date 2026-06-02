@@ -32,11 +32,11 @@ function HeroDashboard() {
       initial={{ opacity: 0, y: 28, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-      className="relative min-h-[350px] sm:min-h-[440px] lg:-ml-10 lg:min-h-[520px] xl:-ml-14 xl:min-h-[550px]"
+      className="relative mx-auto mt-10 min-h-[315px] w-full max-w-[25rem] sm:min-h-[440px] sm:max-w-none lg:-ml-10 lg:mt-0 lg:min-h-[520px] xl:-ml-14 xl:min-h-[550px]"
     >
       <motion.div
         aria-hidden="true"
-        className="absolute left-1/2 top-16 z-0 h-96 w-96 -translate-x-1/2 rounded-full bg-[#6d5dfc]/35 blur-3xl"
+        className="absolute left-1/2 top-16 z-0 h-64 w-64 -translate-x-1/2 rounded-full bg-[#6d5dfc]/30 blur-3xl sm:h-96 sm:w-96 sm:bg-[#6d5dfc]/35"
         animate={{ opacity: [0.42, 0.82, 0.42], scale: [1, 1.16, 1] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -68,24 +68,24 @@ function HeroDashboard() {
         Design premium
       </motion.div>
 
-      <div className="absolute left-[2%] top-[7%] z-10 w-[92%] rotate-[-3deg] rounded-[1.6rem] border border-white/15 bg-[#080d16]/95 p-3 shadow-[0_38px_120px_rgba(0,0,0,0.7)] backdrop-blur-2xl sm:top-[5%] lg:left-[4%] lg:w-[90%]">
-        <div className="rounded-[1.2rem] border border-white/10 bg-[#0b111d] p-4">
-          <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-3 text-[0.62rem] text-slate-500">
+      <div className="absolute left-[7%] top-[8%] z-10 w-[84%] rotate-[-1deg] rounded-[1.35rem] border border-white/15 bg-[#080d16]/95 p-2 shadow-[0_28px_80px_rgba(0,0,0,0.64)] backdrop-blur-2xl sm:left-[2%] sm:top-[5%] sm:w-[92%] sm:rotate-[-3deg] sm:rounded-[1.6rem] sm:p-3 lg:left-[4%] lg:w-[90%]">
+        <div className="rounded-[1rem] border border-white/10 bg-[#0b111d] p-3 sm:rounded-[1.2rem] sm:p-4">
+          <div className="mb-3 flex items-center justify-between gap-3 border-b border-white/10 pb-3 text-[0.56rem] text-slate-500 sm:mb-5 sm:text-[0.62rem]">
             <span className="font-semibold text-slate-300">Dashboard da sua empresa</span>
-            <span>Resultados em tempo real</span>
+            <span className="hidden min-[380px]:inline">Resultados em tempo real</span>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
             {stats.map(([label, value], index) => (
-              <div key={label} className="rounded-xl border border-white/10 bg-white/[0.035] p-3">
-                <p className="text-[0.58rem] text-slate-500">{label}</p>
-                <p className="mt-1 text-lg font-semibold text-white">{value}</p>
-                <div className="mt-3 flex h-7 items-end gap-1">
+              <div key={label} className="rounded-lg border border-white/10 bg-white/[0.035] p-2 sm:rounded-xl sm:p-3">
+                <p className="text-[0.54rem] text-slate-500 sm:text-[0.58rem]">{label}</p>
+                <p className="mt-1 text-base font-semibold text-white sm:text-lg">{value}</p>
+                <div className="mt-2 flex h-5 items-end gap-1 sm:mt-3 sm:h-7">
                   {[0.45, 0.68, 0.54, 0.86, 0.72].map((height, barIndex) => (
                     <span
                       key={`${label}-${barIndex}`}
                       className="w-full rounded-full bg-gradient-to-t from-[#6d5dfc] to-[#22d3ee]"
-                      style={{ height: `${height * (index + 2) * 10}px`, maxHeight: "28px" }}
+                      style={{ height: `${height * (index + 2) * 8}px`, maxHeight: "24px" }}
                     />
                   ))}
                 </div>
@@ -93,7 +93,7 @@ function HeroDashboard() {
             ))}
           </div>
 
-          <div className="mt-4 grid gap-3 sm:grid-cols-[1.35fr_0.75fr]">
+          <div className="mt-3 hidden gap-3 sm:mt-4 sm:grid sm:grid-cols-[1.35fr_0.75fr]">
             <div className="rounded-xl border border-white/10 bg-white/[0.035] p-4">
               <div className="mb-4 flex items-center justify-between">
                 <span className="text-xs font-medium text-slate-300">Crescimento por mês</span>
@@ -135,24 +135,24 @@ function HeroDashboard() {
           </div>
         </div>
 
-        <div className="mx-auto h-4 w-[84%] rounded-b-[2rem] bg-gradient-to-b from-slate-500/35 to-slate-900/20 blur-[1px]" />
+        <div className="mx-auto h-3 w-[78%] rounded-b-[2rem] bg-gradient-to-b from-slate-500/35 to-slate-900/20 blur-[1px] sm:h-4 sm:w-[84%]" />
       </div>
 
-      <div className="absolute bottom-6 right-[1%] z-30 w-[36%] min-w-[138px] max-w-[210px] rounded-[1.5rem] border border-white/15 bg-[#080d16] p-2 shadow-[0_28px_80px_rgba(0,0,0,0.68)] sm:right-[2%]">
-        <div className="rounded-[1.1rem] border border-white/10 bg-[#0b111d] p-3">
-          <div className="mb-4 flex items-center justify-between text-[0.55rem] text-slate-500">
+      <div className="absolute bottom-7 right-[8%] z-30 hidden w-[31%] min-w-[104px] max-w-[132px] rounded-[1.15rem] border border-white/15 bg-[#080d16] p-1.5 shadow-[0_22px_58px_rgba(0,0,0,0.62)] min-[360px]:block sm:bottom-6 sm:right-[2%] sm:w-[36%] sm:min-w-[138px] sm:max-w-[210px] sm:rounded-[1.5rem] sm:p-2">
+        <div className="rounded-[0.9rem] border border-white/10 bg-[#0b111d] p-2 sm:rounded-[1.1rem] sm:p-3">
+          <div className="mb-2 flex items-center justify-between text-[0.48rem] text-slate-500 sm:mb-4 sm:text-[0.55rem]">
             <span>Painel da sua marca</span>
             <span className="size-1.5 rounded-full bg-emerald-400" />
           </div>
-          <div className="rounded-xl bg-gradient-to-br from-[#6d5dfc]/30 to-[#22d3ee]/10 p-3">
-            <p className="text-[0.64rem] font-semibold text-white">Gestão do negócio</p>
-            <p className="mt-1 text-[0.55rem] text-slate-400">Tudo em um lugar.</p>
+          <div className="rounded-lg bg-gradient-to-br from-[#6d5dfc]/30 to-[#22d3ee]/10 p-2 sm:rounded-xl sm:p-3">
+            <p className="text-[0.56rem] font-semibold text-white sm:text-[0.64rem]">Gestão do negócio</p>
+            <p className="mt-1 hidden text-[0.55rem] text-slate-400 min-[380px]:block">Tudo em um lugar.</p>
           </div>
-          <div className="mt-3 grid grid-cols-2 gap-2">
+          <div className="mt-2 grid grid-cols-2 gap-1.5 sm:mt-3 sm:gap-2">
             {["128", "24", "632", "660"].map((value) => (
-              <div key={value} className="rounded-lg border border-white/10 bg-white/[0.035] p-2">
-                <p className="text-[0.65rem] font-semibold text-white">{value}</p>
-                <div className="mt-2 h-1.5 rounded-full bg-[#6d5dfc]" />
+              <div key={value} className="rounded-md border border-white/10 bg-white/[0.035] p-1.5 sm:rounded-lg sm:p-2">
+                <p className="text-[0.56rem] font-semibold text-white sm:text-[0.65rem]">{value}</p>
+                <div className="mt-1 h-1 rounded-full bg-[#6d5dfc] sm:mt-2 sm:h-1.5" />
               </div>
             ))}
           </div>
@@ -164,11 +164,11 @@ function HeroDashboard() {
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative isolate overflow-visible px-4 pb-5 pt-24 sm:px-6 sm:pb-8 lg:pt-28">
+    <section id="home" className="relative isolate overflow-visible px-4 pb-10 pt-28 sm:px-6 sm:pb-8 lg:pt-28">
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_25%_12%,rgba(88,80,236,0.22),transparent_28rem),radial-gradient(circle_at_82%_14%,rgba(34,211,238,0.12),transparent_24rem)]" />
       <div className="absolute left-1/2 top-0 -z-10 h-px w-[min(70rem,90vw)] -translate-x-1/2 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
 
-      <div className="mx-auto grid max-w-[82rem] gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+      <div className="mx-auto grid max-w-[82rem] gap-4 sm:gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
         <div className="relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -184,7 +184,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.72, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-[46rem] text-balance text-[2.35rem] font-semibold leading-[1.04] tracking-normal text-white sm:text-5xl lg:text-[3.35rem] xl:text-[3.6rem]"
+            className="max-w-[46rem] text-balance text-[2.08rem] font-semibold leading-[1.07] tracking-normal text-white min-[380px]:text-[2.28rem] sm:text-5xl lg:text-[3.35rem] xl:text-[3.6rem]"
           >
             Crio{" "}
             <span className="bg-gradient-to-r from-[#b7a8ff] to-[#6d5dfc] bg-clip-text text-transparent">
@@ -203,7 +203,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.14 }}
-            className="mt-6 max-w-2xl text-[0.95rem] leading-7 text-slate-300 sm:text-base sm:leading-8"
+            className="mt-5 max-w-2xl text-[0.95rem] leading-7 text-slate-300 sm:mt-6 sm:text-base sm:leading-8"
           >
             {siteConfig.hero.description}
           </motion.p>
@@ -212,7 +212,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.22 }}
-            className="mt-7 flex flex-col gap-3 sm:flex-row"
+            className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row"
           >
             <a
               href="#work"
@@ -236,7 +236,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.3 }}
-            className="mt-7 grid grid-cols-2 gap-3 text-xs text-slate-400 sm:flex sm:flex-wrap"
+            className="mt-6 grid grid-cols-2 gap-x-3 gap-y-4 text-xs text-slate-400 sm:mt-7 sm:flex sm:flex-wrap"
           >
             {benefits.map((benefit) => {
               const Icon = benefit.icon;
