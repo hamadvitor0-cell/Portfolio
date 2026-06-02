@@ -32,31 +32,43 @@ function HeroDashboard() {
       initial={{ opacity: 0, y: 28, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-      className="relative min-h-[360px] sm:min-h-[470px] lg:min-h-[560px]"
+      className="relative min-h-[350px] sm:min-h-[440px] lg:-ml-10 lg:min-h-[520px] xl:-ml-14 xl:min-h-[550px]"
     >
       <motion.div
         aria-hidden="true"
-        className="absolute left-8 top-12 h-72 w-72 rounded-full bg-[#6d5dfc]/25 blur-3xl"
-        animate={{ opacity: [0.35, 0.7, 0.35], scale: [1, 1.12, 1] }}
+        className="absolute left-1/2 top-16 z-0 h-96 w-96 -translate-x-1/2 rounded-full bg-[#6d5dfc]/35 blur-3xl"
+        animate={{ opacity: [0.42, 0.82, 0.42], scale: [1, 1.16, 1] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="absolute right-0 top-0 hidden rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs text-slate-300 shadow-[0_14px_45px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:flex">
+      <motion.div
+        className="absolute right-1 top-2 z-30 hidden rounded-full border border-white/10 bg-white/[0.055] px-4 py-2 text-xs text-slate-200 shadow-[0_14px_45px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:flex"
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
+      >
         <span className="mr-2 size-2 rounded-full bg-emerald-400 shadow-[0_0_18px_rgba(52,211,153,0.7)]" />
         Sistema publicado
-      </div>
+      </motion.div>
 
-      <div className="absolute left-0 top-[45%] hidden rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs text-slate-300 shadow-[0_14px_45px_rgba(0,0,0,0.35)] backdrop-blur-xl lg:flex">
+      <motion.div
+        className="absolute left-1 top-[42%] z-30 hidden rounded-full border border-white/10 bg-white/[0.055] px-4 py-2 text-xs text-slate-200 shadow-[0_14px_45px_rgba(0,0,0,0.35)] backdrop-blur-xl lg:flex"
+        animate={{ y: [0, 7, 0] }}
+        transition={{ duration: 5.4, repeat: Infinity, ease: "easeInOut" }}
+      >
         <Zap className="mr-2 size-3.5 text-yellow-300" />
         IA no workflow
-      </div>
+      </motion.div>
 
-      <div className="absolute bottom-8 right-4 hidden rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-xs text-slate-300 shadow-[0_14px_45px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:flex">
+      <motion.div
+        className="absolute bottom-10 right-8 z-40 hidden rounded-full border border-white/10 bg-white/[0.055] px-4 py-2 text-xs text-slate-200 shadow-[0_14px_45px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:flex"
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut" }}
+      >
         <Sparkles className="mr-2 size-3.5 text-[#a78bfa]" />
         Design premium
-      </div>
+      </motion.div>
 
-      <div className="absolute left-[8%] top-[9%] w-[84%] rotate-[-3deg] rounded-[1.6rem] border border-white/15 bg-[#080d16]/95 p-3 shadow-[0_34px_110px_rgba(0,0,0,0.65)] backdrop-blur-2xl sm:top-[6%] lg:w-[82%]">
+      <div className="absolute left-[2%] top-[7%] z-10 w-[92%] rotate-[-3deg] rounded-[1.6rem] border border-white/15 bg-[#080d16]/95 p-3 shadow-[0_38px_120px_rgba(0,0,0,0.7)] backdrop-blur-2xl sm:top-[5%] lg:left-[4%] lg:w-[90%]">
         <div className="rounded-[1.2rem] border border-white/10 bg-[#0b111d] p-4">
           <div className="mb-5 flex items-center justify-between border-b border-white/10 pb-3 text-[0.62rem] text-slate-500">
             <span className="font-semibold text-slate-300">Dashboard da sua empresa</span>
@@ -126,7 +138,7 @@ function HeroDashboard() {
         <div className="mx-auto h-4 w-[84%] rounded-b-[2rem] bg-gradient-to-b from-slate-500/35 to-slate-900/20 blur-[1px]" />
       </div>
 
-      <div className="absolute bottom-0 right-[4%] w-[34%] min-w-[130px] max-w-[190px] rounded-[1.5rem] border border-white/15 bg-[#080d16] p-2 shadow-[0_28px_80px_rgba(0,0,0,0.65)]">
+      <div className="absolute bottom-6 right-[1%] z-30 w-[36%] min-w-[138px] max-w-[210px] rounded-[1.5rem] border border-white/15 bg-[#080d16] p-2 shadow-[0_28px_80px_rgba(0,0,0,0.68)] sm:right-[2%]">
         <div className="rounded-[1.1rem] border border-white/10 bg-[#0b111d] p-3">
           <div className="mb-4 flex items-center justify-between text-[0.55rem] text-slate-500">
             <span>Painel da sua marca</span>
@@ -152,11 +164,11 @@ function HeroDashboard() {
 
 export function HeroSection() {
   return (
-    <section id="home" className="relative isolate overflow-hidden px-4 pb-16 pt-28 sm:px-6 sm:pb-20 lg:pt-32">
+    <section id="home" className="relative isolate overflow-visible px-4 pb-5 pt-24 sm:px-6 sm:pb-8 lg:pt-28">
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_25%_12%,rgba(88,80,236,0.22),transparent_28rem),radial-gradient(circle_at_82%_14%,rgba(34,211,238,0.12),transparent_24rem)]" />
       <div className="absolute left-1/2 top-0 -z-10 h-px w-[min(70rem,90vw)] -translate-x-1/2 bg-gradient-to-r from-transparent via-white/25 to-transparent" />
 
-      <div className="mx-auto grid max-w-[76rem] gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-center">
+      <div className="mx-auto grid max-w-[82rem] gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
         <div className="relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 14 }}
@@ -172,7 +184,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.72, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-4xl text-balance text-[2.75rem] font-semibold leading-[0.98] tracking-normal text-white sm:text-6xl lg:text-[4.6rem]"
+            className="max-w-[46rem] text-balance text-[2.35rem] font-semibold leading-[1.04] tracking-normal text-white sm:text-5xl lg:text-[3.35rem] xl:text-[3.6rem]"
           >
             Crio{" "}
             <span className="bg-gradient-to-r from-[#b7a8ff] to-[#6d5dfc] bg-clip-text text-transparent">
@@ -191,7 +203,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.14 }}
-            className="mt-6 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base"
+            className="mt-6 max-w-2xl text-[0.95rem] leading-7 text-slate-300 sm:text-base sm:leading-8"
           >
             {siteConfig.hero.description}
           </motion.p>

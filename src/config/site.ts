@@ -43,7 +43,6 @@ export const siteConfig = {
     { label: "Sobre", href: "#why" },
     { label: "Serviços", href: "#technical" },
     { label: "Processo", href: "#process" },
-    { label: "Blog", href: "#devs" },
     { label: "Contato", href: "#contact" }
   ],
 

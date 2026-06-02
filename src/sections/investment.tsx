@@ -37,7 +37,7 @@ const plans = [
 
 export function InvestmentSection() {
   return (
-    <section id="investment" className="px-4 py-8 sm:px-6">
+    <section id="investment" className="scroll-mt-28 px-4 py-8 sm:px-6">
       <div className="mx-auto max-w-[76rem] rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-7">
         <SectionReveal className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -48,17 +48,17 @@ export function InvestmentSection() {
           </div>
         </SectionReveal>
 
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5">
           {plans.map((plan, index) => (
             <SectionReveal key={plan.title} delay={index * 0.04}>
-              <article className="group h-full rounded-[1.15rem] border border-white/10 bg-white/[0.035] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#7c6cff]/50 hover:bg-white/[0.055]">
-                <p className="text-sm font-semibold text-white">{plan.title}</p>
+              <article className="group h-full rounded-[1.15rem] border border-white/10 bg-white/[0.04] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#7c6cff]/50 hover:bg-white/[0.065]">
+                <p className="text-lg font-semibold text-white">{plan.title}</p>
                 <p className="mt-4 text-xs text-slate-500">A partir de</p>
                 <p className="text-2xl font-semibold text-white">{plan.price}</p>
-                <p className="mt-4 min-h-[3rem] text-sm leading-6 text-slate-400">{plan.description}</p>
+                <p className="mt-4 min-h-[3.75rem] text-[0.95rem] leading-7 text-slate-300">{plan.description}</p>
                 <div className="mt-5 space-y-2">
                   {plan.bullets.map((bullet) => (
-                    <span key={bullet} className="flex items-center gap-2 text-xs text-slate-300">
+                    <span key={bullet} className="flex items-center gap-2 text-sm text-slate-300">
                       <CheckCircle2 className="size-3.5 text-emerald-400" />
                       {bullet}
                     </span>

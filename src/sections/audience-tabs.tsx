@@ -170,6 +170,72 @@ function ProjectVisual() {
   );
 }
 
+function ManualDocumentsPreview() {
+  return (
+    <div className="relative min-h-[14rem] overflow-hidden rounded-2xl border border-red-300/25 bg-[radial-gradient(circle_at_18%_15%,rgba(248,113,113,0.16),transparent_10rem),linear-gradient(135deg,rgba(127,29,29,0.25),rgba(15,23,42,0.92))] p-5">
+      <div className="absolute left-8 top-6 h-36 w-40 rotate-[-9deg] rounded-xl border border-slate-300/70 bg-[#f8f3e7] p-4 shadow-[0_22px_45px_rgba(0,0,0,0.35)]">
+        <div className="mb-3 h-3 w-24 rounded bg-slate-700/70" />
+        <div className="grid grid-cols-3 gap-1.5">
+          {Array.from({ length: 18 }).map((_, index) => (
+            <span key={index} className="h-2 rounded bg-slate-400/45" />
+          ))}
+        </div>
+        <div className="mt-4 h-2 w-28 rounded bg-blue-500/35" />
+        <div className="mt-2 h-2 w-20 rounded bg-blue-500/25" />
+      </div>
+
+      <div className="absolute right-7 top-10 h-40 w-44 rotate-[7deg] rounded-xl border border-slate-300/70 bg-[#fbfaf5] p-4 shadow-[0_22px_45px_rgba(0,0,0,0.35)]">
+        <div className="mb-4 flex items-center justify-between">
+          <span className="h-3 w-20 rounded bg-slate-800/75" />
+          <span className="size-6 rounded-full border border-slate-500/50" />
+        </div>
+        {[82, 96, 72, 88, 60].map((width, index) => (
+          <span
+            key={width + index}
+            className="mb-2 block h-2 rounded bg-slate-500/45"
+            style={{ width: `${width}%` }}
+          />
+        ))}
+        <div className="mt-5 grid grid-cols-2 gap-2">
+          <span className="h-7 rounded border border-slate-400/60" />
+          <span className="h-7 rounded border border-slate-400/60" />
+        </div>
+      </div>
+
+      <div className="absolute bottom-8 left-[42%] h-4 w-36 rotate-[-28deg] rounded-full bg-[#1f2937] shadow-[0_10px_25px_rgba(0,0,0,0.45)]">
+        <span className="absolute right-[-0.7rem] top-1/2 h-2 w-5 -translate-y-1/2 rounded-r-full bg-slate-300" />
+        <span className="absolute left-4 top-1/2 h-1 w-16 -translate-y-1/2 rounded-full bg-slate-500" />
+      </div>
+
+      <div className="absolute bottom-5 right-5 rounded-full border border-red-300/25 bg-red-500/10 px-3 py-1 text-xs font-semibold text-red-200">
+        processo manual
+      </div>
+    </div>
+  );
+}
+
+function SystemDashboardPreview() {
+  return (
+    <div className="relative min-h-[14rem] overflow-hidden rounded-2xl border border-emerald-300/25 bg-[radial-gradient(circle_at_78%_15%,rgba(52,211,153,0.16),transparent_10rem),linear-gradient(135deg,rgba(6,78,59,0.24),rgba(15,23,42,0.92))] p-5">
+      <div className="rounded-xl border border-white/10 bg-[#070d18] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
+        <div className="mb-4 flex items-center justify-between">
+          <span className="h-2.5 w-28 rounded-full bg-white/20" />
+          <span className="rounded-full bg-emerald-400/12 px-3 py-1 text-[0.65rem] text-emerald-300">online</span>
+        </div>
+        <div className="grid grid-cols-3 gap-3">
+          {[128, 24, 660].map((item) => (
+            <div key={item} className="rounded-lg border border-white/10 bg-white/[0.045] p-3">
+              <p className="text-lg font-semibold text-[#a99cff]">{item}</p>
+              <span className="mt-2 block h-1.5 rounded-full bg-gradient-to-r from-[#7c6cff] to-[#22d3ee]" />
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 h-20 rounded-lg border border-white/10 bg-gradient-to-br from-[#6d5dfc]/35 to-[#22d3ee]/15" />
+      </div>
+    </div>
+  );
+}
+
 function BusinessPanel() {
   const project = siteConfig.projects[0];
 
@@ -249,46 +315,29 @@ function BusinessPanel() {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-[1.3rem] border border-white/10 bg-white/[0.035] p-5">
-          <div className="mb-4 flex items-center gap-2 text-sm font-semibold text-white">
+        <div className="rounded-[1.3rem] border border-white/10 bg-white/[0.035] p-6">
+          <div className="mb-5 flex items-center gap-2 text-base font-semibold text-white">
             <XCircle className="size-5 text-red-400" />
             Antes
           </div>
-          <div className="grid gap-4 sm:grid-cols-[0.8fr_1.2fr] sm:items-center">
-            <p className="text-sm leading-6 text-slate-400">
+          <div className="grid gap-5 sm:grid-cols-[0.82fr_1.18fr] sm:items-center">
+            <p className="text-[0.95rem] leading-7 text-slate-300">
               Processos manuais, informações espalhadas, dificuldade para acompanhar inscrições e gerenciar alunos.
             </p>
-            <div className="rounded-xl border border-red-400/30 bg-red-500/10 p-4">
-              <div className="rotate-[-2deg] rounded-lg border border-white/12 bg-[#f7f2e8] p-4 shadow-lg">
-                {Array.from({ length: 6 }).map((_, index) => (
-                  <span key={index} className="mb-2 block h-2 rounded bg-slate-400/50" style={{ width: `${88 - index * 8}%` }} />
-                ))}
-              </div>
-            </div>
+            <ManualDocumentsPreview />
           </div>
         </div>
 
-        <div className="rounded-[1.3rem] border border-emerald-400/25 bg-emerald-500/[0.035] p-5">
-          <div className="mb-4 flex items-center gap-2 text-sm font-semibold text-white">
+        <div className="rounded-[1.3rem] border border-emerald-400/25 bg-emerald-500/[0.035] p-6">
+          <div className="mb-5 flex items-center gap-2 text-base font-semibold text-white">
             <CheckCircle2 className="size-5 text-emerald-400" />
             Depois
           </div>
-          <div className="grid gap-4 sm:grid-cols-[0.8fr_1.2fr] sm:items-center">
-            <p className="text-sm leading-6 text-slate-400">
+          <div className="grid gap-5 sm:grid-cols-[0.82fr_1.18fr] sm:items-center">
+            <p className="text-[0.95rem] leading-7 text-slate-300">
               Sistema centralizado, painel administrativo completo, dados organizados e acesso online de qualquer lugar.
             </p>
-            <div className="rounded-xl border border-emerald-400/30 bg-[#08111e] p-4">
-              <div className="rounded-lg border border-white/10 bg-[#0b111d] p-4">
-                <div className="mb-3 grid grid-cols-3 gap-2">
-                  {[128, 24, 660].map((item) => (
-                    <span key={item} className="rounded-md bg-white/[0.06] p-2 text-xs font-semibold text-[#a99cff]">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-                <div className="h-20 rounded-lg bg-gradient-to-br from-[#6d5dfc]/35 to-[#22d3ee]/15" />
-              </div>
-            </div>
+            <SystemDashboardPreview />
           </div>
         </div>
       </div>
@@ -306,8 +355,13 @@ function DevPanel() {
       transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
       className="space-y-5"
     >
-      <div className="inline-flex items-center gap-2 rounded-full border border-[#7c6cff]/25 bg-[#7c6cff]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#a89cff]">
-        Stack que uso para tirar projetos do papel
+      <div>
+        <div className="inline-flex items-center gap-2 rounded-full border border-[#7c6cff]/25 bg-[#7c6cff]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#a89cff]">
+          Stack que uso para tirar projetos do papel
+        </div>
+        <p className="mt-4 max-w-2xl text-[0.95rem] leading-7 text-slate-300">
+          Bastidores técnicos para quem quer entender como o projeto é construído.
+        </p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
@@ -316,23 +370,30 @@ function DevPanel() {
           return (
             <article
               key={card.title}
-              className="group rounded-[1.2rem] border border-white/10 bg-white/[0.035] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#7c6cff]/50 hover:bg-white/[0.055]"
+              className="group flex h-full min-h-[17rem] flex-col rounded-[1.2rem] border border-white/10 bg-white/[0.04] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#7c6cff]/50 hover:bg-white/[0.065]"
             >
               <div className="mb-6 inline-flex items-center gap-3">
-                <span className="grid size-11 place-items-center rounded-xl border border-white/10 bg-white/[0.06] text-[#9b8cff]">
-                  <Icon className="size-5" />
+                <span className="grid size-12 place-items-center rounded-xl border border-white/10 bg-white/[0.06] text-[#9b8cff]">
+                  <Icon className="size-6" />
                 </span>
                 <span className="text-xs font-semibold text-slate-400">{card.eyebrow}</span>
               </div>
-              <h3 className="text-base font-semibold text-white">{card.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-400">{card.description}</p>
+              <h3 className="text-lg font-semibold text-white">{card.title}</h3>
+              <p className="mt-3 text-[0.95rem] leading-7 text-slate-300">{card.description}</p>
             </article>
           );
         })}
       </div>
 
       <div className="grid gap-5 lg:grid-cols-[1.2fr_1fr] lg:items-stretch">
-        <div className="rounded-[1.2rem] border border-white/10 bg-[#050912] p-5 font-mono text-sm shadow-[0_24px_70px_rgba(0,0,0,0.35)]">
+        <div className="overflow-hidden rounded-[1.2rem] border border-white/10 bg-[#030712] font-mono text-[0.95rem] shadow-[0_24px_70px_rgba(0,0,0,0.42)]">
+          <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.035] px-5 py-3">
+            <span className="size-3 rounded-full bg-red-400" />
+            <span className="size-3 rounded-full bg-yellow-300" />
+            <span className="size-3 rounded-full bg-emerald-400" />
+            <span className="ml-3 text-xs font-sans text-slate-500">deploy.sh</span>
+          </div>
+          <div className="p-6">
           {[
             "$ git add .",
             '$ git commit -m "feat: nova funcionalidade"',
@@ -340,18 +401,26 @@ function DevPanel() {
             "$ vercel deploy --prod",
             "✔ Deploy concluído: sistema publicado com sucesso."
           ].map((line) => (
-            <p key={line} className="leading-7 text-emerald-300">
+            <motion.p
+              key={line}
+              initial={{ opacity: 0, x: -8 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.35 }}
+              className="leading-8 text-emerald-300"
+            >
               {line}
-            </p>
+            </motion.p>
           ))}
+          </div>
         </div>
 
-        <div className="rounded-[1.2rem] border border-white/10 bg-white/[0.035] p-6">
+        <div className="rounded-[1.2rem] border border-white/10 bg-white/[0.04] p-7">
           <div className="mb-5 inline-flex size-12 items-center justify-center rounded-2xl border border-[#7c6cff]/30 bg-[#7c6cff]/10 text-[#a99cff]">
-            <Github className="size-5" />
+            <Github className="size-6" />
           </div>
           <h3 className="text-2xl font-semibold text-white">Do planejamento ao deploy: seu projeto pronto para ser usado.</h3>
-          <p className="mt-4 text-sm leading-7 text-slate-400">
+          <p className="mt-4 text-[0.95rem] leading-7 text-slate-300">
             Cuido de toda a parte técnica para você não precisar se preocupar com código, banco de dados, publicação
             ou configurações.
           </p>
@@ -379,11 +448,11 @@ export function AudienceTabsSection() {
   }, []);
 
   return (
-    <section id="work" className="px-4 py-8 sm:px-6">
+    <section id="work" className="scroll-mt-28 px-4 pb-8 pt-1 sm:px-6 sm:pt-2">
       <span id="devs" className="block scroll-mt-28" aria-hidden="true" />
       <div className="mx-auto max-w-[76rem]">
         <AudienceToggle active={active} onChange={setActive} />
-        <div className="mt-8 rounded-[1.6rem] border border-white/10 bg-[#07101d]/80 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.34)] backdrop-blur-xl sm:p-7">
+        <div className="mt-6 rounded-[1.6rem] border border-white/10 bg-[#07101d]/80 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.34)] backdrop-blur-xl sm:p-7">
           <AnimatePresence mode="wait">{active === "business" ? <BusinessPanel /> : <DevPanel />}</AnimatePresence>
         </div>
       </div>

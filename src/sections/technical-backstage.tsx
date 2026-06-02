@@ -31,7 +31,7 @@ const items = [
 
 export function TechnicalBackstageSection() {
   return (
-    <section id="technical" className="px-4 py-8 sm:px-6">
+    <section id="technical" className="scroll-mt-28 px-4 py-8 sm:px-6">
       <div className="mx-auto max-w-[76rem] rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-7">
         <SectionReveal>
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#7c6cff]/25 bg-[#7c6cff]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#a89cff]">
@@ -44,12 +44,12 @@ export function TechnicalBackstageSection() {
             const Icon = item.icon;
             return (
               <SectionReveal key={item.title} delay={index * 0.04}>
-                <article className="h-full rounded-[1.15rem] border border-white/10 bg-white/[0.035] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#7c6cff]/45 hover:bg-white/[0.055]">
-                  <span className="mb-5 grid size-11 place-items-center rounded-xl border border-white/10 bg-white/[0.06] text-[#a99cff]">
-                    <Icon className="size-5" />
+                <article className="h-full min-h-[13.5rem] rounded-[1.15rem] border border-white/10 bg-white/[0.04] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#7c6cff]/45 hover:bg-white/[0.065]">
+                  <span className="mb-5 grid size-12 place-items-center rounded-xl border border-white/10 bg-white/[0.06] text-[#a99cff]">
+                    <Icon className="size-6" />
                   </span>
-                  <h3 className="text-sm font-semibold text-white">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-400">{item.description}</p>
+                  <h3 className="text-base font-semibold text-white">{item.title}</h3>
+                  <p className="mt-3 text-[0.95rem] leading-7 text-slate-300">{item.description}</p>
                 </article>
               </SectionReveal>
             );
