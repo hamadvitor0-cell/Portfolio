@@ -1,27 +1,21 @@
-import { AboutSection } from "@/sections/about";
-import { ClientsSection } from "@/sections/clients";
-import { ContactSection } from "@/sections/contact";
-import { EducationSection } from "@/sections/education";
-import { FeaturedWorkSection } from "@/sections/featured-work";
+import { AudienceTabsSection } from "@/sections/audience-tabs";
+import { FinalCtaSection } from "@/sections/final-cta";
 import { HeroSection } from "@/sections/hero";
 import { InvestmentSection } from "@/sections/investment";
 import { ProcessSection } from "@/sections/process";
-import { ServicesSection } from "@/sections/services";
-import { TestimonialsSection } from "@/sections/testimonials";
+import { TechnicalBackstageSection } from "@/sections/technical-backstage";
+import { WhyWorkSection } from "@/sections/why-work";
 
 export default function Home() {
   return (
     <main>
       <HeroSection />
-      <FeaturedWorkSection />
-      <AboutSection />
-      <EducationSection />
-      <ServicesSection />
-      <InvestmentSection />
+      <AudienceTabsSection />
+      <WhyWorkSection />
+      <TechnicalBackstageSection />
       <ProcessSection />
-      <ClientsSection />
-      <TestimonialsSection />
-      <ContactSection />
+      <InvestmentSection />
+      <FinalCtaSection />
     </main>
   );
 }

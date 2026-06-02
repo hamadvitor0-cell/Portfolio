@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
   --font-sans: "Inter", "SF Pro Display", "Segoe UI", system-ui, sans-serif;
 }
 
@@ -24,8 +24,9 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    linear-gradient(rgb(var(--color-background) / 0.94), rgb(var(--color-background) / 0.94)),
-    radial-gradient(circle at top left, rgb(var(--color-accent-soft) / 0.9), transparent 32rem);
+    radial-gradient(circle at 18% 10%, rgba(109, 93, 252, 0.18), transparent 28rem),
+    radial-gradient(circle at 86% 16%, rgba(34, 211, 238, 0.1), transparent 24rem),
+    linear-gradient(180deg, #050a12 0%, #07101d 45%, #050912 100%);
   color: rgb(var(--color-foreground));
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
@@ -36,14 +37,19 @@ body::before {
   pointer-events: none;
   position: fixed;
   inset: 0;
-  z-index: 60;
+  z-index: 0;
   content: "";
-  opacity: 0.05;
+  opacity: 0.08;
   background-image:
     linear-gradient(rgb(var(--color-foreground) / 0.6) 1px, transparent 1px),
     linear-gradient(90deg, rgb(var(--color-foreground) / 0.6) 1px, transparent 1px);
   background-size: 42px 42px;
   mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 ::selection {

@@ -1,55 +1,87 @@
-import { MessageCircle } from "lucide-react";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { siteConfig } from "@/config/site";
-import { MagneticButton } from "@/components/magnetic-button";
 import { SectionReveal } from "@/components/section-reveal";
-import { padNumber } from "@/lib/utils";
+
+const plans = [
+  {
+    title: "Landing Page",
+    price: "R$ 1.000",
+    description: "Ideal para validar ideias e gerar resultados rápidos.",
+    bullets: ["Página única", "Design responsivo", "Formulário de contato", "Entrega rápida"]
+  },
+  {
+    title: "Site Institucional",
+    price: "R$ 1.500",
+    description: "A presença digital que sua empresa precisa.",
+    bullets: ["Até 5 páginas", "Design premium", "Painel simples, se necessário", "SEO básico"]
+  },
+  {
+    title: "Sistema Web",
+    price: "R$ 3.000",
+    description: "Solução personalizada para processos e gestão.",
+    bullets: ["Login", "Painel administrativo", "Banco de dados", "Regras de negócio"]
+  },
+  {
+    title: "Sistema Web Completo",
+    price: "R$ 5.000+",
+    description: "Para projetos maiores, com funcionalidades avançadas.",
+    bullets: ["Funcionalidades avançadas", "Integrações", "Relatórios", "Suporte inicial"]
+  },
+  {
+    title: "Manutenção mensal",
+    price: "R$ 150/mês",
+    description: "Para manter seu projeto atualizado e funcionando bem.",
+    bullets: ["Correções", "Atualizações", "Suporte técnico", "Melhorias contínuas"]
+  }
+];
 
 export function InvestmentSection() {
   return (
-    <section id="investment" className="px-4 py-24 sm:px-6 lg:py-32">
-      <div className="mx-auto max-w-7xl">
-        <SectionReveal className="grid gap-6 md:grid-cols-[0.7fr_1fr] md:items-end">
+    <section id="investment" className="px-4 py-8 sm:px-6">
+      <div className="mx-auto max-w-[76rem] rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-7">
+        <SectionReveal className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="text-4xl font-medium tracking-normal text-foreground sm:text-6xl">
-              {siteConfig.sectionHeadings.investmentTitle}
-            </h2>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#7c6cff]/25 bg-[#7c6cff]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#a89cff]">
+              Investimento
+            </div>
+            <p className="text-sm text-slate-400">Soluções para diferentes tipos de projetos e necessidades.</p>
           </div>
-          <p className="max-w-2xl text-lg leading-8 text-muted md:justify-self-end">
-            Valores iniciais para orientar o escopo. Cada projeto é avaliado pelo nível de complexidade,
-            integrações, prazo e funcionalidades necessárias.
-          </p>
         </SectionReveal>
 
-        <div className="mt-14 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {siteConfig.investment.plans.map((plan, index) => (
-            <SectionReveal key={plan.title} delay={index * 0.06}>
-              <article className="group h-full rounded-[1.75rem] border border-border bg-surface/75 p-6 shadow-soft transition hover:-translate-y-1 hover:border-accent/40">
-                <div className="flex items-center justify-between gap-4">
-                  <span className="text-sm text-muted">{padNumber(index + 1)}</span>
-                  <span className="rounded-full border border-border bg-background/60 px-3 py-1 text-xs text-muted">
-                    sob consulta
-                  </span>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {plans.map((plan, index) => (
+            <SectionReveal key={plan.title} delay={index * 0.04}>
+              <article className="group h-full rounded-[1.15rem] border border-white/10 bg-white/[0.035] p-5 transition duration-300 hover:-translate-y-1 hover:border-[#7c6cff]/50 hover:bg-white/[0.055]">
+                <p className="text-sm font-semibold text-white">{plan.title}</p>
+                <p className="mt-4 text-xs text-slate-500">A partir de</p>
+                <p className="text-2xl font-semibold text-white">{plan.price}</p>
+                <p className="mt-4 min-h-[3rem] text-sm leading-6 text-slate-400">{plan.description}</p>
+                <div className="mt-5 space-y-2">
+                  {plan.bullets.map((bullet) => (
+                    <span key={bullet} className="flex items-center gap-2 text-xs text-slate-300">
+                      <CheckCircle2 className="size-3.5 text-emerald-400" />
+                      {bullet}
+                    </span>
+                  ))}
                 </div>
-                <h3 className="mt-10 text-xl font-medium text-foreground">{plan.title}</h3>
-                <p className="mt-4 text-2xl font-medium text-accent">{plan.price}</p>
-                <p className="mt-4 leading-7 text-muted">{plan.description}</p>
               </article>
             </SectionReveal>
           ))}
         </div>
 
-        <SectionReveal delay={0.12} className="mt-6 rounded-[2rem] border border-border bg-foreground p-7 text-background shadow-soft dark:bg-surface dark:text-foreground sm:p-8">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <p className="max-w-4xl text-lg leading-8 opacity-80">{siteConfig.investment.note}</p>
-            <MagneticButton
-              href={siteConfig.whatsapp.messageHref}
-              variant="secondary"
-              className="shrink-0 bg-background text-foreground"
-            >
-              <MessageCircle className="size-4" />
-              {siteConfig.investment.ctaLabel}
-            </MagneticButton>
-          </div>
+        <SectionReveal className="mt-6 flex flex-col gap-4 rounded-[1.15rem] border border-white/10 bg-[#050912]/70 p-5 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-3xl text-sm leading-6 text-slate-400">
+            Valores de referência. Cada projeto é único e recebe um orçamento personalizado.
+          </p>
+          <a
+            href={siteConfig.whatsapp.messageHref}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#7c6cff]/60 hover:bg-white/[0.08]"
+          >
+            Solicitar orçamento personalizado
+            <ArrowUpRight className="size-4" />
+          </a>
         </SectionReveal>
       </div>
     </section>

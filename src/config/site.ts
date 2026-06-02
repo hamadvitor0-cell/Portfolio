@@ -27,7 +27,7 @@ export const siteConfig = {
   location: "Brasil",
   email: "hamadvitor0@gmail.com",
   availability: "Workflow acelerado por IA · Disponível para projetos freelance",
-  headerCta: "Chamar no WhatsApp",
+  headerCta: "Quero tirar minha ideia do papel",
 
   whatsapp: {
     number: "+55 41 99141-6887",
@@ -38,9 +38,12 @@ export const siteConfig = {
   },
 
   nav: [
+    { label: "Início", href: "#home" },
     { label: "Projetos", href: "#work" },
-    { label: "Sobre", href: "#about" },
-    { label: "Serviços", href: "#services" },
+    { label: "Sobre", href: "#why" },
+    { label: "Serviços", href: "#technical" },
+    { label: "Processo", href: "#process" },
+    { label: "Blog", href: "#devs" },
     { label: "Contato", href: "#contact" }
   ],
 
@@ -64,32 +67,32 @@ export const siteConfig = {
 
   theme: {
     light: {
-      background: "248 248 245",
-      foreground: "17 20 24",
-      muted: "96 103 113",
-      subtle: "229 231 225",
-      surface: "255 255 252",
-      border: "218 220 214",
-      accent: "78 92 255",
-      accentSoft: "226 229 255"
+      background: "5 10 18",
+      foreground: "247 249 255",
+      muted: "151 164 188",
+      subtle: "17 24 37",
+      surface: "10 17 29",
+      border: "38 49 69",
+      accent: "132 105 255",
+      accentSoft: "35 27 82"
     },
     dark: {
-      background: "10 12 16",
-      foreground: "244 246 248",
-      muted: "158 166 178",
-      subtle: "34 38 46",
-      surface: "18 21 27",
-      border: "46 51 61",
-      accent: "150 164 255",
-      accentSoft: "37 44 86"
+      background: "5 10 18",
+      foreground: "247 249 255",
+      muted: "151 164 188",
+      subtle: "17 24 37",
+      surface: "10 17 29",
+      border: "38 49 69",
+      accent: "132 105 255",
+      accentSoft: "35 27 82"
     }
   },
 
   hero: {
-    headline: "Sites e aplicações full stack com design premium e entrega ágil.",
+    headline: "Crio sites e sistemas web que parecem premium, funcionam de verdade e saem do papel rápido.",
     description:
-      "Sou Vitor Hamad, um jovem desenvolvedor web full stack apaixonado por criar sites modernos, aplicações interativas e interfaces premium com foco em performance, design e velocidade de entrega usando IA como apoio estratégico no workflow.",
-    primaryCta: { label: "Vamos criar seu projeto", href: "https://wa.me/5541991416887?text=Ol%C3%A1%2C%20Vitor%21%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." },
+      "Desenvolvo interfaces modernas, painéis administrativos, autenticação, banco de dados e experiências digitais publicadas usando IA como apoio para acelerar o processo, sem perder direção técnica humana.",
+    primaryCta: { label: "Ver projetos", href: "#work" },
     secondaryCta: { label: "Ver projetos", href: "#work" },
     floatingProjects: [
       "/images/project-atlas.svg",

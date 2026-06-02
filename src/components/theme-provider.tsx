@@ -15,10 +15,10 @@ const ThemeContext = createContext<{
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window === "undefined") {
-      return "light";
+      return "dark";
     }
     const stored = window.localStorage.getItem("portfolio-theme") as Theme | null;
-    const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    const preferred = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
     return stored ?? preferred;
   });
 
