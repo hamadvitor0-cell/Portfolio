@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { SectionReveal } from "@/components/section-reveal";
 
 const steps = [
@@ -43,16 +43,6 @@ export function ProcessSection() {
             <SectionReveal key={step.title} delay={index * 0.04} className="group relative">
               {index < steps.length - 1 ? (
                 <>
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute left-1/2 top-[calc(100%+0.28rem)] z-20 flex -translate-x-1/2 flex-col items-center md:hidden"
-                  >
-                    <span className="h-8 w-px rounded-full bg-gradient-to-b from-[#7c6cff]/20 via-[#9b8cff]/70 to-[#22d3ee]/25 shadow-[0_0_18px_rgba(124,108,255,0.18)]" />
-                    <span className="-mt-1 grid size-7 place-items-center rounded-full border border-[#7c6cff]/30 bg-[#07101d]/95 text-[#b7a8ff] shadow-[0_0_22px_rgba(124,108,255,0.2)] backdrop-blur-xl transition duration-300 group-hover:border-[#9b8cff]/55 group-hover:text-white">
-                      <ArrowDown className="size-3.5 transition duration-300 group-hover:translate-y-0.5" />
-                    </span>
-                  </span>
-
                   <span
                     aria-hidden="true"
                     className="pointer-events-none absolute left-[calc(100%+1.125rem)] top-[4.8rem] z-20 hidden -translate-x-1/2 items-center 2xl:flex"
