@@ -172,66 +172,32 @@ function ProjectVisual() {
 
 function ManualDocumentsPreview() {
   return (
-    <div className="relative min-h-[14rem] overflow-hidden rounded-2xl border border-red-300/25 bg-[radial-gradient(circle_at_18%_15%,rgba(248,113,113,0.16),transparent_10rem),linear-gradient(135deg,rgba(127,29,29,0.25),rgba(15,23,42,0.92))] p-5">
-      <div className="absolute left-8 top-6 h-36 w-40 rotate-[-9deg] rounded-xl border border-slate-300/70 bg-[#f8f3e7] p-4 shadow-[0_22px_45px_rgba(0,0,0,0.35)]">
-        <div className="mb-3 h-3 w-24 rounded bg-slate-700/70" />
-        <div className="grid grid-cols-3 gap-1.5">
-          {Array.from({ length: 18 }).map((_, index) => (
-            <span key={index} className="h-2 rounded bg-slate-400/45" />
-          ))}
-        </div>
-        <div className="mt-4 h-2 w-28 rounded bg-blue-500/35" />
-        <div className="mt-2 h-2 w-20 rounded bg-blue-500/25" />
-      </div>
-
-      <div className="absolute right-7 top-10 h-40 w-44 rotate-[7deg] rounded-xl border border-slate-300/70 bg-[#fbfaf5] p-4 shadow-[0_22px_45px_rgba(0,0,0,0.35)]">
-        <div className="mb-4 flex items-center justify-between">
-          <span className="h-3 w-20 rounded bg-slate-800/75" />
-          <span className="size-6 rounded-full border border-slate-500/50" />
-        </div>
-        {[82, 96, 72, 88, 60].map((width, index) => (
-          <span
-            key={width + index}
-            className="mb-2 block h-2 rounded bg-slate-500/45"
-            style={{ width: `${width}%` }}
-          />
-        ))}
-        <div className="mt-5 grid grid-cols-2 gap-2">
-          <span className="h-7 rounded border border-slate-400/60" />
-          <span className="h-7 rounded border border-slate-400/60" />
-        </div>
-      </div>
-
-      <div className="absolute bottom-8 left-[42%] h-4 w-36 rotate-[-28deg] rounded-full bg-[#1f2937] shadow-[0_10px_25px_rgba(0,0,0,0.45)]">
-        <span className="absolute right-[-0.7rem] top-1/2 h-2 w-5 -translate-y-1/2 rounded-r-full bg-slate-300" />
-        <span className="absolute left-4 top-1/2 h-1 w-16 -translate-y-1/2 rounded-full bg-slate-500" />
-      </div>
-
-      <div className="absolute bottom-5 right-5 rounded-full border border-red-300/25 bg-red-500/10 px-3 py-1 text-xs font-semibold text-red-200">
-        processo manual
-      </div>
+    <div className="relative flex min-h-[12rem] items-center justify-center overflow-hidden rounded-2xl bg-[#050912]/80 p-2 sm:min-h-[14rem] sm:p-3">
+      <Image
+        src="/images/before-manual-documents.jpg"
+        alt="Documentos e caneta representando processo manual"
+        width={1280}
+        height={960}
+        loading="eager"
+        sizes="(max-width: 640px) 86vw, (max-width: 1024px) 46vw, 32vw"
+        className="h-auto max-h-[15.5rem] w-full rounded-xl object-contain"
+      />
     </div>
   );
 }
 
 function SystemDashboardPreview() {
   return (
-    <div className="relative min-h-[14rem] overflow-hidden rounded-2xl border border-emerald-300/25 bg-[radial-gradient(circle_at_78%_15%,rgba(52,211,153,0.16),transparent_10rem),linear-gradient(135deg,rgba(6,78,59,0.24),rgba(15,23,42,0.92))] p-5">
-      <div className="rounded-xl border border-white/10 bg-[#070d18] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
-        <div className="mb-4 flex items-center justify-between">
-          <span className="h-2.5 w-28 rounded-full bg-white/20" />
-          <span className="rounded-full bg-emerald-400/12 px-3 py-1 text-[0.65rem] text-emerald-300">online</span>
-        </div>
-        <div className="grid grid-cols-3 gap-3">
-          {[128, 24, 660].map((item) => (
-            <div key={item} className="rounded-lg border border-white/10 bg-white/[0.045] p-3">
-              <p className="text-lg font-semibold text-[#a99cff]">{item}</p>
-              <span className="mt-2 block h-1.5 rounded-full bg-gradient-to-r from-[#7c6cff] to-[#22d3ee]" />
-            </div>
-          ))}
-        </div>
-        <div className="mt-4 h-20 rounded-lg border border-white/10 bg-gradient-to-br from-[#6d5dfc]/35 to-[#22d3ee]/15" />
-      </div>
+    <div className="relative flex min-h-[12rem] items-center justify-center overflow-hidden rounded-2xl bg-[#050912]/80 p-2 sm:min-h-[14rem] sm:p-3">
+      <Image
+        src="/images/after-dashboard-system.jpg"
+        alt="Dashboard escuro representando sistema centralizado"
+        width={1280}
+        height={960}
+        loading="eager"
+        sizes="(max-width: 640px) 86vw, (max-width: 1024px) 46vw, 32vw"
+        className="h-auto max-h-[15.5rem] w-full rounded-xl object-contain"
+      />
     </div>
   );
 }
@@ -242,7 +208,7 @@ function BusinessPanel() {
   return (
     <motion.div
       key="business"
-      initial={{ opacity: 0, y: 18 }}
+      initial={false}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -12 }}
       transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
@@ -315,7 +281,7 @@ function BusinessPanel() {
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <div className="rounded-[1.3rem] border border-white/10 bg-white/[0.035] p-6">
+        <div className="rounded-[1.3rem] border border-white/10 bg-white/[0.035] p-3 sm:p-6">
           <div className="mb-5 flex items-center gap-2 text-base font-semibold text-white">
             <XCircle className="size-5 text-red-400" />
             Antes
@@ -328,7 +294,7 @@ function BusinessPanel() {
           </div>
         </div>
 
-        <div className="rounded-[1.3rem] border border-emerald-400/25 bg-emerald-500/[0.035] p-6">
+        <div className="rounded-[1.3rem] border border-emerald-400/25 bg-emerald-500/[0.035] p-3 sm:p-6">
           <div className="mb-5 flex items-center gap-2 text-base font-semibold text-white">
             <CheckCircle2 className="size-5 text-emerald-400" />
             Depois
