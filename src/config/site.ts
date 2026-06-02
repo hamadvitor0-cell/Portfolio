@@ -177,7 +177,7 @@ export const siteConfig = {
       year: "2026",
       description:
         "Plataforma web desenvolvida para o Centro da Juventude, incluindo autenticação, painel administrativo, gerenciamento de conteúdo, banco de dados e interface moderna responsiva.",
-      image: "/images/cj-logo-premium.png",
+      image: "/images/cj-logo-transparent-clean.png",
       imageFit: "contain",
       href: "https://cjtamandare.vercel.app/",
       liveUrl: "https://cjtamandare.vercel.app/",

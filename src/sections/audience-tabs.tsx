@@ -140,13 +140,13 @@ function ProjectVisual() {
           </div>
           <div className="relative min-h-[300px] bg-gradient-to-br from-slate-900 via-[#0a1c2a] to-[#1b1742] p-8 pt-20 sm:min-h-[390px]">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_30%,rgba(34,211,238,0.18),transparent_18rem),radial-gradient(circle_at_80%_60%,rgba(124,108,255,0.2),transparent_18rem)]" />
-            <div className="relative mx-auto flex h-full min-h-[250px] max-w-[32rem] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-black p-3 sm:p-5">
+            <div className="relative mx-auto flex h-full min-h-[250px] max-w-[34rem] items-center justify-center p-2 sm:p-5">
               <Image
                 src={siteConfig.projects[0].image}
                 alt="Centro da Juventude Almirante Tamandaré"
                 width={1100}
                 height={840}
-                className="h-auto w-full scale-[1.7] rounded-xl object-contain sm:scale-[1.82]"
+                className="h-auto w-full object-contain drop-shadow-[0_28px_60px_rgba(0,0,0,0.45)]"
               />
             </div>
           </div>
@@ -154,12 +154,12 @@ function ProjectVisual() {
       </div>
 
       <div className="absolute -right-2 bottom-8 hidden w-36 rounded-[1.2rem] border border-white/15 bg-[#0b111d] p-2 shadow-[0_24px_60px_rgba(0,0,0,0.55)] sm:block lg:-right-8 lg:w-44">
-        <div className="rounded-[0.9rem] bg-white p-3 text-[#0b111d]">
-          <p className="text-xs font-bold text-emerald-600">Inscrição realizada com sucesso!</p>
+        <div className="rounded-[0.9rem] border border-white/10 bg-[#030712] p-3 text-slate-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
+          <p className="text-xs font-bold text-emerald-300">Inscrição realizada com sucesso!</p>
           <div className="mt-3 space-y-2">
             {["Dados salvos", "Turma definida", "Acesso liberado"].map((item) => (
-              <span key={item} className="flex items-center gap-2 text-[0.62rem] text-slate-600">
-                <CheckCircle2 className="size-3 text-emerald-500" />
+              <span key={item} className="flex items-center gap-2 text-[0.62rem] text-slate-300">
+                <CheckCircle2 className="size-3 text-emerald-300" />
                 {item}
               </span>
             ))}

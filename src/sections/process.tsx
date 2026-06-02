@@ -1,4 +1,4 @@
-import { CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { SectionReveal } from "@/components/section-reveal";
 
 const steps = [
@@ -42,7 +42,11 @@ export function ProcessSection() {
           {steps.map((step, index) => (
             <SectionReveal key={step.title} delay={index * 0.04} className="relative">
               {index < steps.length - 1 ? (
-                <span className="pointer-events-none absolute left-[calc(100%+0.45rem)] top-10 hidden w-[0.9rem] border-t border-dashed border-white/20 2xl:block" />
+                <span className="pointer-events-none absolute left-[calc(100%+0.625rem)] top-[4.7rem] z-20 hidden -translate-x-1/2 2xl:flex">
+                  <span className="grid size-7 place-items-center rounded-full border border-[#7c6cff]/25 bg-[#07101d] text-[#a99cff] shadow-[0_0_24px_rgba(124,108,255,0.18)]">
+                    <ArrowRight className="size-3.5" />
+                  </span>
+                </span>
               ) : null}
               <article className="relative h-full min-h-[14rem] rounded-[1.15rem] border border-white/10 bg-[#0b1220]/82 p-6 transition duration-300 hover:-translate-y-1 hover:border-[#7c6cff]/45 hover:bg-white/[0.055]">
                 <span className="relative z-10 mb-6 grid size-14 place-items-center rounded-full border border-[#7c6cff]/35 bg-[#121a34] text-base font-semibold text-[#a99cff] shadow-[0_0_34px_rgba(124,108,255,0.26)]">

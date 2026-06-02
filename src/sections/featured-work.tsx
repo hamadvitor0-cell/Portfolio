@@ -49,7 +49,7 @@ export function FeaturedWorkSection() {
                     className={cn(
                       "h-full w-full transition duration-700 group-hover:scale-105",
                       project.imageFit === "contain"
-                        ? "h-auto max-h-[82%] max-w-[94%] scale-[1.5] object-contain group-hover:scale-[1.58]"
+                        ? "h-auto max-h-[82%] max-w-[94%] scale-[1.12] object-contain drop-shadow-[0_28px_70px_rgba(0,0,0,0.42)] group-hover:scale-[1.18]"
                         : "object-cover"
                     )}
                   />
