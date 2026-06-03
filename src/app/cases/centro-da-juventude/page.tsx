@@ -8,7 +8,6 @@ import {
   Bot,
   CheckCircle2,
   ClipboardList,
-  Database,
   FileSpreadsheet,
   GraduationCap,
   LayoutDashboard,
@@ -135,93 +134,140 @@ const features = [
   }
 ];
 
-const gallery = [
+const galleryHero = {
+  src: "/images/cases/cj/admin-dashboard.png",
+  title: "Dashboard administrativo",
+  caption: "Central de indicadores com inscritos, oficinas, turmas, documentos, faltas, lista de espera e ações prioritárias."
+};
+
+const themeScreens = [
   {
     src: "/images/cases/cj/public-home.png",
-    title: "Tela inicial pública",
-    caption: "Página principal do site, com apresentação institucional e acesso rápido às oficinas e inscrições.",
-    wide: true
+    title: "Modo escuro",
+    caption: "Tela pública com contraste alto e foco na apresentação institucional."
   },
   {
     src: "/images/cases/cj/public-home-light.png",
-    title: "Tela inicial em modo claro",
-    caption: "Versão clara da página principal, mantendo identidade visual, navegação e chamada para oficinas.",
-    wide: true
-  },
+    title: "Modo claro",
+    caption: "A mesma experiência adaptada para uma leitura mais clara e leve."
+  }
+];
+
+const gallery = [
   {
     src: "/images/cases/cj/featured-workshop-light.png",
     title: "Oficina em destaque",
-    caption: "Card de oficina em destaque com informações de faixa etária, vagas, chamada de inscrição e horários.",
-    wide: true
+    caption: "Informações de oficina, vagas e chamada de inscrição."
   },
   {
     src: "/images/cases/cj/collaborators-light.png",
     title: "Colaboradores",
-    caption: "Seção institucional com parceiros e links externos, usando a versão clara da interface pública.",
-    wide: true
+    caption: "Parceiros institucionais e links externos."
   },
   {
     src: "/images/cases/cj/student-portal.png",
     title: "Portal do aluno",
-    caption: "Área para acesso com CPF e matrícula, consulta de informações e abertura de tickets."
+    caption: "Consulta com CPF e matrícula para acesso às informações."
   },
   {
     src: "/images/cases/cj/admin-login.png",
     title: "Login administrativo",
-    caption: "Tela de acesso restrito para equipe autorizada."
-  },
-  {
-    src: "/images/cases/cj/admin-dashboard.png",
-    title: "Dashboard administrativo",
-    caption: "Central de indicadores com inscritos, oficinas, turmas, documentos, faltas, lista de espera e ações prioritárias.",
-    wide: true
+    caption: "Acesso restrito para equipe autorizada."
   },
   {
     src: "/images/cases/cj/ai-report.png",
     title: "Relatório automático com IA",
-    caption: "Área de análise inteligente com dados agregados e recomendações práticas.",
-    wide: true
+    caption: "Análise com dados agregados e recomendações práticas."
   },
   {
     src: "/images/cases/cj/ai-summary.png",
     title: "Resumo e ações sugeridas",
-    caption: "Visão consolidada com alertas administrativos, ocupação, lista de espera e sugestões de ação."
+    caption: "Alertas administrativos, ocupação e lista de espera."
   },
   {
     src: "/images/cases/cj/admin-manual.png",
     title: "Manual ADM",
-    caption: "Documentação interna para orientar o uso seguro e correto do painel."
+    caption: "Documentação interna para orientar a equipe."
+  }
+];
+
+const beforeAfter = [
+  {
+    title: "Antes do sistema",
+    tone: "border-red-400/20 bg-red-500/[0.035]",
+    items: [
+      "Dados espalhados em planilhas",
+      "Conferência manual",
+      "Dificuldade para acompanhar frequência",
+      "Relatórios demorados",
+      "Suporte sem histórico centralizado",
+      "Pouca visibilidade sobre demanda e ocupação"
+    ]
+  },
+  {
+    title: "Depois do sistema",
+    tone: "border-emerald-400/20 bg-emerald-500/[0.035]",
+    items: [
+      "Plataforma centralizada",
+      "Inscrição online",
+      "Painel administrativo",
+      "Chamadas e frequência organizadas",
+      "Relatórios e gráficos automáticos",
+      "IA apoiando decisões administrativas",
+      "Integração com Google Sheets",
+      "Logs e permissões"
+    ]
+  }
+];
+
+const aiManagementCards = [
+  {
+    icon: ClipboardList,
+    title: "Recomendações administrativas",
+    description: "Sugestões para divulgação, ocupação de turmas, lista de espera e pontos de atenção operacional."
+  },
+  {
+    icon: BarChart3,
+    title: "Análise de dados agregados",
+    description: "Leitura de estatísticas consolidadas, sem depender de dados sensíveis individuais para gerar contexto."
+  },
+  {
+    icon: Bot,
+    title: "Apoio à priorização de ações",
+    description: "Ajuda a equipe a enxergar o que precisa de atenção primeiro, mantendo a decisão final com a gestão."
   }
 ];
 
 const techStacks = [
   {
     title: "Frontend",
-    items: ["HTML", "CSS", "JavaScript", "Interface responsiva", "Painel administrativo", "Componentes reutilizáveis"]
+    description: "Interface pública, portal do aluno e painel administrativo responsivo.",
+    items: ["Experiência pública", "Portal do aluno", "Painel administrativo"]
   },
   {
     title: "Backend",
-    items: ["Node.js", "Express", "APIs REST", "Validações no servidor", "Serviços separados por responsabilidade"]
+    description: "APIs REST, autenticação, validações no servidor e regras de negócio.",
+    items: ["Node.js", "Express", "Serviços por responsabilidade"]
   },
   {
     title: "Banco de dados",
-    items: ["PostgreSQL", "Neon", "Alunos, turmas, oficinas", "Chamadas, frequência, tickets e logs"]
-  },
-  {
-    title: "Deploy e infraestrutura",
-    items: ["Vercel", "Variáveis de ambiente", "Rotinas automatizadas", "Integração com serviços externos"]
+    description: "PostgreSQL/Neon para alunos, turmas, oficinas, chamadas, frequência, tickets e logs.",
+    items: ["PostgreSQL", "Neon", "Dados operacionais"]
   },
   {
     title: "Integrações",
-    items: ["Google Sheets API", "Google Drive API", "Importação de planilhas", "Sincronização de dados"]
+    description: "Google Sheets API e Google Drive API para importação e sincronização com planilhas oficiais.",
+    items: ["Google Sheets API", "Google Drive API", "Sincronização"]
   },
   {
     title: "Segurança",
-    items: ["JWT", "Controle de permissões", "CSRF", "Rate limit", "Logs de auditoria", "Mascaramento de dados sensíveis"]
+    description: "JWT, permissões por perfil, CSRF, rate limit, logs de auditoria e mascaramento de dados sensíveis.",
+    items: ["Perfis de acesso", "Auditoria", "Proteção de dados"]
   },
   {
     title: "IA",
-    items: ["Análise de dados agregados", "Recomendações administrativas", "Relatórios automáticos", "Apoio à tomada de decisão"]
+    description: "Relatórios automáticos e recomendações baseadas em dados agregados.",
+    items: ["Dados agregados", "Recomendações", "Relatórios automáticos"]
   }
 ];
 
@@ -312,6 +358,38 @@ function CheckList({ items }: { items: string[] }) {
   );
 }
 
+function CaseImageCard({
+  item,
+  priority = false,
+  compact = false
+}: {
+  item: { src: string; title: string; caption: string };
+  priority?: boolean;
+  compact?: boolean;
+}) {
+  return (
+    <figure className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#07101d]/78 shadow-[0_26px_70px_rgba(0,0,0,0.3)] backdrop-blur-xl">
+      <div className={compact ? "aspect-[16/9] bg-[#050b14] p-2" : "aspect-[16/8.4] bg-[#050b14] p-3"}>
+        <Image
+          src={item.src}
+          alt={item.title}
+          width={1920}
+          height={900}
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : undefined}
+          sizes={compact ? "(max-width: 1024px) 100vw, 42rem" : "(max-width: 1024px) 100vw, 86rem"}
+          unoptimized
+          className="h-full w-full rounded-[0.9rem] border border-white/10 object-contain"
+        />
+      </div>
+      <figcaption className={compact ? "p-4" : "p-5"}>
+        <strong className="block text-base font-semibold text-white">{item.title}</strong>
+        <span className="mt-2 block text-sm leading-6 text-slate-400">{item.caption}</span>
+      </figcaption>
+    </figure>
+  );
+}
+
 export default function CentroDaJuventudeCasePage() {
   return (
     <main className="overflow-hidden bg-[#050b14] text-white">
@@ -364,7 +442,8 @@ export default function CentroDaJuventudeCasePage() {
                 alt="Dashboard administrativo do sistema Centro da Juventude"
                 width={1920}
                 height={900}
-                priority
+                loading="eager"
+                fetchPriority="high"
                 unoptimized
                 className="h-auto w-full rounded-[1.1rem] border border-white/10 object-cover"
               />
@@ -385,8 +464,8 @@ export default function CentroDaJuventudeCasePage() {
                 chamadas, frequência, suporte, relatórios e dados administrativos em uma única plataforma.
               </p>
               <p className="mt-5 text-base leading-8 text-slate-300">
-                O projeto foi pensado para uso real por equipe administrativa, alunos e responsáveis, com foco em clareza,
-                segurança, produtividade e redução de retrabalho.
+                O projeto foi pensado para uso real por equipe administrativa, alunos e responsáveis, com foco em clareza, segurança
+                e redução de retrabalho.
               </p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -427,6 +506,30 @@ export default function CentroDaJuventudeCasePage() {
 
       <section className="px-4 py-10 sm:px-6">
         <div className="mx-auto max-w-[86rem]">
+          <SectionHeader eyebrow="Antes e depois" title="O impacto prático da centralização." />
+          <div className="grid gap-5 lg:grid-cols-2">
+            {beforeAfter.map((column) => (
+              <article
+                key={column.title}
+                className={`rounded-[1.45rem] border p-6 shadow-[0_26px_80px_rgba(0,0,0,0.26)] backdrop-blur-xl sm:p-7 ${column.tone}`}
+              >
+                <h3 className="text-2xl font-semibold text-white">{column.title}</h3>
+                <ul className="mt-6 grid gap-3">
+                  {column.items.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-6 text-slate-300">
+                      <CheckCircle2 className="mt-1 size-4 shrink-0 text-emerald-400" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-10 sm:px-6">
+        <div className="mx-auto max-w-[86rem]">
           <SectionHeader eyebrow="Funcionalidades principais" title="Módulos criados para uso real." />
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {features.map((feature) => {
@@ -450,48 +553,84 @@ export default function CentroDaJuventudeCasePage() {
           <SectionHeader
             eyebrow="Telas do sistema"
             title="Prints demonstrativos do case."
-            description="As telas abaixo mostram áreas públicas e administrativas do sistema, usando apenas imagens sem dados pessoais sensíveis."
+            description="Uma seleção das telas públicas e administrativas, usando apenas prints sem dados pessoais sensíveis."
           />
-          <div className="grid gap-5 lg:grid-cols-2">
-            {gallery.map((item, index) => (
-              <figure
-                key={item.title}
-                className={[
-                  "rounded-[1.4rem] border border-white/10 bg-[#07101d]/78 p-3 shadow-[0_30px_80px_rgba(0,0,0,0.32)] backdrop-blur-xl",
-                  item.wide ? "lg:col-span-2" : ""
-                ].join(" ")}
-              >
-                <Image
-                  src={item.src}
-                  alt={item.title}
-                  width={1920}
-                  height={900}
-                  loading={index < 2 ? "eager" : "lazy"}
-                  sizes={item.wide ? "(max-width: 1024px) 100vw, 86rem" : "(max-width: 1024px) 100vw, 42rem"}
-                  unoptimized
-                  className="h-auto w-full rounded-[1rem] border border-white/10 object-cover"
-                />
-                <figcaption className="p-4">
-                  <strong className="block text-lg font-semibold text-white">{item.title}</strong>
-                  <span className="mt-2 block text-sm leading-6 text-slate-400">{item.caption}</span>
-                </figcaption>
-              </figure>
-            ))}
+          <div className="space-y-6">
+            <CaseImageCard item={galleryHero} priority />
+
+            <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
+              <div>
+                <p className="mb-3 inline-flex rounded-full border border-[#7c6cff]/25 bg-[#7c6cff]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#a89cff]">
+                  Modo claro e escuro
+                </p>
+                <h3 className="text-2xl font-semibold text-white">Interface adaptada entre temas.</h3>
+                <p className="mt-4 text-sm leading-6 text-slate-400">
+                  O sistema possui adaptação visual entre tema escuro e tema claro, preservando identidade, contraste e leitura.
+                </p>
+              </div>
+              <div className="grid gap-4 lg:grid-cols-2">
+                {themeScreens.map((screen) => (
+                  <CaseImageCard key={screen.title} item={screen} compact />
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-5 lg:grid-cols-2">
+              {gallery.map((item) => (
+                <CaseImageCard key={item.title} item={item} compact />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-10 sm:px-6">
+        <div className="mx-auto max-w-[86rem] rounded-[1.6rem] border border-[#7c6cff]/20 bg-[radial-gradient(circle_at_18%_18%,rgba(124,108,255,0.18),transparent_24rem),#07101d] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-8">
+          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <div>
+              <SectionHeader
+                eyebrow="IA na gestão"
+                title="IA como apoio à gestão"
+                description="O sistema utiliza análise com IA sobre estatísticas agregadas para apoiar decisões administrativas, sugerindo ações relacionadas a divulgação de oficinas, ocupação de turmas, lista de espera, frequência e pontos de atenção."
+              />
+              <p className="text-sm leading-6 text-slate-400">
+                A IA não é apresentada como substituta da gestão e não precisa expor dados sensíveis individuais. Ela funciona como apoio para
+                transformar indicadores consolidados em prioridades mais claras.
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+              {aiManagementCards.map((card) => {
+                const Icon = card.icon;
+                return (
+                  <article key={card.title} className="rounded-[1.15rem] border border-white/10 bg-white/[0.04] p-5">
+                    <span className="mb-5 grid size-11 place-items-center rounded-2xl border border-[#7c6cff]/30 bg-[#7c6cff]/10 text-[#a99cff]">
+                      <Icon className="size-5" />
+                    </span>
+                    <h3 className="text-base font-semibold text-white">{card.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-slate-300">{card.description}</p>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
 
       <section className="px-4 py-10 sm:px-6">
         <div className="mx-auto max-w-[86rem] rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-7">
-          <SectionHeader eyebrow="Arquitetura e tecnologias" title="Base técnica do sistema." />
+          <SectionHeader
+            eyebrow="Arquitetura"
+            title="Como o sistema foi estruturado."
+            description="A base técnica foi organizada para sustentar site público, portal, painel administrativo, integrações, segurança e relatórios sem misturar responsabilidades."
+          />
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {techStacks.map((stack) => (
-              <article key={stack.title} className="rounded-[1.15rem] border border-white/10 bg-white/[0.04] p-6">
+              <article key={stack.title} className="flex min-h-[13.5rem] flex-col rounded-[1.15rem] border border-white/10 bg-white/[0.04] p-6">
                 <h3 className="text-lg font-semibold text-white">{stack.title}</h3>
-                <ul className="mt-4 space-y-2">
+                <p className="mt-3 text-sm leading-6 text-slate-300">{stack.description}</p>
+                <ul className="mt-auto flex flex-wrap gap-2 pt-5">
                   {stack.items.map((item) => (
-                    <li key={item} className="flex gap-2 text-sm leading-6 text-slate-300">
-                      <Database className="mt-1 size-3.5 shrink-0 text-[#7c6cff]" />
+                    <li key={item} className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-semibold text-slate-300">
                       {item}
                     </li>
                   ))}
