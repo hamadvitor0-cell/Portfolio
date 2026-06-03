@@ -8,11 +8,14 @@ import {
   Bot,
   CheckCircle2,
   ClipboardList,
+  Code2,
+  Database,
   FileSpreadsheet,
   GraduationCap,
   LayoutDashboard,
   Lock,
   MessageSquareText,
+  ServerCog,
   ShieldCheck,
   Sparkles,
   Users
@@ -240,31 +243,37 @@ const aiManagementCards = [
 
 const techStacks = [
   {
+    icon: Code2,
     title: "Frontend",
     description: "Interface pública, portal do aluno e painel administrativo responsivo.",
     items: ["Experiência pública", "Portal do aluno", "Painel administrativo"]
   },
   {
+    icon: ServerCog,
     title: "Backend",
     description: "APIs REST, autenticação, validações no servidor e regras de negócio.",
     items: ["Node.js", "Express", "Serviços por responsabilidade"]
   },
   {
+    icon: Database,
     title: "Banco de dados",
     description: "PostgreSQL/Neon para alunos, turmas, oficinas, chamadas, frequência, tickets e logs.",
     items: ["PostgreSQL", "Neon", "Dados operacionais"]
   },
   {
+    icon: FileSpreadsheet,
     title: "Integrações",
     description: "Google Sheets API e Google Drive API para importação e sincronização com planilhas oficiais.",
     items: ["Google Sheets API", "Google Drive API", "Sincronização"]
   },
   {
+    icon: ShieldCheck,
     title: "Segurança",
     description: "JWT, permissões por perfil, CSRF, rate limit, logs de auditoria e mascaramento de dados sensíveis.",
     items: ["Perfis de acesso", "Auditoria", "Proteção de dados"]
   },
   {
+    icon: Bot,
     title: "IA",
     description: "Relatórios automáticos e recomendações baseadas em dados agregados.",
     items: ["Dados agregados", "Recomendações", "Relatórios automáticos"]
@@ -624,19 +633,25 @@ export default function CentroDaJuventudeCasePage() {
             description="A base técnica foi organizada para sustentar site público, portal, painel administrativo, integrações, segurança e relatórios sem misturar responsabilidades."
           />
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {techStacks.map((stack) => (
-              <article key={stack.title} className="flex min-h-[13.5rem] flex-col rounded-[1.15rem] border border-white/10 bg-white/[0.04] p-6">
-                <h3 className="text-lg font-semibold text-white">{stack.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-300">{stack.description}</p>
-                <ul className="mt-auto flex flex-wrap gap-2 pt-5">
-                  {stack.items.map((item) => (
-                    <li key={item} className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-semibold text-slate-300">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+            {techStacks.map((stack) => {
+              const Icon = stack.icon;
+              return (
+                <article key={stack.title} className="flex min-h-[13.5rem] flex-col rounded-[1.15rem] border border-white/10 bg-white/[0.04] p-6">
+                  <span className="mb-5 grid size-12 place-items-center rounded-2xl border border-[#7c6cff]/30 bg-[#7c6cff]/10 text-[#a99cff]">
+                    <Icon className="size-6" />
+                  </span>
+                  <h3 className="text-lg font-semibold text-white">{stack.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-300">{stack.description}</p>
+                  <ul className="mt-auto flex flex-wrap gap-2 pt-5">
+                    {stack.items.map((item) => (
+                      <li key={item} className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-semibold text-slate-300">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
