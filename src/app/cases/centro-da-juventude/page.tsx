@@ -324,14 +324,14 @@ const participation = [
   "Planejamento das funcionalidades",
   "Desenvolvimento frontend",
   "Desenvolvimento backend",
-  "Modelagem de dados",
+  "Modelagem do banco de dados",
   "Integração com Google Sheets e Drive",
   "Criação do painel administrativo",
-  "Implementação do Portal do Aluno",
-  "Criação dos módulos de chamadas, frequência e tickets",
-  "Implementação de relatórios, gráficos e análise com IA",
-  "Cuidados com segurança e permissões",
-  "Deploy e manutenção"
+  "Criação do Portal do Aluno",
+  "Módulos de chamadas, frequência e tickets",
+  "Relatórios, gráficos e análise com IA",
+  "Segurança, permissões e logs",
+  "Deploy e manutenção contínua"
 ];
 
 function Badge({ children }: { children: string }) {
@@ -683,10 +683,10 @@ export default function CentroDaJuventudeCasePage() {
           </article>
 
           <article className="rounded-[1.6rem] border border-[#7c6cff]/20 bg-[#7c6cff]/[0.035] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-8">
-            <SectionHeader eyebrow="Minha participação" title="Desenvolvimento completo do sistema." />
+            <SectionHeader eyebrow="Minha participação" title="Atuação de ponta a ponta." />
             <p className="mb-6 text-base leading-8 text-slate-300">
-              Fui responsável pelo desenvolvimento completo do sistema, desde a estrutura visual e experiência de uso até backend, banco de
-              dados, integrações, painel administrativo, autenticação, regras de negócio, segurança, deploy e melhorias contínuas.
+              Atuei em todas as etapas do projeto, da estrutura visual e experiência de uso até backend, banco de dados, integrações,
+              painel administrativo, autenticação, regras de negócio, segurança, deploy e melhorias contínuas.
             </p>
             <CheckList items={participation} />
           </article>
