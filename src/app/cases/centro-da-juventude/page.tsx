@@ -143,6 +143,24 @@ const gallery = [
     wide: true
   },
   {
+    src: "/images/cases/cj/public-home-light.png",
+    title: "Tela inicial em modo claro",
+    caption: "Versão clara da página principal, mantendo identidade visual, navegação e chamada para oficinas.",
+    wide: true
+  },
+  {
+    src: "/images/cases/cj/featured-workshop-light.png",
+    title: "Oficina em destaque",
+    caption: "Card de oficina em destaque com informações de faixa etária, vagas, chamada de inscrição e horários.",
+    wide: true
+  },
+  {
+    src: "/images/cases/cj/collaborators-light.png",
+    title: "Colaboradores",
+    caption: "Seção institucional com parceiros e links externos, usando a versão clara da interface pública.",
+    wide: true
+  },
+  {
     src: "/images/cases/cj/student-portal.png",
     title: "Portal do aluno",
     caption: "Área para acesso com CPF e matrícula, consulta de informações e abertura de tickets."
