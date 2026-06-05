@@ -8,19 +8,23 @@ import {
   Bot,
   CheckCircle2,
   ClipboardList,
-  Code2,
   Database,
   FileSpreadsheet,
   GraduationCap,
   LayoutDashboard,
   Lock,
   MessageSquareText,
+  MonitorSmartphone,
   ServerCog,
   ShieldCheck,
   Sparkles,
-  Users
+  Users,
+  Workflow,
+  XCircle
 } from "lucide-react";
 import { siteConfig } from "@/config/site";
+import { CaseImageCarousel, type CaseSlide } from "@/components/case-image-carousel";
+import { CaseSummaryNav } from "@/components/case-summary-nav";
 
 export const metadata: Metadata = {
   title: "Case Centro da Juventude | Vitor Hamad",
@@ -49,29 +53,15 @@ const impactMetrics = [
   { value: "IA", label: "relatórios com recomendações" }
 ];
 
-const problemPoints = [
-  "Informações espalhadas em diferentes planilhas",
-  "Dificuldade para acompanhar alunos, turmas e oficinas",
-  "Retrabalho na conferência de dados",
-  "Pouca visibilidade sobre faltas, ocupação e demanda",
-  "Necessidade de relatórios mais rápidos para tomada de decisão",
-  "Atendimento e suporte sem histórico centralizado"
-];
-
-const solutionPoints = [
-  "Site público institucional",
-  "Inscrição online",
-  "Portal do aluno com CPF e matrícula",
-  "Painel administrativo com permissões",
-  "Gestão de alunos, turmas e oficinas",
-  "Chamadas e controle de frequência",
-  "Tickets de suporte",
-  "Dashboard com indicadores",
-  "Relatórios automáticos",
-  "Análise com IA baseada em estatísticas agregadas",
-  "Importação e sincronização com Google Sheets",
-  "Logs de auditoria",
-  "Manual ADM interno"
+const summaryItems = [
+  { href: "#project-summary", label: "Resumo do projeto" },
+  { href: "#before-after", label: "Antes e depois da centralização" },
+  { href: "#modules", label: "Módulos criados" },
+  { href: "#case-gallery", label: "Prints demonstrativos" },
+  { href: "#ai-management", label: "IA como apoio à gestão" },
+  { href: "#architecture", label: "Como o sistema foi estruturado" },
+  { href: "#results", label: "Resultados alcançados" },
+  { href: "#participation", label: "Minha participação" }
 ];
 
 const features = [
@@ -137,82 +127,74 @@ const features = [
   }
 ];
 
-const galleryHero = {
-  src: "/images/cases/cj/admin-dashboard.png",
-  title: "Dashboard administrativo",
-  caption: "Central de indicadores com inscritos, oficinas, turmas, documentos, faltas, lista de espera e ações prioritárias."
-};
-
-const themeScreens = [
+const caseSlides: CaseSlide[] = [
   {
-    src: "/images/cases/cj/public-home.png",
-    title: "Modo escuro",
-    caption: "Tela pública com contraste alto e foco na apresentação institucional."
+    src: "/images/cases/cj/admin-dashboard.png",
+    title: "Dashboard administrativo",
+    caption: "Central de indicadores com dados de inscritos, oficinas, turmas, faltas, lista de espera e ações prioritárias."
   },
   {
     src: "/images/cases/cj/public-home-light.png",
-    title: "Modo claro",
-    caption: "A mesma experiência adaptada para uma leitura mais clara e leve."
-  }
-];
-
-const gallery = [
+    title: "Interface adaptada entre temas",
+    caption: "O sistema oferece suporte visual a modo claro e modo escuro."
+  },
   {
     src: "/images/cases/cj/featured-workshop-light.png",
     title: "Oficina em destaque",
-    caption: "Informações de oficina, vagas e chamada de inscrição."
+    caption: "Área pública usada para divulgar oficinas e incentivar novas inscrições."
   },
   {
     src: "/images/cases/cj/collaborators-light.png",
     title: "Colaboradores",
-    caption: "Parceiros institucionais e links externos."
+    caption: "Página institucional com apresentação de parceiros do projeto."
   },
   {
     src: "/images/cases/cj/student-portal.png",
     title: "Portal do aluno",
-    caption: "Consulta com CPF e matrícula para acesso às informações."
+    caption: "Área de acesso para consulta de informações, frequência, notificações e suporte."
   },
   {
     src: "/images/cases/cj/admin-login.png",
     title: "Login administrativo",
-    caption: "Acesso restrito para equipe autorizada."
+    caption: "Tela de acesso restrito ao painel da equipe."
   },
   {
     src: "/images/cases/cj/ai-report.png",
     title: "Relatório automático com IA",
-    caption: "Análise com dados agregados e recomendações práticas."
-  },
-  {
-    src: "/images/cases/cj/ai-summary.png",
-    title: "Resumo e ações sugeridas",
-    caption: "Alertas administrativos, ocupação e lista de espera."
+    caption: "Área de análise inteligente baseada em estatísticas agregadas."
   },
   {
     src: "/images/cases/cj/admin-manual.png",
     title: "Manual ADM",
-    caption: "Documentação interna para orientar a equipe."
+    caption: "Guia interno para orientar o uso seguro e correto do painel."
   }
 ];
 
 const beforeAfter = [
   {
-    title: "Antes do sistema",
+    badge: "Antes do sistema",
+    title: "Processos espalhados e manuais.",
     tone: "border-red-400/20 bg-red-500/[0.035]",
+    badgeTone: "border-red-400/25 bg-red-500/10 text-red-200",
+    icon: "problem",
     items: [
       "Dados espalhados em planilhas",
       "Conferência manual",
-      "Dificuldade para acompanhar frequência",
+      "Dificuldade para acompanhar alunos, turmas e oficinas",
       "Relatórios demorados",
       "Suporte sem histórico centralizado",
-      "Pouca visibilidade sobre demanda e ocupação"
+      "Pouca visibilidade sobre faltas, ocupação e demanda"
     ]
   },
   {
-    title: "Depois do sistema",
+    badge: "Depois do sistema",
+    title: "Plataforma centralizada para a operação.",
     tone: "border-emerald-400/20 bg-emerald-500/[0.035]",
+    badgeTone: "border-emerald-400/25 bg-emerald-500/10 text-emerald-200",
+    icon: "solution",
     items: [
-      "Plataforma centralizada",
       "Inscrição online",
+      "Portal do aluno",
       "Painel administrativo",
       "Chamadas e frequência organizadas",
       "Relatórios e gráficos automáticos",
@@ -243,7 +225,7 @@ const aiManagementCards = [
 
 const techStacks = [
   {
-    icon: Code2,
+    icon: MonitorSmartphone,
     title: "Frontend",
     description: "Interface pública, portal do aluno e painel administrativo responsivo.",
     items: ["Experiência pública", "Portal do aluno", "Painel administrativo"]
@@ -261,7 +243,7 @@ const techStacks = [
     items: ["PostgreSQL", "Neon", "Dados operacionais"]
   },
   {
-    icon: FileSpreadsheet,
+    icon: Workflow,
     title: "Integrações",
     description: "Google Sheets API e Google Drive API para importação e sincronização com planilhas oficiais.",
     items: ["Google Sheets API", "Google Drive API", "Sincronização"]
@@ -367,38 +349,6 @@ function CheckList({ items }: { items: string[] }) {
   );
 }
 
-function CaseImageCard({
-  item,
-  priority = false,
-  compact = false
-}: {
-  item: { src: string; title: string; caption: string };
-  priority?: boolean;
-  compact?: boolean;
-}) {
-  return (
-    <figure className="overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#07101d]/78 shadow-[0_26px_70px_rgba(0,0,0,0.3)] backdrop-blur-xl">
-      <div className={compact ? "aspect-[16/9] bg-[#050b14] p-2" : "aspect-[16/8.4] bg-[#050b14] p-3"}>
-        <Image
-          src={item.src}
-          alt={item.title}
-          width={1920}
-          height={900}
-          loading={priority ? "eager" : "lazy"}
-          fetchPriority={priority ? "high" : undefined}
-          sizes={compact ? "(max-width: 1024px) 100vw, 42rem" : "(max-width: 1024px) 100vw, 86rem"}
-          unoptimized
-          className="h-full w-full rounded-[0.9rem] border border-white/10 object-contain"
-        />
-      </div>
-      <figcaption className={compact ? "p-4" : "p-5"}>
-        <strong className="block text-base font-semibold text-white">{item.title}</strong>
-        <span className="mt-2 block text-sm leading-6 text-slate-400">{item.caption}</span>
-      </figcaption>
-    </figure>
-  );
-}
-
 export default function CentroDaJuventudeCasePage() {
   return (
     <main className="overflow-hidden bg-[#050b14] text-white">
@@ -462,7 +412,11 @@ export default function CentroDaJuventudeCasePage() {
         </div>
       </section>
 
-      <section className="px-4 py-10 sm:px-6">
+      <section className="px-4 py-8 sm:px-6">
+        <CaseSummaryNav items={summaryItems} />
+      </section>
+
+      <section id="project-summary" className="scroll-mt-28 px-4 py-10 sm:px-6">
         <div className="mx-auto max-w-[86rem] rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-7">
           <SectionHeader eyebrow="Resumo rápido" title="Da gestão manual para uma plataforma centralizada." />
           <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
@@ -490,43 +444,31 @@ export default function CentroDaJuventudeCasePage() {
         </div>
       </section>
 
-      <section className="px-4 py-10 sm:px-6">
-        <div className="mx-auto grid max-w-[86rem] gap-6 lg:grid-cols-2">
-          <article className="rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-8">
-            <SectionHeader eyebrow="O problema" title="Processos importantes estavam espalhados." />
-            <p className="mb-6 text-base leading-8 text-slate-300">
-              Antes do sistema, boa parte da gestão dependia de planilhas, conferências manuais e processos separados. Isso dificultava
-              o acompanhamento de inscrições, chamadas, presença dos alunos, documentos, lista de espera e relatórios administrativos.
-            </p>
-            <CheckList items={problemPoints} />
-          </article>
-
-          <article className="rounded-[1.6rem] border border-emerald-400/20 bg-emerald-500/[0.035] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-8">
-            <SectionHeader eyebrow="A solução" title="Uma plataforma completa para a operação." />
-            <p className="mb-6 text-base leading-8 text-slate-300">
-              Desenvolvi uma plataforma web completa para centralizar a operação do Centro da Juventude. O sistema reúne portal público,
-              inscrição online, portal do aluno, painel administrativo, chamadas, frequência, tickets, relatórios, gráficos, integração
-              com Google Sheets e recursos com IA para apoiar decisões administrativas.
-            </p>
-            <CheckList items={solutionPoints} />
-          </article>
-        </div>
-      </section>
-
-      <section className="px-4 py-10 sm:px-6">
+      <section id="before-after" className="scroll-mt-28 px-4 py-10 sm:px-6">
         <div className="mx-auto max-w-[86rem]">
-          <SectionHeader eyebrow="Antes e depois" title="O impacto prático da centralização." />
+          <SectionHeader
+            eyebrow="Antes e depois"
+            title="Da gestão manual para uma operação centralizada."
+            description="Antes do sistema, a gestão dependia de planilhas, conferências manuais e processos separados. A plataforma centralizou inscrições, alunos, turmas, chamadas, frequência, suporte, relatórios e indicadores em um único ambiente."
+          />
           <div className="grid gap-5 lg:grid-cols-2">
             {beforeAfter.map((column) => (
               <article
                 key={column.title}
                 className={`rounded-[1.45rem] border p-6 shadow-[0_26px_80px_rgba(0,0,0,0.26)] backdrop-blur-xl sm:p-7 ${column.tone}`}
               >
-                <h3 className="text-2xl font-semibold text-white">{column.title}</h3>
+                <span className={`inline-flex rounded-full border px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] ${column.badgeTone}`}>
+                  {column.badge}
+                </span>
+                <h3 className="mt-5 text-2xl font-semibold text-white">{column.title}</h3>
                 <ul className="mt-6 grid gap-3">
                   {column.items.map((item) => (
                     <li key={item} className="flex gap-3 text-sm leading-6 text-slate-300">
-                      <CheckCircle2 className="mt-1 size-4 shrink-0 text-emerald-400" />
+                      {column.icon === "problem" ? (
+                        <XCircle className="mt-1 size-4 shrink-0 text-red-300" />
+                      ) : (
+                        <CheckCircle2 className="mt-1 size-4 shrink-0 text-emerald-400" />
+                      )}
                       <span>{item}</span>
                     </li>
                   ))}
@@ -534,10 +476,13 @@ export default function CentroDaJuventudeCasePage() {
               </article>
             ))}
           </div>
+          <p className="mt-5 rounded-[1.15rem] border border-white/10 bg-white/[0.035] px-5 py-4 text-sm leading-7 text-slate-300">
+            Com a centralização, a equipe ganhou mais controle sobre a operação, reduziu retrabalho e passou a acompanhar indicadores importantes com mais clareza.
+          </p>
         </div>
       </section>
 
-      <section className="px-4 py-10 sm:px-6">
+      <section id="modules" className="scroll-mt-28 px-4 py-10 sm:px-6">
         <div className="mx-auto max-w-[86rem]">
           <SectionHeader eyebrow="Funcionalidades principais" title="Módulos criados para uso real." />
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -564,43 +509,18 @@ export default function CentroDaJuventudeCasePage() {
             title="Prints demonstrativos do case."
             description="Uma seleção das telas públicas e administrativas, usando apenas prints sem dados pessoais sensíveis."
           />
-          <div className="space-y-6">
-            <CaseImageCard item={galleryHero} priority />
-
-            <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
-              <div>
-                <p className="mb-3 inline-flex rounded-full border border-[#7c6cff]/25 bg-[#7c6cff]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#a89cff]">
-                  Modo claro e escuro
-                </p>
-                <h3 className="text-2xl font-semibold text-white">Interface adaptada entre temas.</h3>
-                <p className="mt-4 text-sm leading-6 text-slate-400">
-                  O sistema possui adaptação visual entre tema escuro e tema claro, preservando identidade, contraste e leitura.
-                </p>
-              </div>
-              <div className="grid gap-4 lg:grid-cols-2">
-                {themeScreens.map((screen) => (
-                  <CaseImageCard key={screen.title} item={screen} compact />
-                ))}
-              </div>
-            </div>
-
-            <div className="grid gap-5 lg:grid-cols-2">
-              {gallery.map((item) => (
-                <CaseImageCard key={item.title} item={item} compact />
-              ))}
-            </div>
-          </div>
+          <CaseImageCarousel slides={caseSlides} />
         </div>
       </section>
 
-      <section className="px-4 py-10 sm:px-6">
+      <section id="ai-management" className="scroll-mt-28 px-4 py-10 sm:px-6">
         <div className="mx-auto max-w-[86rem] rounded-[1.6rem] border border-[#7c6cff]/20 bg-[radial-gradient(circle_at_18%_18%,rgba(124,108,255,0.18),transparent_24rem),#07101d] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-8">
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
             <div>
               <SectionHeader
                 eyebrow="IA na gestão"
                 title="IA como apoio à gestão"
-                description="O sistema utiliza análise com IA sobre estatísticas agregadas para apoiar decisões administrativas, sugerindo ações relacionadas a divulgação de oficinas, ocupação de turmas, lista de espera, frequência e pontos de atenção."
+                description="O sistema utiliza análise com IA sobre estatísticas agregadas para apoiar decisões administrativas, sugerindo ações relacionadas à divulgação de oficinas, ocupação de turmas, lista de espera, frequência e pontos de atenção."
               />
               <p className="text-sm leading-6 text-slate-400">
                 A IA não é apresentada como substituta da gestão e não precisa expor dados sensíveis individuais. Ela funciona como apoio para
@@ -625,7 +545,7 @@ export default function CentroDaJuventudeCasePage() {
         </div>
       </section>
 
-      <section className="px-4 py-10 sm:px-6">
+      <section id="architecture" className="scroll-mt-28 px-4 py-10 sm:px-6">
         <div className="mx-auto max-w-[86rem] rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-7">
           <SectionHeader
             eyebrow="Arquitetura"
@@ -670,7 +590,7 @@ export default function CentroDaJuventudeCasePage() {
         </div>
       </section>
 
-      <section className="px-4 py-10 sm:px-6">
+      <section id="results" className="scroll-mt-28 px-4 py-10 sm:px-6">
         <div className="mx-auto grid max-w-[86rem] gap-6 lg:grid-cols-2">
           <article className="rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-8">
             <SectionHeader eyebrow="Resultados alcançados" title="Operação mais organizada e acompanhável." />
@@ -682,11 +602,11 @@ export default function CentroDaJuventudeCasePage() {
             <CheckList items={results} />
           </article>
 
-          <article className="rounded-[1.6rem] border border-[#7c6cff]/20 bg-[#7c6cff]/[0.035] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-8">
+          <article id="participation" className="scroll-mt-28 rounded-[1.6rem] border border-[#7c6cff]/20 bg-[#7c6cff]/[0.035] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-8">
             <SectionHeader eyebrow="Minha participação" title="Atuação de ponta a ponta." />
             <p className="mb-6 text-base leading-8 text-slate-300">
-              Atuei em todas as etapas do projeto, da estrutura visual e experiência de uso até backend, banco de dados, integrações,
-              painel administrativo, autenticação, regras de negócio, segurança, deploy e melhorias contínuas.
+              Fui responsável por todas as etapas do projeto, desde a estrutura visual e experiência de uso até backend, banco de dados,
+              integrações, painel administrativo, autenticação, regras de negócio, segurança, deploy e melhorias contínuas.
             </p>
             <CheckList items={participation} />
           </article>
