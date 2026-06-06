@@ -170,6 +170,81 @@ function ProjectVisual() {
   );
 }
 
+function HamadFlowCasePreview() {
+  const project = siteConfig.projects[1];
+
+  return (
+    <article className="grid gap-6 overflow-hidden rounded-[1.35rem] border border-cyan-300/20 bg-[radial-gradient(circle_at_18%_18%,rgba(34,211,238,0.16),transparent_20rem),rgba(255,255,255,0.035)] p-4 shadow-[0_24px_70px_rgba(0,0,0,0.34)] md:grid-cols-[0.92fr_1.08fr] md:items-center sm:p-6">
+      <a
+        href={project.href}
+        className="group relative block min-h-[260px] overflow-hidden rounded-[1.1rem] border border-white/10 bg-[#050912]"
+      >
+        <Image
+          src={project.image}
+          alt="Arte demonstrativa do HamadFlow Demo"
+          width={1600}
+          height={1100}
+          className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+        />
+      </a>
+
+      <div>
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/25 bg-cyan-300/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-cyan-100">
+          Segundo case
+        </div>
+        <div className="flex flex-wrap items-center gap-3 text-sm text-slate-400">
+          <span>{project.category}</span>
+          <span aria-hidden="true">/</span>
+          <span>{project.year}</span>
+        </div>
+        <h2 className="mt-4 max-w-xl text-balance text-3xl font-semibold leading-tight text-white sm:text-4xl">
+          {project.title}
+        </h2>
+        <p className="mt-5 max-w-2xl text-[0.95rem] leading-7 text-slate-300">
+          HamadFlow Demo é uma versão pública do meu painel de gestão de freelas. Ele simula o fluxo completo de um pedido
+          de orçamento, desde a chegada do lead até briefing, proposta, contrato, projeto e pagamentos.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <span key={tag} className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-slate-300">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#6d5dfc] via-[#38bdf8] to-[#29f1c3] px-5 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(34,211,238,0.24)] transition hover:-translate-y-0.5"
+          >
+            Ver demo
+            <ArrowUpRight className="size-4" />
+          </a>
+          <a
+            href={project.href}
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#8b7cff]/60 hover:bg-white/[0.07]"
+          >
+            Estudo de caso
+            <ArrowUpRight className="size-4" />
+          </a>
+          {"repoUrl" in project && project.repoUrl ? (
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#8b7cff]/60 hover:bg-white/[0.07]"
+            >
+              <Github className="size-4" />
+              GitHub
+            </a>
+          ) : null}
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function ManualDocumentsPreview() {
   return (
     <div className="relative flex min-h-[12rem] items-center justify-center overflow-hidden rounded-2xl bg-[#050912]/80 p-2 sm:min-h-[14rem] sm:p-3">
@@ -279,6 +354,8 @@ function BusinessPanel() {
           })}
         </div>
       </div>
+
+      <HamadFlowCasePreview />
 
       <div className="grid gap-4 lg:grid-cols-2">
         <div className="rounded-[1.3rem] border border-white/10 bg-white/[0.035] p-3 sm:p-6">

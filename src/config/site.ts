@@ -20,6 +20,9 @@ export type IconMap = Record<IconName, LucideIcon>;
 const whatsappMessage =
   "Olá, Vitor! Vi seu portfólio e gostaria de conversar sobre um projeto.";
 
+export const HAMADFLOW_DEMO_URL = "https://hamadflow-demo.vercel.app/";
+export const HAMADFLOW_GITHUB_URL = "https://github.com/hamadvitor0-cell/hamadflow-demo";
+
 export const siteConfig = {
   // Identidade principal exibida no portfólio.
   name: "Vitor Hamad",
@@ -50,7 +53,7 @@ export const siteConfig = {
     title: "Vitor Hamad | Desenvolvedor Web Full Stack",
     description:
       "Portfólio de Vitor Hamad, desenvolvedor web full stack especializado em sites modernos, aplicações web, interfaces premium e desenvolvimento com workflow acelerado por IA.",
-    siteUrl: "https://vitorhamad.vercel.app",
+    siteUrl: "https://www.vitorhamad.me",
     ogImage: "/images/og-image.svg",
     keywords: [
       "Vitor Hamad",
@@ -189,6 +192,32 @@ export const siteConfig = {
         "Banco de dados",
         "Autenticação",
         "Painel administrativo"
+      ]
+    },
+    {
+      title: "HamadFlow Demo",
+      category: "SaaS para gestão de freelas com IA",
+      year: "2026",
+      description:
+        "HamadFlow Demo é uma versão pública e segura do meu painel interno para gestão de freelas. O sistema simula um fluxo completo onde pedidos de orçamento viram clientes, briefings, projetos, propostas, contratos e pagamentos, com apoio de IA e dados fictícios.",
+      image: "/images/cases/hamadflow/hamadflow-demo-cover.svg",
+      imageFit: "cover",
+      href: "/cases/hamadflow",
+      liveUrl: HAMADFLOW_DEMO_URL,
+      repoUrl: HAMADFLOW_GITHUB_URL,
+      liveLabel: "Ver demo",
+      caseLabel: "Estudo de caso",
+      tags: [
+        "Next.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Prisma",
+        "Gemini",
+        "IA",
+        "PDF",
+        "Vercel",
+        "SaaS",
+        "Dashboard"
       ]
     },
     {
