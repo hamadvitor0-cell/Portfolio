@@ -24,6 +24,7 @@ import {
   Workflow
 } from "lucide-react";
 import { HAMADFLOW_DEMO_URL, HAMADFLOW_GITHUB_URL, siteConfig } from "@/config/site";
+import { CaseImageCarousel, type CaseSlide } from "@/components/case-image-carousel";
 
 export const metadata: Metadata = {
   title: "HamadFlow Demo — SaaS para gestão de freelas com IA | Vitor Hamad",
@@ -177,34 +178,59 @@ const nextSteps = [
   "Adicionar métricas financeiras",
   "Criar mais automações com IA",
   "Melhorar onboarding da demo",
-  "Adicionar screenshots reais do painel"
+  "Adicionar um tour guiado pela demo"
 ];
 
-const gallery = [
+const caseSlides: CaseSlide[] = [
   {
     title: "Dashboard",
-    description: "Visão geral de leads, clientes, projetos, propostas e próximos vencimentos.",
-    icon: LayoutDashboard
+    caption: "Visão demonstrativa com pedidos, clientes, briefings, projetos ativos, propostas, contratos, pagamentos e alertas.",
+    src: "/images/cases/hamadflow/screenshots/dashboard.png"
   },
   {
     title: "Pedido recebido",
-    description: "Entrada de solicitação do portfólio com dados fictícios e organização inicial.",
-    icon: ClipboardList
+    caption: "Lista de pedidos fictícios do site, mostrando status, orçamento, origem e avanço no workflow.",
+    src: "/images/cases/hamadflow/screenshots/pedidos-site.png"
   },
   {
-    title: "Análise com IA",
-    description: "Resumo de escopo, riscos, perguntas e sugestões para avançar com o cliente.",
-    icon: Bot
+    title: "Propostas",
+    caption: "Área para acompanhar propostas comerciais, status, validade, cliente e valor.",
+    src: "/images/cases/hamadflow/screenshots/propostas.png"
   },
   {
-    title: "Proposta",
-    description: "Estrutura comercial com escopo, valores, prazo, validade e forma de pagamento.",
-    icon: FileText
+    title: "Detalhe da proposta",
+    caption: "Proposta com escopo incluso, fora do escopo, entregáveis, etapas, valor, prazo e comentários.",
+    src: "/images/cases/hamadflow/screenshots/proposta-detalhe.png"
   },
   {
     title: "Área pública do cliente",
-    description: "Link de visualização e aprovação para demonstrar o fluxo externo do cliente.",
-    icon: Link2
+    caption: "Visualização pública da proposta com ações de resposta e comentário para simular o lado do cliente.",
+    src: "/images/cases/hamadflow/screenshots/proposta-publica.png"
+  },
+  {
+    title: "Contrato",
+    caption: "Página de contrato demonstrativo com aviso jurídico, responsabilidades, aceite e link público.",
+    src: "/images/cases/hamadflow/screenshots/contrato-detalhe.png"
+  },
+  {
+    title: "Contratos",
+    caption: "Lista de contratos demonstrativos com status, valor, cliente e ações rápidas.",
+    src: "/images/cases/hamadflow/screenshots/contratos.png"
+  },
+  {
+    title: "Projetos",
+    caption: "Lista de projetos fictícios para acompanhar status, cliente, entrega, valor e evolução.",
+    src: "/images/cases/hamadflow/screenshots/projetos.png"
+  },
+  {
+    title: "Detalhe do projeto",
+    caption: "Gestão de projetos com status, entrega, pagamentos, tarefas e acompanhamento do trabalho.",
+    src: "/images/cases/hamadflow/screenshots/projeto-detalhe.png"
+  },
+  {
+    title: "Pagamentos",
+    caption: "Controle financeiro demonstrativo com receita recebida, pendente, atrasada e sugestões de cobrança com IA.",
+    src: "/images/cases/hamadflow/screenshots/pagamentos.png"
   }
 ];
 
@@ -437,23 +463,10 @@ export default function HamadFlowCasePage() {
         <div className="mx-auto max-w-[86rem] rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-8">
           <SectionHeader
             eyebrow="Galeria do projeto"
-            title="Estrutura pronta para screenshots reais."
-            description="Como a demo ainda não tem prints anexados neste portfólio, a seção usa cards descritivos para reservar os principais pontos visuais sem recorrer a imagens aleatórias."
+            title="Prints reais da demo navegável."
+            description="Telas capturadas da versão pública do HamadFlow Demo, usando dados fictícios e ambiente isolado para apresentação no portfólio."
           />
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-            {gallery.map((item) => {
-              const Icon = item.icon;
-              return (
-                <article key={item.title} className="rounded-[1.15rem] border border-white/10 bg-white/[0.04] p-5">
-                  <div className="mb-5 grid aspect-[16/10] place-items-center rounded-[1rem] border border-white/10 bg-[radial-gradient(circle_at_30%_20%,rgba(34,211,238,0.2),transparent_12rem),#0b1423]">
-                    <Icon className="size-9 text-cyan-100" />
-                  </div>
-                  <h3 className="text-base font-semibold text-white">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-300">{item.description}</p>
-                </article>
-              );
-            })}
-          </div>
+          <CaseImageCarousel slides={caseSlides} />
         </div>
       </section>
 
