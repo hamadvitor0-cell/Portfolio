@@ -1,4 +1,5 @@
 import { siteConfig } from "@/config/site";
+import Image from "next/image";
 import Link from "next/link";
 import { iconMap } from "@/lib/icons";
 import { isExternalHref } from "@/lib/utils";
@@ -7,14 +8,21 @@ const services = ["Sistemas web", "Painéis administrativos", "MVPs", "Sites e l
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/10 bg-[#040811]/80 px-4 py-10 sm:px-6">
+    <footer className="border-t border-white/10 bg-[#070d19] px-4 py-10 sm:px-6">
       <div className="mx-auto grid max-w-[82rem] gap-8 text-sm text-slate-400 md:grid-cols-[1.1fr_0.7fr_0.7fr_0.8fr]">
         <div>
-          <Link href="/" className="inline-flex items-center gap-3 rounded-lg text-white">
-            <span className="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-[#ff9a3d] via-[#ff6138] to-[#d52f49] text-xs font-black tracking-[-0.08em] text-[#070b13]">
-              VH
-            </span>
-            <span className="font-semibold">{siteConfig.name}</span>
+          <Link
+            href="/"
+            className="inline-flex items-center rounded-lg text-white"
+            aria-label="Vitor Hamad — voltar ao início"
+          >
+            <Image
+              src="/images/brand/vitor-hamad-logo.png"
+              alt="Vitor Hamad — Desenvolvedor Web"
+              width={291}
+              height={67}
+              className="h-auto w-[11.5rem] select-none object-contain"
+            />
           </Link>
           <p className="mt-4 max-w-xs leading-6">
             Sistemas web sob medida para organizar processos, validar ideias e publicar produtos profissionais.
