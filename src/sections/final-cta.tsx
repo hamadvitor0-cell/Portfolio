@@ -53,6 +53,9 @@ export function FinalCtaSection() {
                 href={siteConfig.whatsapp.messageHref}
                 target="_blank"
                 rel="noreferrer"
+                data-analytics-event="cta_click"
+                data-analytics-label="Quero tirar minha ideia do papel"
+                data-analytics-location="final-cta"
                 className="inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-gradient-to-r from-[#6d5dfc] to-[#9b7cff] px-6 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(109,93,252,0.38)] transition hover:-translate-y-0.5"
               >
                 Quero tirar minha ideia do papel
@@ -62,6 +65,9 @@ export function FinalCtaSection() {
                 href={siteConfig.whatsapp.messageHref}
                 target="_blank"
                 rel="noreferrer"
+                data-analytics-event="whatsapp_click"
+                data-analytics-label="Falar no WhatsApp"
+                data-analytics-location="final-cta"
                 className="inline-flex min-h-12 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/12 bg-white/[0.04] px-6 text-sm font-semibold text-white transition hover:border-[#8b7cff]/60 hover:bg-white/[0.08]"
               >
                 Falar no WhatsApp

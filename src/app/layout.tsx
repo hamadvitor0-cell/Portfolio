@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { siteConfig } from "@/config/site";
-import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { WhatsappFloatingButton } from "@/components/whatsapp-floating-button";
+import { AnalyticsTracker } from "@/components/analytics-tracker";
+import { VercelAnalytics } from "@/components/vercel-analytics";
+import { JsonLd } from "@/components/json-ld";
 import "./globals.css";
 
 const light = siteConfig.theme.light;
@@ -37,6 +38,7 @@ export const metadata: Metadata = {
   title: siteConfig.seo.title,
   description: siteConfig.seo.description,
   keywords: [...siteConfig.seo.keywords],
+  alternates: { canonical: "/" },
   openGraph: {
     title: siteConfig.seo.title,
     description: siteConfig.seo.description,
@@ -54,7 +56,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.svg"
-  }
+  },
+  formatDetection: { email: false, address: false, telephone: false }
 };
 
 export const viewport: Viewport = {
@@ -66,6 +69,45 @@ export const viewport: Viewport = {
   ]
 };
 
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Vitor Hamad",
+    url: siteConfig.seo.siteUrl,
+    image: `${siteConfig.seo.siteUrl}${siteConfig.about.image}`,
+    jobTitle: "Desenvolvedor Web",
+    address: { "@type": "PostalAddress", addressLocality: "Curitiba", addressCountry: "BR" },
+    sameAs: [
+      "https://github.com/hamadvitor0-cell",
+      "https://www.linkedin.com/in/vitor-hamad-zanelato-de-oliveira-10458426a/",
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Vitor Hamad — Desenvolvedor Web",
+    url: siteConfig.seo.siteUrl,
+    areaServed: ["Curitiba", "Brasil"],
+    founder: { "@type": "Person", name: "Vitor Hamad" },
+    description: siteConfig.seo.description,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Serviços de desenvolvimento web",
+    itemListElement: [
+      "Sistemas web e painéis administrativos",
+      "MVPs e aplicações web",
+      "Sites e landing pages",
+    ].map((name, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: { "@type": "Service", name, provider: { "@type": "Person", name: "Vitor Hamad" } },
+    })),
+  },
+];
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
@@ -74,12 +116,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <style suppressHydrationWarning dangerouslySetInnerHTML={{ __html: themeStyle }} />
       </head>
       <body suppressHydrationWarning>
-        <ThemeProvider>
-          <SiteHeader />
-          {children}
-          <SiteFooter />
-          <WhatsappFloatingButton />
-        </ThemeProvider>
+        <JsonLd data={structuredData} />
+        <AnalyticsTracker />
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+        <VercelAnalytics />
       </body>
     </html>
   );
