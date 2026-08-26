@@ -4,7 +4,8 @@
 
 :root {
   color-scheme: dark;
-  --font-sans: "Inter", "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Manrope", "Inter", "Segoe UI", system-ui, sans-serif;
 }
 
 .dark {
@@ -24,9 +25,9 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 18% 10%, rgba(109, 93, 252, 0.18), transparent 28rem),
-    radial-gradient(circle at 86% 16%, rgba(34, 211, 238, 0.1), transparent 24rem),
-    linear-gradient(180deg, #050a12 0%, #07101d 45%, #050912 100%);
+    radial-gradient(circle at 12% 8%, rgba(255, 111, 61, 0.13), transparent 30rem),
+    radial-gradient(circle at 92% 16%, rgba(214, 52, 71, 0.09), transparent 26rem),
+    linear-gradient(180deg, #050913 0%, #07101c 48%, #050912 100%);
   color: rgb(var(--color-foreground));
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
@@ -39,12 +40,8 @@ body::before {
   inset: 0;
   z-index: 0;
   content: "";
-  opacity: 0.08;
-  background-image:
-    linear-gradient(rgb(var(--color-foreground) / 0.6) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(var(--color-foreground) / 0.6) 1px, transparent 1px);
-  background-size: 42px 42px;
-  mask-image: linear-gradient(to bottom, black, transparent 78%);
+  opacity: 0.18;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.08), transparent 42rem);
 }
 
 body > * {
@@ -54,7 +51,20 @@ body > * {
 
 ::selection {
   background: rgb(var(--color-accent));
-  color: white;
+  color: #050913;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--color-accent));
+  outline-offset: 3px;
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
 }
 
 img {

@@ -40,6 +40,10 @@ export function FeaturedWorkSection() {
                     href={project.href}
                     target={isExternalHref(project.href) ? "_blank" : undefined}
                     rel={isExternalHref(project.href) ? "noreferrer" : undefined}
+                    data-analytics-event="project_click"
+                    data-analytics-label={project.title}
+                    data-analytics-project={project.title}
+                    data-analytics-location="featured-work-image"
                     className={cn(
                       "relative block min-h-[320px] overflow-hidden md:min-h-[430px]",
                       project.imageFit === "contain" && "flex items-center justify-center bg-[#050912] p-8 sm:p-12"
@@ -79,13 +83,24 @@ export function FeaturedWorkSection() {
                     </div>
 
                     <div className="flex flex-wrap gap-3">
-                      <MagneticButton href={project.liveUrl} className="min-h-11 px-4">
+                      <MagneticButton
+                        href={project.liveUrl}
+                        data-analytics-event="demo_click"
+                        data-analytics-label={liveLabel}
+                        data-analytics-project={project.title}
+                        data-analytics-location="featured-work"
+                        className="min-h-11 px-4"
+                      >
                         {liveLabel}
                       </MagneticButton>
                       <a
                         href={project.href}
                         target={isExternalHref(project.href) ? "_blank" : undefined}
                         rel={isExternalHref(project.href) ? "noreferrer" : undefined}
+                        data-analytics-event="case_view"
+                        data-analytics-label={caseLabel}
+                        data-analytics-project={project.title}
+                        data-analytics-location="featured-work"
                         className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-border px-4 text-sm font-semibold text-muted transition hover:border-accent/50 hover:text-foreground"
                       >
                         {caseLabel}
@@ -97,6 +112,10 @@ export function FeaturedWorkSection() {
                           target={isExternalHref(project.repoUrl) ? "_blank" : undefined}
                           rel={isExternalHref(project.repoUrl) ? "noreferrer" : undefined}
                           aria-label={`${project.title} repository`}
+                          data-analytics-event="github_click"
+                          data-analytics-label="GitHub"
+                          data-analytics-project={project.title}
+                          data-analytics-location="featured-work"
                           className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-border px-4 text-sm font-semibold text-muted transition hover:border-accent/50 hover:text-foreground"
                         >
                           <Github className="size-4" />

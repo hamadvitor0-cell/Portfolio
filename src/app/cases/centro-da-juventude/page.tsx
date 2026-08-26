@@ -25,11 +25,13 @@ import {
 import { siteConfig } from "@/config/site";
 import { CaseImageCarousel, type CaseSlide } from "@/components/case-image-carousel";
 import { CaseSummaryNav } from "@/components/case-summary-nav";
+import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title: "Case Centro da Juventude | Vitor Hamad",
   description:
     "Estudo de caso de sistema web full stack para gestão de inscrições, alunos, chamadas, frequência, relatórios, Google Sheets e IA.",
+  alternates: { canonical: "/cases/centro-da-juventude" },
   openGraph: {
     title: "Case Centro da Juventude | Vitor Hamad",
     description:
@@ -37,8 +39,37 @@ export const metadata: Metadata = {
     url: `${siteConfig.seo.siteUrl}/cases/centro-da-juventude`,
     images: [{ url: "/images/cases/cj/admin-dashboard.png", width: 1920, height: 900 }],
     type: "article"
-  }
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Case Centro da Juventude | Vitor Hamad",
+    description: "Sistema web full stack para centralizar inscrições, alunos, oficinas, frequência e relatórios.",
+    images: ["/images/cases/cj/admin-dashboard.png"],
+  },
 };
+
+const caseStructuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Sistema Centro da Juventude Almirante Tamandaré",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    url: "https://cjtamandare.vercel.app/",
+    image: `${siteConfig.seo.siteUrl}/images/cases/cj/admin-dashboard.png`,
+    author: { "@type": "Person", name: "Vitor Hamad", url: siteConfig.seo.siteUrl },
+    description: "Sistema web para centralizar inscrições, alunos, oficinas, chamadas, frequência, suporte e relatórios.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Início", item: siteConfig.seo.siteUrl },
+      { "@type": "ListItem", position: 2, name: "Cases", item: `${siteConfig.seo.siteUrl}/#cases` },
+      { "@type": "ListItem", position: 3, name: "Centro da Juventude", item: `${siteConfig.seo.siteUrl}/cases/centro-da-juventude` },
+    ],
+  },
+];
 
 const badges = ["Projeto real em produção", "Full Stack", "Painel Administrativo", "Google Sheets API", "IA", "PostgreSQL", "Vercel"];
 
@@ -352,12 +383,13 @@ function CheckList({ items }: { items: string[] }) {
 export default function CentroDaJuventudeCasePage() {
   return (
     <main className="overflow-hidden bg-[#050b14] text-white">
+      <JsonLd data={caseStructuredData} />
       <section className="relative px-4 pb-14 pt-32 sm:px-6 lg:pt-40">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(34,211,238,0.16),transparent_24rem),radial-gradient(circle_at_82%_18%,rgba(124,108,255,0.2),transparent_24rem)]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:64px_64px] opacity-35" />
 
         <div className="relative mx-auto max-w-[86rem]">
-          <Link href="/#work" className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition hover:text-white">
+          <Link href="/#cases" className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition hover:text-white">
             <ArrowLeft className="size-4" />
             Voltar ao portfólio
           </Link>
@@ -387,7 +419,7 @@ export default function CentroDaJuventudeCasePage() {
                   <ArrowUpRight className="size-4" />
                 </a>
                 <Link
-                  href="/#work"
+                  href="/#cases"
                   className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#8b7cff]/60 hover:bg-white/[0.07]"
                 >
                   Voltar ao portfólio
@@ -636,7 +668,7 @@ export default function CentroDaJuventudeCasePage() {
                 <ArrowUpRight className="size-4" />
               </a>
               <Link
-                href="/#work"
+                href="/#cases"
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#8b7cff]/60 hover:bg-white/[0.07]"
               >
                 Ver outros projetos

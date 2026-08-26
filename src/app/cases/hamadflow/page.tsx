@@ -25,20 +25,51 @@ import {
 } from "lucide-react";
 import { HAMADFLOW_DEMO_URL, HAMADFLOW_GITHUB_URL, siteConfig } from "@/config/site";
 import { CaseImageCarousel, type CaseSlide } from "@/components/case-image-carousel";
+import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title: "HamadFlow Demo — SaaS para gestão de freelas com IA | Vitor Hamad",
   description:
     "Estudo de caso do HamadFlow Demo, um SaaS demonstrativo criado por Vitor Hamad para gerenciar clientes, briefings, propostas, contratos, projetos e pagamentos de freelas com IA.",
+  alternates: { canonical: "/cases/hamadflow" },
   openGraph: {
     title: "HamadFlow Demo — SaaS para gestão de freelas com IA | Vitor Hamad",
     description:
       "Estudo de caso do HamadFlow Demo, um SaaS demonstrativo criado por Vitor Hamad para gerenciar clientes, briefings, propostas, contratos, projetos e pagamentos de freelas com IA.",
     url: `${siteConfig.seo.siteUrl}/cases/hamadflow`,
-    images: [{ url: "/images/cases/hamadflow/hamadflow-demo-cover.svg", width: 1600, height: 1100 }],
+    images: [{ url: "/images/cases/hamadflow/screenshots/dashboard.png", width: 1920, height: 1080 }],
     type: "article"
-  }
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HamadFlow Demo | Vitor Hamad",
+    description: "Aplicação web para organizar clientes, propostas, contratos, projetos e pagamentos.",
+    images: ["/images/cases/hamadflow/screenshots/dashboard.png"],
+  },
 };
+
+const caseStructuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "HamadFlow Demo",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    url: HAMADFLOW_DEMO_URL,
+    image: `${siteConfig.seo.siteUrl}/images/cases/hamadflow/screenshots/dashboard.png`,
+    author: { "@type": "Person", name: "Vitor Hamad", url: siteConfig.seo.siteUrl },
+    description: "Aplicação web demonstrativa para organizar o fluxo comercial de freelancers.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Início", item: siteConfig.seo.siteUrl },
+      { "@type": "ListItem", position: 2, name: "Cases", item: `${siteConfig.seo.siteUrl}/#cases` },
+      { "@type": "ListItem", position: 3, name: "HamadFlow Demo", item: `${siteConfig.seo.siteUrl}/cases/hamadflow` },
+    ],
+  },
+];
 
 const badges = ["SaaS", "Gestão de freelas", "IA", "Dashboard", "Propostas", "Contratos", "PostgreSQL", "Next.js"];
 
@@ -270,12 +301,13 @@ function CheckList({ items }: { items: string[] }) {
 export default function HamadFlowCasePage() {
   return (
     <main className="overflow-hidden bg-[#050b14] text-white">
+      <JsonLd data={caseStructuredData} />
       <section className="relative px-4 pb-14 pt-32 sm:px-6 lg:pt-40">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(34,211,238,0.18),transparent_24rem),radial-gradient(circle_at_82%_18%,rgba(124,108,255,0.22),transparent_24rem)]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:64px_64px] opacity-35" />
 
         <div className="relative mx-auto max-w-[86rem]">
-          <Link href="/#work" className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition hover:text-white">
+          <Link href="/#cases" className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition hover:text-white">
             <ArrowLeft className="size-4" />
             Voltar ao portfólio
           </Link>
@@ -316,7 +348,7 @@ export default function HamadFlowCasePage() {
                   Ver GitHub
                 </a>
                 <Link
-                  href="/#work"
+                  href="/#cases"
                   className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#8b7cff]/60 hover:bg-white/[0.07]"
                 >
                   Voltar ao portfólio
@@ -503,7 +535,7 @@ export default function HamadFlowCasePage() {
                 Ver GitHub
               </a>
               <Link
-                href="/#work"
+                href="/#cases"
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#8b7cff]/60 hover:bg-white/[0.07]"
               >
                 Voltar aos projetos

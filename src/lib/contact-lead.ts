@@ -30,24 +30,48 @@ export type ContactLeadInput = {
   name?: unknown;
   isCompany?: unknown;
   companyName?: unknown;
+  contact?: unknown;
   email?: unknown;
   whatsapp?: unknown;
+  phone?: unknown;
   projectType?: unknown;
   budget?: unknown;
+  budgetRange?: unknown;
   message?: unknown;
   consent?: unknown;
+  lgpdConsent?: unknown;
+  visitorId?: unknown;
+  sessionId?: unknown;
+  landingPage?: unknown;
+  referrer?: unknown;
+  utm?: unknown;
+  submissionId?: unknown;
 };
+
+export type ContactLeadUtm = Partial<{
+  source: string;
+  medium: string;
+  campaign: string;
+  term: string;
+  content: string;
+}>;
 
 export type ContactLeadPayload = {
   name: string;
   isCompany: boolean;
   companyName?: string;
-  email: string;
-  whatsapp: string;
+  email?: string;
+  whatsapp?: string;
   projectType: ProjectType;
-  budget: BudgetOption;
+  budget?: BudgetOption;
   message: string;
   consent: true;
+  visitorId?: string;
+  sessionId?: string;
+  landingPage?: string;
+  referrer?: string;
+  utm?: ContactLeadUtm;
+  submissionId?: string;
 };
 
 export type ContactLeadErrors = Partial<Record<keyof ContactLeadInput, string>>;
@@ -65,6 +89,12 @@ function toText(value: unknown) {
 
 function toBoolean(value: unknown) {
   return value === true || value === "true" || value === "on";
+}
+
+function toObject(value: unknown) {
+  return value && typeof value === "object" && !Array.isArray(value)
+    ? (value as Record<string, unknown>)
+    : {};
 }
 
 function isProjectType(value: string): value is ProjectType {
@@ -99,15 +129,35 @@ export function validateContactLead(input: ContactLeadInput): ValidationResult {
   const errors: ContactLeadErrors = {};
 
   const name = sanitizeSingleLine(input.name, 80);
-  const isCompany = toBoolean(input.isCompany);
+  const contact = sanitizeSingleLine(input.contact, 120);
   const companyName = sanitizeSingleLine(input.companyName, 120);
-  const email = sanitizeSingleLine(input.email, 120).toLowerCase();
-  const whatsapp = sanitizeSingleLine(input.whatsapp, 30);
+  const isCompany = toBoolean(input.isCompany) || Boolean(companyName);
+  const email = sanitizeSingleLine(
+    contact.includes("@") ? contact : input.email,
+    120,
+  ).toLowerCase();
+  const whatsapp = sanitizeSingleLine(
+    contact && !contact.includes("@") ? contact : input.whatsapp || input.phone,
+    30,
+  );
   const projectType = sanitizeSingleLine(input.projectType, 80);
-  const budget = sanitizeSingleLine(input.budget, 80);
+  const budget = sanitizeSingleLine(input.budget || input.budgetRange, 80);
   const rawMessage = toText(input.message).replace(/\r\n?/g, "\n");
   const message = sanitizeMessage(input.message);
-  const consent = toBoolean(input.consent);
+  const consent = toBoolean(input.consent) || toBoolean(input.lgpdConsent);
+  const visitorId = sanitizeSingleLine(input.visitorId, 160);
+  const sessionId = sanitizeSingleLine(input.sessionId, 160);
+  const landingPage = sanitizeSingleLine(input.landingPage, 500);
+  const referrer = sanitizeSingleLine(input.referrer, 700);
+  const rawUtm = toObject(input.utm);
+  const submissionId = sanitizeSingleLine(input.submissionId, 160);
+  const utm = {
+    source: sanitizeSingleLine(rawUtm.source, 120),
+    medium: sanitizeSingleLine(rawUtm.medium, 120),
+    campaign: sanitizeSingleLine(rawUtm.campaign, 160),
+    term: sanitizeSingleLine(rawUtm.term, 160),
+    content: sanitizeSingleLine(rawUtm.content, 160),
+  };
 
   if (name.length < 2) {
     errors.name = "Informe seu nome.";
@@ -117,20 +167,29 @@ export function validateContactLead(input: ContactLeadInput): ValidationResult {
     errors.companyName = "Informe o nome da empresa.";
   }
 
-  if (!emailPattern.test(email)) {
-    errors.email = "Informe um e-mail válido.";
+  if (email && !emailPattern.test(email)) {
+    errors.contact = "Informe um e-mail válido.";
   }
 
   const whatsappDigits = whatsapp.replace(/\D/g, "");
-  if (!whatsappPattern.test(whatsapp) || whatsappDigits.length < 10 || whatsappDigits.length > 15) {
-    errors.whatsapp = "Informe um WhatsApp válido com DDD.";
+  if (
+    whatsapp &&
+    (!whatsappPattern.test(whatsapp) ||
+      whatsappDigits.length < 10 ||
+      whatsappDigits.length > 15)
+  ) {
+    errors.contact = "Informe um WhatsApp válido com DDD.";
+  }
+
+  if (!email && !whatsapp) {
+    errors.contact = "Informe um e-mail ou WhatsApp.";
   }
 
   if (!isProjectType(projectType)) {
     errors.projectType = "Escolha o tipo de projeto.";
   }
 
-  if (!isBudgetOption(budget)) {
+  if (budget && !isBudgetOption(budget)) {
     errors.budget = "Escolha uma faixa de orçamento.";
   }
 
@@ -144,7 +203,11 @@ export function validateContactLead(input: ContactLeadInput): ValidationResult {
     errors.consent = "Você precisa aceitar o uso dos dados para retorno.";
   }
 
-  if (Object.keys(errors).length > 0 || !isProjectType(projectType) || !isBudgetOption(budget)) {
+  if (
+    Object.keys(errors).length > 0 ||
+    !isProjectType(projectType) ||
+    (budget && !isBudgetOption(budget))
+  ) {
     return { success: false, errors };
   }
 
@@ -154,12 +217,18 @@ export function validateContactLead(input: ContactLeadInput): ValidationResult {
       name,
       isCompany,
       ...(isCompany ? { companyName } : {}),
-      email,
-      whatsapp,
+      ...(email ? { email } : {}),
+      ...(whatsapp ? { whatsapp } : {}),
       projectType,
-      budget,
+      ...(isBudgetOption(budget) ? { budget } : {}),
       message,
-      consent: true
+      consent: true,
+      ...(visitorId ? { visitorId } : {}),
+      ...(sessionId ? { sessionId } : {}),
+      ...(landingPage ? { landingPage } : {}),
+      ...(referrer ? { referrer } : {}),
+      ...(Object.values(utm).some(Boolean) ? { utm } : {}),
+      ...(submissionId ? { submissionId } : {}),
     }
   };
 }

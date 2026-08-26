@@ -26,11 +26,11 @@ export const HAMADFLOW_GITHUB_URL = "https://github.com/hamadvitor0-cell/hamadfl
 export const siteConfig = {
   // Identidade principal exibida no portfólio.
   name: "Vitor Hamad",
-  role: "Desenvolvedor Web Full Stack",
-  location: "Brasil",
+  role: "Desenvolvedor Web",
+  location: "Curitiba · Atendimento remoto",
   email: "hamadvitor0@gmail.com",
-  availability: "Workflow acelerado por IA · Disponível para projetos freelance",
-  headerCta: "Quero tirar minha ideia do papel",
+  availability: "Sistemas web sob medida · Curitiba e atendimento remoto",
+  headerCta: "Avaliar meu projeto",
 
   whatsapp: {
     number: "+55 41 99141-6887",
@@ -41,26 +41,26 @@ export const siteConfig = {
   },
 
   nav: [
-    { label: "Início", href: "#home" },
-    { label: "Projetos", href: "#work" },
-    { label: "Sobre", href: "#why" },
-    { label: "Serviços", href: "#technical" },
-    { label: "Processo", href: "#process" },
-    { label: "Contato", href: "#contact" }
+    { label: "Soluções", href: "/#solucoes" },
+    { label: "Cases", href: "/#cases" },
+    { label: "Processo", href: "/#processo" },
+    { label: "Sobre", href: "/#sobre" },
+    { label: "FAQ", href: "/#faq" }
   ],
 
   seo: {
-    title: "Vitor Hamad | Desenvolvedor Web Full Stack",
+    title: "Vitor Hamad | Sistemas web sob medida",
     description:
-      "Portfólio de Vitor Hamad, desenvolvedor web full stack especializado em sites modernos, aplicações web, interfaces premium e desenvolvimento com workflow acelerado por IA.",
+      "Sistemas web, painéis administrativos, MVPs e sites profissionais para organizar processos e transformar ideias em produtos publicados com clareza.",
     siteUrl: "https://www.vitorhamad.me",
-    ogImage: "/images/og-image.svg",
+    ogImage: "/og.png",
     keywords: [
       "Vitor Hamad",
       "desenvolvedor web full stack",
-      "desenvolvimento com IA assistida",
-      "sites modernos",
-      "aplicações web",
+      "sistemas web sob medida",
+      "painel administrativo",
+      "MVP web",
+      "sites profissionais Curitiba",
       "Next.js",
       "React",
       "Tailwind CSS"
@@ -75,8 +75,8 @@ export const siteConfig = {
       subtle: "17 24 37",
       surface: "10 17 29",
       border: "38 49 69",
-      accent: "132 105 255",
-      accentSoft: "35 27 82"
+      accent: "255 111 61",
+      accentSoft: "78 31 28"
     },
     dark: {
       background: "5 10 18",
@@ -85,21 +85,21 @@ export const siteConfig = {
       subtle: "17 24 37",
       surface: "10 17 29",
       border: "38 49 69",
-      accent: "132 105 255",
-      accentSoft: "35 27 82"
+      accent: "255 111 61",
+      accentSoft: "78 31 28"
     }
   },
 
   hero: {
-    headline: "Crio sites e sistemas web premium, funcionam de verdade e saem do papel rápido.",
+    headline: "Transformo planilhas e processos manuais em sistemas web simples de usar.",
     description:
-      "Desenvolvo interfaces modernas, painéis administrativos, autenticação, banco de dados e experiências digitais publicadas usando IA como apoio para acelerar o processo, sem perder direção técnica humana.",
+      "Do diagnóstico ao deploy: desenvolvo painéis administrativos, bancos de dados, automações, MVPs e sites profissionais para empresas e organizações.",
     art: {
-      src: "/images/hero-dashboard-art.png",
-      alt: "Arte premium com notebook e celular mostrando dashboard de sistema web publicado"
+      src: "/images/cases/cj/admin-dashboard.png",
+      alt: "Dashboard real do sistema do Centro da Juventude com dados de alunos, oficinas e operação"
     },
-    primaryCta: { label: "Ver projetos", href: "#work" },
-    secondaryCta: { label: "Ver projetos", href: "#work" },
+    primaryCta: { label: "Avaliar meu projeto", href: "#contato" },
+    secondaryCta: { label: "Ver case real", href: "#case-principal" },
     floatingProjects: [
       "/images/project-atlas.svg",
       "/images/project-orbit.svg",
