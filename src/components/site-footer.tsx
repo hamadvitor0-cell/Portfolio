@@ -1,105 +1,11 @@
-import { siteConfig } from "@/config/site";
 import Image from "next/image";
 import Link from "next/link";
-import { iconMap } from "@/lib/icons";
-import { isExternalHref } from "@/lib/utils";
-
-const services = ["Sistemas web", "Painéis administrativos", "MVPs", "Sites e landing pages"];
+import { ArrowUpRight } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
 export function SiteFooter() {
-  return (
-    <footer className="border-t border-white/10 bg-[#070d19] px-4 py-10 sm:px-6">
-      <div className="mx-auto grid max-w-[82rem] gap-8 text-sm text-slate-400 md:grid-cols-[1.1fr_0.7fr_0.7fr_0.8fr]">
-        <div>
-          <Link
-            href="/"
-            className="inline-flex items-center rounded-lg text-white"
-            aria-label="Vitor Hamad — voltar ao início"
-          >
-            <Image
-              src="/images/brand/vitor-hamad-logo.png"
-              alt="Vitor Hamad — Desenvolvedor Web"
-              width={291}
-              height={67}
-              className="h-auto w-[11.5rem] select-none object-contain"
-            />
-          </Link>
-          <p className="mt-4 max-w-xs leading-6">
-            Sistemas web sob medida para organizar processos, validar ideias e publicar produtos profissionais.
-          </p>
-          <p className="mt-6 text-xs">© 2026 {siteConfig.name}. Todos os direitos reservados.</p>
-        </div>
-
-        <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">Navegação</p>
-          <div className="grid gap-2">
-            {siteConfig.nav.map((item) => (
-              <a key={item.href} href={item.href} className="transition hover:text-white">
-                {item.label}
-              </a>
-            ))}
-          </div>
-          <div className="mt-4 grid gap-2 border-t border-white/10 pt-4">
-            <a href="/curriculo" className="transition hover:text-white">Currículo</a>
-            <a href="/privacidade" className="transition hover:text-white">Privacidade</a>
-          </div>
-        </div>
-
-        <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">Serviços</p>
-          <div className="grid gap-2">
-            {services.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-300">Contato</p>
-          <div className="grid gap-2">
-            <a
-              href={siteConfig.whatsapp.messageHref}
-              target="_blank"
-              rel="noreferrer"
-              data-analytics-event="whatsapp_click"
-              data-analytics-label="WhatsApp"
-              data-analytics-location="footer"
-              className="transition hover:text-white"
-            >
-              {siteConfig.whatsapp.number}
-            </a>
-            <a href={`mailto:${siteConfig.email}`} className="transition hover:text-white">
-              {siteConfig.email}
-            </a>
-          </div>
-          <div className="mt-5 flex flex-wrap gap-2">
-            {siteConfig.socialLinks.map((link) => {
-              const Icon = iconMap[link.icon];
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target={isExternalHref(link.href) ? "_blank" : undefined}
-                  rel={isExternalHref(link.href) ? "noreferrer" : undefined}
-                  aria-label={link.label}
-                  data-analytics-event={
-                    link.label === "WhatsApp"
-                      ? "whatsapp_click"
-                      : link.label === "GitHub"
-                        ? "github_click"
-                        : "cta_click"
-                  }
-                  data-analytics-label={link.label}
-                  data-analytics-location="footer-social"
-                  className="inline-flex size-9 items-center justify-center rounded-xl border border-white/10 bg-white/[0.035] transition hover:border-[#ff7546]/60 hover:text-white"
-                >
-                  <Icon className="size-4" />
-                </a>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
+  return <footer className="site-footer"><div className="site-container">
+    <div className="footer-main"><div><Link href="/" className="brand-link" aria-label="Viham Dev — início"><Image src="/images/brand/viham-dev.webp" alt="Viham Dev" width={1055} height={474} className="brand-logo" /></Link><p>Sites para apresentar.<br />Sistemas para organizar.</p></div><div className="footer-nav"><p className="eyebrow">EXPLORE</p>{siteConfig.nav.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}<Link href="/#faq">Dúvidas frequentes</Link></div><div className="footer-contact"><p className="eyebrow">VAMOS CONVERSAR</p><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}<ArrowUpRight size={16} aria-hidden="true" /></a><a href={siteConfig.whatsapp.messageHref} target="_blank" rel="noreferrer" data-analytics-event="whatsapp_click" data-analytics-label="WhatsApp" data-analytics-location="footer">{siteConfig.whatsapp.number}<ArrowUpRight size={16} aria-hidden="true" /></a><div className="footer-socials">{siteConfig.socialLinks.filter((link) => link.label === "GitHub" || link.label === "LinkedIn").map((link) => <a key={link.label} href={link.href} target="_blank" rel="noreferrer" data-analytics-event={link.label === "GitHub" ? "github_click" : "cta_click"} data-analytics-label={link.label} data-analytics-location="footer-social">{link.label}<ArrowUpRight size={14} aria-hidden="true" /></a>)}</div></div></div>
+    <div className="footer-bottom"><p>© {new Date().getFullYear()} Viham Dev. Desenvolvimento por Vitor Hamad.</p><span>Curitiba · Atendimento remoto</span><div><Link href="/curriculo">Currículo</Link><Link href="/privacidade">Privacidade</Link></div></div>
+  </div></footer>;
 }

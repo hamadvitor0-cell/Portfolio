@@ -1,171 +1,52 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  BarChart3,
-  Check,
-  CheckCircle2,
-  ClipboardCheck,
-  Code2,
-  ExternalLink,
-  FileSpreadsheet,
-  Github,
-  Layers3,
-  LayoutDashboard,
-  MessageCircle,
-  Rocket,
-  Search,
-  ShieldCheck,
-  Sparkles,
-  Workflow,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight, Github, Mail, MessageCircle, Plus } from "lucide-react";
 import { ContactBudgetForm } from "@/components/contact-budget-form";
-import {
-  HAMADFLOW_DEMO_URL,
-  HAMADFLOW_GITHUB_URL,
-  siteConfig,
-} from "@/config/site";
+import { siteConfig } from "@/config/site";
 
-const metrics = [
-  { value: "735+", label: "alunos acompanhados" },
-  { value: "28+", label: "oficinas cadastradas" },
-  { value: "660+", label: "frequências registradas" },
-  { value: "126+", label: "chamadas criadas" },
+const services = [
+  { title: "Sites e landing pages", description: "Uma presença digital à altura do seu negócio. Para apresentar sua empresa, serviço ou oferta e facilitar o próximo contato.", scope: "Interface personalizada · Versão mobile · Formulários · Publicação" },
+  { title: "Sistemas web e painéis", description: "Menos informações espalhadas, mais clareza na operação. Um ambiente feito para organizar seus cadastros, acessos e rotinas.", scope: "Painéis administrativos · Banco de dados · Permissões · Integrações" },
+  { title: "MVPs e aplicações", description: "Sua ideia em uma primeira versão utilizável. Com prioridades bem definidas para colocar o essencial no ar e evoluir com o uso.", scope: "Fluxos principais · Interface · Regras de negócio · Primeira versão" },
 ];
-
-const problems = [
-  { icon: FileSpreadsheet, title: "Dados espalhados", description: "Informações importantes divididas entre planilhas, mensagens e arquivos difíceis de acompanhar." },
-  { icon: ClipboardCheck, title: "Trabalho manual", description: "Cadastros, conferências e atualizações repetitivas que tomam tempo da equipe." },
-  { icon: BarChart3, title: "Pouca visibilidade", description: "Falta de relatórios claros para entender a operação e decidir os próximos passos." },
-  { icon: Workflow, title: "Processos desconectados", description: "Uma rotina que depende de várias ferramentas sem um fluxo centralizado." },
-  { icon: Search, title: "Informação difícil de achar", description: "Históricos, documentos e status que exigem buscas demoradas ou conhecimento de uma pessoa." },
-  { icon: Rocket, title: "Ideia sem MVP", description: "Um produto ou serviço que precisa de uma primeira versão utilizável para ser validado." },
+const steps = [
+  { title: "Entender o projeto", description: "Uma conversa sobre contexto, objetivos, público e o que precisa funcionar melhor." },
+  { title: "Definir a entrega", description: "Prioridades, escopo, proposta e cronograma alinhados antes de começar." },
+  { title: "Desenvolver e validar", description: "Construção por etapas, com revisões combinadas e decisões que você acompanha." },
+  { title: "Publicar e acompanhar", description: "Projeto no ar, entrega dos acessos e próximos passos de suporte definidos." },
 ];
-
-const solutions = [
-  {
-    number: "01",
-    title: "Sistemas web e painéis administrativos",
-    audience: "Empresas e organizações com rotinas operacionais recorrentes.",
-    problem: "Centraliza dados, acessos, tarefas e indicadores em um único ambiente.",
-    includes: ["Painéis e níveis de acesso", "Cadastros e banco de dados", "Relatórios e integrações"],
-  },
-  {
-    number: "02",
-    title: "MVPs e aplicações web",
-    audience: "Quem precisa validar uma ideia ou digitalizar um serviço.",
-    problem: "Transforma a proposta em uma versão funcional pronta para uso e aprendizado.",
-    includes: ["Definição da primeira versão", "Fluxos essenciais do produto", "Publicação e evolução planejada"],
-  },
-  {
-    number: "03",
-    title: "Sites e landing pages",
-    audience: "Negócios que precisam apresentar uma oferta com clareza.",
-    problem: "Cria uma presença profissional voltada a contato, confiança e captação.",
-    includes: ["Estrutura e conteúdo", "Design responsivo", "SEO e formulário de contato"],
-  },
-];
-
-const process = [
-  { title: "Diagnóstico", description: "Entendo o problema, quem usa o sistema e o que precisa mudar na rotina atual." },
-  { title: "Escopo e proposta", description: "Organizo prioridades, entregas, prazo e investimento antes do desenvolvimento." },
-  { title: "Desenvolvimento", description: "Construo por etapas e compartilho validações periódicas para evitar surpresas." },
-  { title: "Publicação e suporte", description: "Coloco o projeto no ar, entrego os acessos e acompanho o início da operação." },
-];
-
 const faqs = [
-  { question: "Quanto tempo leva um projeto?", answer: "Depende do escopo e das integrações. Depois do diagnóstico, apresento uma previsão de prazo e marcos de validação antes de começar." },
-  { question: "Como funciona o orçamento?", answer: "Primeiro entendo o problema e a primeira versão necessária. Com isso, preparo uma proposta com escopo, prazo, investimento e condições de pagamento." },
-  { question: "O projeto ficará no meu domínio?", answer: "Sim. Posso configurar o domínio da empresa e orientar sobre hospedagem, contas e acessos necessários." },
-  { question: "Eu terei acesso ao código?", answer: "Sim. A forma de entrega, o repositório e os acessos ficam registrados na proposta do projeto." },
-  { question: "Existe manutenção depois da entrega?", answer: "Sim. O projeto inclui suporte inicial e, quando fizer sentido, podemos combinar um plano de manutenção e evolução." },
-  { question: "Você também cria o design?", answer: "Sim. Organizo a experiência, a interface e a identidade visual necessária para o produto. Materiais de marca existentes também podem ser aproveitados." },
-  { question: "É possível começar com um MVP?", answer: "Sim. Muitas vezes essa é a melhor abordagem: priorizar o fluxo principal, publicar, aprender com o uso e evoluir com segurança." },
-  { question: "Como são feitos pagamentos e validações?", answer: "As condições são definidas na proposta. O desenvolvimento é acompanhado por entregas e validações periódicas, com tudo alinhado antes do início." },
+  { question: "Como funciona o orçamento?", answer: "Começamos entendendo o objetivo e o que a primeira versão precisa entregar. A proposta detalha escopo, prazo, investimento e condições de pagamento. Não é necessário chegar com um documento técnico pronto." },
+  { question: "Quanto tempo leva para desenvolver?", answer: "O prazo depende das páginas, funcionalidades, conteúdo e integrações. A previsão e os marcos de validação são definidos na proposta, antes do início do trabalho." },
+  { question: "O site funciona no celular?", answer: "Sim. A interface é desenvolvida para se adaptar a celulares, tablets e computadores, com atenção à leitura, navegação e uso dos formulários." },
+  { question: "Posso usar meu domínio e ter acesso ao código?", answer: "A configuração do domínio, hospedagem, repositório e entrega dos acessos é alinhada conforme a contratação e registrada na proposta do projeto." },
+  { question: "Existe manutenção depois da entrega?", answer: "Suporte, hospedagem quando aplicável, manutenção e pequenas alterações podem fazer parte de uma contratação recorrente. As condições são combinadas na proposta; mudanças maiores recebem um novo escopo." },
 ];
 
-function SectionHeading({ eyebrow, title, description }: { eyebrow: string; title: string; description?: string }) {
+export function ProjectsSection() {
+  const [cj, hamadflow] = siteConfig.projects;
   return (
-    <div className="max-w-3xl">
-      <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ff8450]">{eyebrow}</p>
-      <h2 className="font-display mt-3 text-balance text-3xl font-extrabold tracking-[-0.035em] text-white sm:text-4xl lg:text-5xl">{title}</h2>
-      {description ? <p className="mt-5 text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">{description}</p> : null}
-    </div>
-  );
-}
-
-export function TrustStrip() {
-  return (
-    <section aria-label="Resultados do case Centro da Juventude" className="border-y border-white/[0.08] bg-[#080f1a]/80 px-4 py-6 sm:px-6">
-      <div className="mx-auto grid max-w-[82rem] grid-cols-2 gap-x-5 gap-y-6 lg:grid-cols-[repeat(4,1fr)_1.4fr] lg:items-center">
-        {metrics.map((metric) => (
-          <div key={metric.label}>
-            <strong className="font-display block text-2xl font-extrabold text-white sm:text-3xl">{metric.value}</strong>
-            <span className="mt-1 block text-xs leading-5 text-slate-400 sm:text-sm">{metric.label}</span>
-          </div>
-        ))}
-        <div className="col-span-2 flex items-center gap-3 border-t border-white/10 pt-5 lg:col-span-1 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
-          <span className="grid size-10 shrink-0 place-items-center rounded-full bg-emerald-400/10 text-emerald-300"><ShieldCheck className="size-5" /></span>
-          <div><strong className="block text-sm text-white">Sistema real em produção</strong><span className="text-xs text-slate-400">Dados conferidos no estudo de caso</span></div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function ProblemsSection() {
-  return (
-    <section className="px-4 py-16 sm:px-6 sm:py-20" aria-labelledby="problems-title">
-      <div className="mx-auto max-w-[82rem]">
-        <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ff8450]">Quando faz sentido conversar</p>
-            <h2 id="problems-title" className="font-display mt-3 text-balance text-3xl font-extrabold tracking-[-0.035em] text-white sm:text-4xl">A operação cresceu, mas o processo ainda depende de improviso.</h2>
-            <p className="mt-5 text-base leading-7 text-slate-300">Um sistema sob medida deve reduzir atrito na rotina — não adicionar mais uma ferramenta para administrar.</p>
-          </div>
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-2">
-            {problems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <article key={item.title} className="bg-[#08101c] p-5 sm:p-6">
-                  <Icon className="size-5 text-[#ff7a49]" aria-hidden="true" />
-                  <h3 className="mt-4 text-base font-bold text-white">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">{item.description}</p>
-                </article>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function MainCaseSection() {
-  return (
-    <section id="cases" className="px-4 py-16 sm:px-6 sm:py-20">
-      <div id="case-principal" className="mx-auto max-w-[82rem] scroll-mt-28 overflow-hidden rounded-3xl border border-white/10 bg-[#09111e] shadow-[0_36px_110px_rgba(0,0,0,0.35)]">
-        <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="p-6 sm:p-9 lg:p-12">
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ff8450]">Case principal · Sistema em produção</p>
-            <h2 className="font-display mt-3 text-3xl font-extrabold tracking-[-0.035em] text-white sm:text-4xl">Centro da Juventude de Almirante Tamandaré</h2>
-            <div className="mt-8 space-y-6">
-              <div><span className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">Problema</span><p className="mt-2 leading-7 text-slate-300">Planilhas, conferências manuais e processos separados dificultavam acompanhar alunos, oficinas, chamadas e frequência.</p></div>
-              <div><span className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">Solução</span><p className="mt-2 leading-7 text-slate-300">Uma plataforma full stack que centraliza inscrições, operação interna, portal do aluno, suporte e indicadores.</p></div>
-              <div><span className="text-xs font-bold uppercase tracking-[0.14em] text-slate-500">Resultado</span><p className="mt-2 leading-7 text-slate-300">A equipe ganhou uma visão organizada da operação e passou a consultar informações e pontos de atenção em um único ambiente.</p></div>
+    <section id="cases" className="projects-section paper-section" aria-labelledby="projects-title">
+      <div className="site-container">
+        <div className="section-topline"><h2 id="projects-title" className="eyebrow">TRABALHOS SELECIONADOS</h2><span className="section-aside">Do contexto à aplicação.</span></div>
+        <article id="case-principal" className="featured-project">
+          <Link href={cj.href} className="project-visual" aria-label="Conhecer o projeto Centro da Juventude" data-analytics-event="project_click" data-analytics-project="centro-da-juventude" data-analytics-location="featured-image">
+            <div className="project-visual-label"><span>01 / CENTRO DA JUVENTUDE</span><span className="project-status"><span className="status-dot" /> Sistema em produção</span></div>
+            <div className="cj-screens">
+              <Image className="cj-main-screen" loading="eager" src={cj.image} alt="Painel real do Centro da Juventude, com a visão de alunos, oficinas, turmas e frequência" width={1919} height={909} sizes="(max-width: 767px) 90vw, (max-width: 1440px) 78vw, 1120px" />
+              <Image className="cj-public-screen" src="/images/cases/cj/public-home-light.png" alt="Portal público do Centro da Juventude de Almirante Tamandaré" width={1902} height={905} sizes="(max-width: 767px) 36vw, 400px" />
             </div>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="/cases/centro-da-juventude" data-analytics-event="project_click" data-analytics-project="centro-da-juventude" data-analytics-location="main-case" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#ff9738] to-[#e43b49] px-5 text-sm font-bold text-[#080b12]">Ver estudo de caso <ArrowRight className="size-4" /></Link>
-              <a href="https://cjtamandare.vercel.app/" target="_blank" rel="noreferrer" data-analytics-event="demo_click" data-analytics-project="centro-da-juventude" data-analytics-location="main-case" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/15 px-5 text-sm font-bold text-white">Visitar projeto <ExternalLink className="size-4" /></a>
-            </div>
+            <span className="project-image-link"><ArrowUpRight size={22} aria-hidden="true" /></span>
+          </Link>
+          <div className="project-caption">
+            <div><p className="project-category">PLATAFORMA INSTITUCIONAL · DESENVOLVIMENTO COMPLETO</p><h3>{cj.title}</h3></div>
+            <div><p>{cj.description}</p><div className="project-links"><Link className="text-link" href={cj.href} data-analytics-event="project_click" data-analytics-project="centro-da-juventude" data-analytics-location="main-case">Conhecer o projeto <ArrowRight size={17} aria-hidden="true" /></Link><a className="subtle-link" href={cj.liveUrl} target="_blank" rel="noreferrer" data-analytics-event="demo_click" data-analytics-project="centro-da-juventude" data-analytics-location="main-case">Visitar projeto <ArrowUpRight size={16} aria-hidden="true" /></a></div></div>
           </div>
-          <div className="relative min-h-[23rem] border-t border-white/10 bg-[#050a13] lg:border-l lg:border-t-0">
-            <Image src="/images/cases/cj/public-home.png" alt="Página pública real do Centro da Juventude" width={1905} height={915} sizes="(max-width: 1024px) 100vw, 56vw" className="h-full min-h-[23rem] w-full object-cover object-left-top" />
-            <div className="absolute inset-x-4 bottom-4 grid grid-cols-2 gap-2 rounded-2xl border border-white/10 bg-[#07101b]/92 p-3 backdrop-blur-md sm:inset-x-6 sm:bottom-6 sm:grid-cols-4">
-              {metrics.map((metric) => <div key={metric.label}><strong className="block text-lg text-white">{metric.value}</strong><span className="text-[0.65rem] leading-4 text-slate-400">{metric.label}</span></div>)}
-            </div>
-          </div>
-        </div>
+        </article>
+        <article className="secondary-project">
+          <Link href={hamadflow.href} className="hamadflow-visual" aria-label="Conhecer o projeto HamadFlow Demo"><Image src={hamadflow.image} alt="Dashboard do HamadFlow Demo com projetos, propostas, contratos e pagamentos fictícios" width={1920} height={1080} sizes="(max-width: 767px) 90vw, 46vw" /></Link>
+          <div className="secondary-project-copy"><p className="project-category">02 / APLICAÇÃO WEB · PROJETO AUTORAL</p><h3>{hamadflow.title}</h3><p>{hamadflow.description}</p><p className="demo-note">Demonstração pública com dados fictícios.</p><div className="project-links"><Link href={hamadflow.href} className="text-link" data-analytics-event="project_click" data-analytics-project="hamadflow" data-analytics-location="other-project">Estudo de caso <ArrowRight size={17} aria-hidden="true" /></Link><a href={hamadflow.liveUrl} target="_blank" rel="noreferrer" className="subtle-link" data-analytics-event="demo_click" data-analytics-project="hamadflow" data-analytics-location="other-project">Ver demo <ArrowUpRight size={16} aria-hidden="true" /></a><a href={hamadflow.repoUrl} target="_blank" rel="noreferrer" className="icon-link" aria-label="Código do HamadFlow no GitHub" data-analytics-event="github_click" data-analytics-location="other-project"><Github size={19} aria-hidden="true" /></a></div></div>
+        </article>
       </div>
     </section>
   );
@@ -173,142 +54,26 @@ export function MainCaseSection() {
 
 export function SolutionsSection() {
   return (
-    <section id="solucoes" className="px-4 py-16 sm:px-6 sm:py-20">
-      <div className="mx-auto max-w-[82rem]">
-        <SectionHeading eyebrow="Soluções" title="A tecnologia certa para organizar, validar ou captar." description="A definição começa pelo problema do negócio. A stack, as integrações e o formato da entrega vêm depois." />
-        <div className="mt-10 grid gap-4 lg:grid-cols-3">
-          {solutions.map((solution) => (
-            <article key={solution.number} className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.025] p-6 sm:p-7">
-              <span className="font-display text-sm font-extrabold text-[#ff7a49]">{solution.number}</span>
-              <h3 className="font-display mt-6 text-2xl font-bold tracking-[-0.025em] text-white">{solution.title}</h3>
-              <p className="mt-5 text-sm leading-6 text-slate-400"><strong className="text-slate-200">Para quem é:</strong> {solution.audience}</p>
-              <p className="mt-3 text-sm leading-6 text-slate-400"><strong className="text-slate-200">O que resolve:</strong> {solution.problem}</p>
-              <ul className="mt-6 space-y-3 border-t border-white/10 pt-6 text-sm text-slate-300">
-                {solution.includes.map((item) => <li key={item} className="flex gap-2"><Check className="mt-0.5 size-4 shrink-0 text-[#ff7a49]" />{item}</li>)}
-              </ul>
-              <a href="#contato" className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-[#ff8c55]">Conversar sobre esta solução <ArrowRight className="size-4" /></a>
-            </article>
-          ))}
-        </div>
-        <p className="mt-5 text-sm leading-6 text-slate-400">Depois da entrega, manutenção e evolução podem ser combinadas conforme a necessidade do projeto.</p>
-      </div>
-    </section>
-  );
-}
-
-export function OtherProjectSection() {
-  return (
-    <section className="px-4 py-16 sm:px-6 sm:py-20">
-      <div className="mx-auto grid max-w-[82rem] gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-        <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a1220] p-2 shadow-[0_30px_80px_rgba(0,0,0,0.3)] sm:p-3">
-          <Image src="/images/cases/hamadflow/screenshots/dashboard.png" alt="Dashboard real da demonstração do HamadFlow" width={1920} height={1080} sizes="(max-width: 1024px) 92vw, 52vw" className="aspect-[16/10] w-full rounded-xl object-cover object-top" />
-        </div>
-        <div>
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ff8450]">Outro projeto real</p>
-          <h2 className="font-display mt-3 text-3xl font-extrabold tracking-[-0.035em] text-white sm:text-4xl">HamadFlow Demo</h2>
-          <p className="mt-5 text-base leading-7 text-slate-300">Um produto para centralizar o fluxo comercial de freelancers: do pedido inicial a clientes, briefings, propostas, contratos, projetos e pagamentos.</p>
-          <ul className="mt-6 grid gap-3 text-sm text-slate-300 sm:grid-cols-2">
-            {["Gestão de clientes e projetos", "Propostas e contratos em PDF", "Links públicos protegidos", "Dados fictícios em ambiente de demo"].map((item) => <li key={item} className="flex gap-2"><CheckCircle2 className="mt-0.5 size-4 shrink-0 text-[#ff7a49]" />{item}</li>)}
-          </ul>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href={HAMADFLOW_DEMO_URL} target="_blank" rel="noreferrer" data-analytics-event="demo_click" data-analytics-project="hamadflow" data-analytics-location="other-project" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-white px-5 text-sm font-bold text-[#070b13]">Acessar demo <ExternalLink className="size-4" /></a>
-            <Link href="/cases/hamadflow" data-analytics-event="project_click" data-analytics-project="hamadflow" data-analytics-location="other-project" className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-white/15 px-5 text-sm font-bold text-white">Ver case</Link>
-            <a href={HAMADFLOW_GITHUB_URL} target="_blank" rel="noreferrer" data-analytics-event="github_click" data-analytics-project="hamadflow" data-analytics-location="other-project" aria-label="Ver código do HamadFlow no GitHub" className="inline-flex size-12 items-center justify-center rounded-xl border border-white/15 text-slate-300 transition hover:text-white"><Github className="size-5" /></a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <section id="solucoes" className="services-section" aria-labelledby="services-title"><div className="site-container">
+      <div className="section-heading"><p className="eyebrow">O QUE PODEMOS CONSTRUIR</p><h2 id="services-title">O formato certo para<br />o seu próximo passo.</h2><p>Da presença online à rotina da operação.<br />O projeto começa pelo que você precisa resolver.</p></div>
+      <div className="service-list">{services.map((service, index) => <article className="service-row" key={service.title}><span className="service-number">0{index + 1}</span><h3>{service.title}</h3><div><p>{service.description}</p><p className="service-scope">{service.scope}</p></div><a href="#contato" className="service-arrow" aria-label={`Conversar sobre ${service.title}`} data-analytics-event="cta_click" data-analytics-label={service.title} data-analytics-location="services"><ArrowUpRight size={25} aria-hidden="true" /></a></article>)}</div>
+      <div className="maintenance-note"><span className="status-dot" /><p><strong>O projeto também pode continuar evoluindo.</strong> Manutenção e suporte podem ser contratados conforme a proposta, com um novo escopo para mudanças maiores.</p></div>
+    </div></section>
   );
 }
 
 export function ProcessSection() {
-  return (
-    <section id="processo" className="border-y border-white/[0.08] bg-[#08101b]/70 px-4 py-16 sm:px-6 sm:py-20">
-      <div className="mx-auto max-w-[82rem]">
-        <SectionHeading eyebrow="Processo" title="Da conversa inicial ao projeto publicado." description="Um processo direto, com decisões registradas e validações ao longo do caminho." />
-        <ol className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {process.map((step, index) => (
-            <li key={step.title} className="relative rounded-2xl border border-white/10 bg-[#07101b] p-6">
-              <span className="font-display grid size-10 place-items-center rounded-full border border-[#ff7044]/35 bg-[#ff7044]/10 text-sm font-extrabold text-[#ff8c55]">{index + 1}</span>
-              <h3 className="mt-6 text-lg font-bold text-white">{step.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-400">{step.description}</p>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
-  );
+  return <section id="processo" className="process-section paper-section" aria-labelledby="process-title"><div className="site-container"><div className="section-heading"><p className="eyebrow">COMO ACONTECE</p><h2 id="process-title">Clareza em cada etapa.</h2><p>Você acompanha o caminho entre a primeira conversa e o projeto no ar.</p></div><ol className="process-list">{steps.map((step, index) => <li key={step.title}><div className="step-top"><span>0{index + 1}</span>{index < 3 ? <ArrowRight size={20} aria-hidden="true" /> : <span className="step-end" aria-hidden="true">↗</span>}</div><h3>{step.title}</h3><p>{step.description}</p></li>)}</ol></div></section>;
 }
 
 export function AboutSection() {
-  return (
-    <section id="sobre" className="px-4 py-16 sm:px-6 sm:py-20">
-      <div className="mx-auto grid max-w-[82rem] gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:gap-16">
-        <div className="mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#ff7b48]/18 to-[#07101b] p-3">
-          <Image src={siteConfig.about.image} alt="Foto de Vitor Hamad" width={1080} height={1440} sizes="(max-width: 1024px) 80vw, 30vw" className="aspect-[4/5] w-full rounded-2xl object-cover object-top" />
-        </div>
-        <div>
-          <SectionHeading eyebrow="Sobre Vitor" title="Desenvolvimento próximo, responsável e orientado ao problema." />
-          <div className="mt-6 space-y-4 text-base leading-7 text-slate-300">
-            <p>Sou Vitor Hamad, desenvolvedor web e estudante de Análise e Desenvolvimento de Sistemas na PUCPR. Construo projetos full stack que conectam interface, banco de dados, regras de negócio e publicação.</p>
-            <p>Os cases deste site mostram essa capacidade em produtos reais. Uso IA como apoio para pesquisa, prototipagem e revisão, sempre com validação humana e responsabilidade técnica.</p>
-          </div>
-          <div className="mt-7 grid gap-3 sm:grid-cols-3">
-            {[{ icon: Code2, label: "Aplicações full stack" }, { icon: LayoutDashboard, label: "Painéis e sistemas" }, { icon: Sparkles, label: "IA como apoio responsável" }].map((item) => { const Icon = item.icon; return <div key={item.label} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.025] p-4 text-sm font-medium text-slate-200"><Icon className="size-5 shrink-0 text-[#ff7a49]" />{item.label}</div>; })}
-          </div>
-          <Link href="/curriculo" data-analytics-event="resume_click" data-analytics-label="Ver currículo" data-analytics-location="about" className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#ff8c55]">Está contratando um desenvolvedor? Ver currículo <ArrowRight className="size-4" /></Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function InvestmentSection() {
-  return (
-    <section className="px-4 py-16 sm:px-6 sm:py-20">
-      <div className="mx-auto grid max-w-[82rem] gap-8 rounded-3xl border border-white/10 bg-[linear-gradient(135deg,rgba(255,111,61,0.09),rgba(8,16,27,0.9)_42%)] p-6 sm:p-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:p-12">
-        <div><p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ff8450]">Investimento</p><h2 className="font-display mt-3 text-3xl font-extrabold tracking-[-0.035em] text-white sm:text-4xl">Escopo claro antes de falar em preço.</h2><p className="mt-5 leading-7 text-slate-300">Sistemas e MVPs recebem orçamento após o diagnóstico. Prazo e investimento variam conforme fluxos, integrações, regras e volume de conteúdo.</p></div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {["Diagnóstico inicial do problema", "Proposta com escopo e entregas", "Cronograma de validações", "Manutenção como etapa complementar"].map((item) => <div key={item} className="flex gap-3 rounded-xl border border-white/10 bg-[#07101b]/80 p-4 text-sm leading-6 text-slate-200"><Check className="mt-0.5 size-4 shrink-0 text-[#ff7a49]" />{item}</div>)}
-        </div>
-      </div>
-    </section>
-  );
+  return <section id="sobre" className="about-section paper-section" aria-labelledby="about-title"><div className="site-container about-layout"><div className="portrait-wrap"><Image src={siteConfig.about.image} alt="Vitor Hamad, desenvolvedor responsável pela Viham Dev" width={1080} height={1440} sizes="(max-width: 767px) 80vw, 380px" className="portrait" /><div className="portrait-caption"><strong>Vitor Hamad</strong><span>Desenvolvedor web · Curitiba, PR</span></div></div><div className="about-copy"><p className="eyebrow">INDEPENDENTE. DO INÍCIO À ENTREGA.</p><h2 id="about-title">Por trás da Viham Dev,<br />contato direto com<br />quem desenvolve.</h2><p>A Viham Dev é a marca de desenvolvimento de Vitor Hamad. O trabalho combina interface, regras de negócio e publicação para criar sites e sistemas adequados a cada projeto.</p><p>Do primeiro alinhamento às validações durante o desenvolvimento, a comunicação acontece diretamente com o profissional responsável pela entrega.</p><div className="about-footnote"><span>Análise e Desenvolvimento de Sistemas · PUCPR</span><Link href="/curriculo" className="text-link" data-analytics-event="resume_click" data-analytics-label="Ver currículo" data-analytics-location="about">Ver currículo <ArrowUpRight size={16} aria-hidden="true" /></Link></div></div></div></section>;
 }
 
 export function FaqSection() {
-  return (
-    <section id="faq" className="px-4 py-16 sm:px-6 sm:py-20">
-      <div className="mx-auto grid max-w-[82rem] gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
-        <SectionHeading eyebrow="FAQ" title="O que normalmente perguntam antes de começar." description="Se a sua dúvida não estiver aqui, descreva o projeto no formulário." />
-        <div className="divide-y divide-white/10 border-y border-white/10">
-          {faqs.map((faq) => (
-            <details key={faq.question} className="group py-1">
-              <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-bold text-white marker:hidden"><span>{faq.question}</span><span className="grid size-8 shrink-0 place-items-center rounded-full border border-white/10 text-[#ff8450] transition group-open:rotate-45">+</span></summary>
-              <p className="max-w-2xl pb-5 pr-10 text-sm leading-7 text-slate-400">{faq.answer}</p>
-            </details>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  return <section id="faq" className="faq-section paper-section" aria-labelledby="faq-title"><div className="site-container faq-layout"><div><p className="eyebrow">ANTES DE COMEÇAR</p><h2 id="faq-title">Algumas respostas<br />para o seu projeto.</h2></div><div className="faq-list">{faqs.map((faq) => <details key={faq.question}><summary>{faq.question}<Plus size={20} aria-hidden="true" /></summary><p>{faq.answer}</p></details>)}</div></div></section>;
 }
 
 export function ContactSection() {
-  return (
-    <section id="contato" className="px-4 pb-20 pt-16 sm:px-6 sm:pb-24 sm:pt-20">
-      <div className="mx-auto grid max-w-[82rem] gap-10 rounded-3xl border border-white/10 bg-[#09111e] p-5 shadow-[0_40px_120px_rgba(0,0,0,0.35)] sm:p-8 lg:grid-cols-[0.72fr_1.28fr] lg:p-12">
-        <div>
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#ff8450]">Próximo passo</p>
-          <h2 className="font-display mt-3 text-balance text-3xl font-extrabold tracking-[-0.035em] text-white sm:text-4xl">Conte qual processo ou ideia você quer colocar no ar.</h2>
-          <p className="mt-5 text-base leading-7 text-slate-300">Não precisa preparar um documento técnico. Explique o contexto, o que hoje dá trabalho e o resultado que você espera.</p>
-          <div className="mt-8 space-y-4 text-sm text-slate-400">
-            <p className="flex gap-3"><Layers3 className="mt-0.5 size-5 shrink-0 text-[#ff7a49]" />Você recebe uma resposta com os próximos passos para o diagnóstico.</p>
-            <p className="flex gap-3"><MessageCircle className="mt-0.5 size-5 shrink-0 text-[#ff7a49]" />Se preferir, o WhatsApp continua disponível como alternativa.</p>
-          </div>
-        </div>
-        <ContactBudgetForm whatsappHref={siteConfig.whatsapp.messageHref} />
-      </div>
-    </section>
-  );
+  return <section id="contato" className="contact-section" aria-labelledby="contact-title"><div className="site-container contact-layout"><div className="contact-copy"><p className="eyebrow"><span className="status-dot" /> VAMOS TIRAR DO PAPEL</p><h2 id="contact-title">Seu próximo projeto<br />começa com uma<br /><span>boa conversa.</span></h2><p>Conte o que você precisa criar ou melhorar. Não é necessário ter um documento técnico pronto para começar.</p><div className="direct-contact"><a href={siteConfig.whatsapp.messageHref} target="_blank" rel="noreferrer" data-analytics-event="whatsapp_click" data-analytics-location="contact"><MessageCircle size={20} aria-hidden="true" /><span>Prefere conversar pelo WhatsApp?<strong>{siteConfig.whatsapp.number}</strong></span><ArrowUpRight size={20} aria-hidden="true" /></a><a href={`mailto:${siteConfig.email}`}><Mail size={19} aria-hidden="true" /><span>{siteConfig.email}</span></a></div></div><ContactBudgetForm whatsappHref={siteConfig.whatsapp.messageHref} /></div></section>;
 }

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import { siteConfig } from "@/config/site";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -6,6 +7,8 @@ import { AnalyticsTracker } from "@/components/analytics-tracker";
 import { VercelAnalytics } from "@/components/vercel-analytics";
 import { JsonLd } from "@/components/json-ld";
 import "./globals.css";
+
+const manrope = localFont({ src: "./fonts/manrope.ttf", variable: "--font-manrope", weight: "400 800", display: "swap" });
 
 const light = siteConfig.theme.light;
 const dark = siteConfig.theme.dark;
@@ -55,7 +58,7 @@ export const metadata: Metadata = {
     images: [siteConfig.seo.ogImage]
   },
   icons: {
-    icon: "/favicon.svg"
+    icon: "/favicon.png"
   },
   formatDetection: { email: false, address: false, telephone: false }
 };
@@ -78,15 +81,12 @@ const structuredData = [
     image: `${siteConfig.seo.siteUrl}${siteConfig.about.image}`,
     jobTitle: "Desenvolvedor Web",
     address: { "@type": "PostalAddress", addressLocality: "Curitiba", addressCountry: "BR" },
-    sameAs: [
-      "https://github.com/hamadvitor0-cell",
-      "https://www.linkedin.com/in/vitor-hamad-zanelato-de-oliveira-10458426a/",
-    ],
+    sameAs: siteConfig.socialLinks.filter((link) => link.label === "GitHub" || link.label === "LinkedIn").map((link) => link.href),
   },
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "Vitor Hamad — Desenvolvedor Web",
+    name: siteConfig.name,
     url: siteConfig.seo.siteUrl,
     areaServed: ["Curitiba", "Brasil"],
     founder: { "@type": "Person", name: "Vitor Hamad" },
@@ -97,13 +97,13 @@ const structuredData = [
     "@type": "ItemList",
     name: "Serviços de desenvolvimento web",
     itemListElement: [
+      "Sites e landing pages",
       "Sistemas web e painéis administrativos",
       "MVPs e aplicações web",
-      "Sites e landing pages",
     ].map((name, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      item: { "@type": "Service", name, provider: { "@type": "Person", name: "Vitor Hamad" } },
+      item: { "@type": "Service", name, provider: { "@type": "ProfessionalService", name: siteConfig.name } },
     })),
   },
 ];
@@ -115,7 +115,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <meta name="darkreader-lock" />
         <style suppressHydrationWarning dangerouslySetInnerHTML={{ __html: themeStyle }} />
       </head>
-      <body suppressHydrationWarning>
+      <body className={manrope.variable} suppressHydrationWarning>
+        <a className="skip-link" href="#main-content">Pular para o conteúdo</a>
         <JsonLd data={structuredData} />
         <AnalyticsTracker />
         <SiteHeader />

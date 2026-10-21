@@ -41,11 +41,11 @@ export function CaseSummaryNav({ items }: { items: SummaryItem[] }) {
   return (
     <nav
       aria-label="Sumário do estudo de caso"
-      className="mx-auto max-w-[86rem] rounded-[1.55rem] border border-white/10 bg-[#07101d]/78 p-5 shadow-[0_28px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:p-6"
+      className="mx-auto max-w-[86rem] rounded-xl border border-white/10 bg-[#0B1529]/78 p-5   sm:p-6"
     >
       <div className="grid gap-4 lg:grid-cols-[0.28fr_1fr] lg:items-center">
         <div>
-          <p className="mb-2 inline-flex rounded-full border border-[#7c6cff]/25 bg-[#7c6cff]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#a89cff]">
+          <p className="mb-2 inline-flex rounded-lg border border-[#D5F662]/25 bg-[#D5F662]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#D5F662]">
             Sumário
           </p>
           <h2 className="text-xl font-semibold text-white">Navegue pelo case</h2>
@@ -59,10 +59,10 @@ export function CaseSummaryNav({ items }: { items: SummaryItem[] }) {
                 key={item.href}
                 href={item.href}
                 className={[
-                  "rounded-2xl border px-4 py-3 text-sm font-semibold leading-5 transition duration-300 focus:outline-none focus:ring-2 focus:ring-[#8b7cff] focus:ring-offset-2 focus:ring-offset-[#050b14]",
+                  "rounded-2xl border px-4 py-3 text-sm font-semibold leading-5 transition duration-200 focus:outline-none focus:ring-2 focus:ring-[#D5F662] focus:ring-offset-2 focus:ring-offset-[#0B1529]",
                   isActive
-                    ? "border-[#7c6cff]/70 bg-[#7c6cff]/18 text-white shadow-[0_12px_34px_rgba(124,108,255,0.22)]"
-                    : "border-white/10 bg-white/[0.035] text-slate-300 hover:border-[#7c6cff]/45 hover:bg-white/[0.065] hover:text-white"
+                    ? "border-[#D5F662]/70 bg-[#D5F662]/18 text-white "
+                    : "border-white/10 bg-white/[0.035] text-slate-300 hover:border-[#D5F662]/45 hover:bg-white/[0.065] hover:text-white"
                 ].join(" ")}
               >
                 {item.label}
