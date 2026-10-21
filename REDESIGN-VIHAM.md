@@ -70,3 +70,11 @@ Não havia Lighthouse instalado; nenhuma pontuação de desempenho ou auditoria 
 - Adicionadas entradas suaves no hero, revelação discreta durante a rolagem quando suportada e movimentos mínimos nos projetos ao passar o mouse. Os efeitos usam CSS, sem nova biblioteca; `prefers-reduced-motion` desativa as animações e deslocamentos decorativos. O conteúdo continua visível durante toda a animação.
 - O PDF enviado pelo proprietário substitui o currículo em `/VitorHamad_Curriculo.pdf`, preservando os links existentes. Arquivo de uma página, conferido visualmente e publicado sem alteração dos bytes; SHA-256 `e744a444766b69e90fa03c1ac0fbcfcdf6596297074dfe9d16d8f4cfdc6b0813`.
 - Validados efeitos normais, preferência por movimento reduzido, tamanho dos textos nas seis larguras e igualdade entre o anexo e o PDF servido localmente. As verificações funcionais de navegação, formulário, galerias e rotas também passaram.
+
+## Hero com arte e foco no empreendedor
+
+A abertura passou a usar a mensagem “Seu negócio merece um site à altura”, uma área maior e uma ilustração original em destaque. O CTA principal é “Quero meu site profissional”; o secundário leva aos projetos reais. Os textos continuam selecionáveis, com contexto sobre sites e sistemas sob medida, sem promessa de resultado comercial garantido.
+
+A arte de computador e celular foi criada com ImageGen integrado, preserva transparência e é carregada como WebP otimizado de aproximadamente 169 kB. O arquivo e o prompt completo estão documentados em `docs/hero-art.md`. A logo não foi alterada e a arte ilustrativa não substitui os cases reais.
+
+O hero foi verificado em 320, 360, 390, 768, 1024, 1440 e 1773 px: título em três linhas, arte carregada, ausência de rolagem horizontal e CTA acessível cedo no celular. Foram conferidos os dois destinos de navegação, movimento reduzido e leitura sem JavaScript. Lint, TypeScript, build e os testes funcionais existentes passaram.

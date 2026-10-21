@@ -92,15 +92,16 @@ export const siteConfig = {
   },
 
   hero: {
-    headline: "Sites para apresentar. Sistemas para organizar.",
+    headline: "Seu negócio merece um site à altura.",
+    headlineLines: ["Seu negócio", "merece um site", "à altura."],
     description:
-      "Desenvolvemos sites, painéis e aplicações web sob medida para o seu negócio. Do planejamento à publicação, você fala diretamente com quem desenvolve.",
+      "Transforme o que você faz em uma presença digital que transmite confiança. Criamos sites profissionais e sistemas sob medida para apresentar seu negócio, facilitar contatos e organizar sua rotina.",
     art: {
-      src: "/images/cases/cj/admin-dashboard.png",
-      alt: "Dashboard real do sistema do Centro da Juventude com dados de alunos, oficinas e operação"
+      src: "/images/hero/viham-web-studio.webp",
+      alt: "Ilustração de um site profissional em computador e celular, com elementos na identidade da Viham Dev"
     },
-    primaryCta: { label: "Conversar sobre um projeto", href: "#contato" },
-    secondaryCta: { label: "Conhecer os projetos", href: "#cases" },
+    primaryCta: { label: "Quero meu site profissional", href: "#contato" },
+    secondaryCta: { label: "Ver projetos reais", href: "#cases" },
     floatingProjects: [
       "/images/project-atlas.svg",
       "/images/project-orbit.svg",
