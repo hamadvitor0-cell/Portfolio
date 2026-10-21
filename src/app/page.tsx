@@ -3,27 +3,19 @@ import {
   AboutSection,
   ContactSection,
   FaqSection,
-  InvestmentSection,
-  MainCaseSection,
-  OtherProjectSection,
-  ProblemsSection,
+  ProjectsSection,
   ProcessSection,
   SolutionsSection,
-  TrustStrip,
 } from "@/sections/commercial-home";
 
 export default function Home() {
   return (
-    <main>
+    <main id="main-content">
       <HeroSection />
-      <TrustStrip />
-      <ProblemsSection />
-      <MainCaseSection />
+      <ProjectsSection />
       <SolutionsSection />
-      <OtherProjectSection />
       <ProcessSection />
       <AboutSection />
-      <InvestmentSection />
       <FaqSection />
       <ContactSection />
     </main>

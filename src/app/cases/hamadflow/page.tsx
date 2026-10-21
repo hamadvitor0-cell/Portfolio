@@ -28,12 +28,12 @@ import { CaseImageCarousel, type CaseSlide } from "@/components/case-image-carou
 import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
-  title: "HamadFlow Demo — SaaS para gestão de freelas com IA | Vitor Hamad",
+  title: "HamadFlow Demo — gestão de freelancers | Viham Dev",
   description:
     "Estudo de caso do HamadFlow Demo, um SaaS demonstrativo criado por Vitor Hamad para gerenciar clientes, briefings, propostas, contratos, projetos e pagamentos de freelas com IA.",
   alternates: { canonical: "/cases/hamadflow" },
   openGraph: {
-    title: "HamadFlow Demo — SaaS para gestão de freelas com IA | Vitor Hamad",
+    title: "HamadFlow Demo — gestão de freelancers | Viham Dev",
     description:
       "Estudo de caso do HamadFlow Demo, um SaaS demonstrativo criado por Vitor Hamad para gerenciar clientes, briefings, propostas, contratos, projetos e pagamentos de freelas com IA.",
     url: `${siteConfig.seo.siteUrl}/cases/hamadflow`,
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "HamadFlow Demo | Vitor Hamad",
+    title: "HamadFlow Demo | Viham Dev",
     description: "Aplicação web para organizar clientes, propostas, contratos, projetos e pagamentos.",
     images: ["/images/cases/hamadflow/screenshots/dashboard.png"],
   },
@@ -71,7 +71,7 @@ const caseStructuredData = [
   },
 ];
 
-const badges = ["SaaS", "Gestão de freelas", "IA", "Dashboard", "Propostas", "Contratos", "PostgreSQL", "Next.js"];
+const badges = ["Projeto autoral", "Aplicação web", "Demonstração pública"];
 
 const features = [
   {
@@ -267,7 +267,7 @@ const caseSlides: CaseSlide[] = [
 
 function Badge({ children }: { children: string }) {
   return (
-    <span className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-semibold text-cyan-100">
+    <span className="rounded-lg border border-white/20 bg-white/5 px-3 py-1 text-xs font-semibold text-[#D5F662]">
       {children}
     </span>
   );
@@ -276,7 +276,7 @@ function Badge({ children }: { children: string }) {
 function SectionHeader({ eyebrow, title, description }: { eyebrow: string; title: string; description?: string }) {
   return (
     <div className="mb-8 max-w-3xl">
-      <p className="mb-3 inline-flex rounded-full border border-[#7c6cff]/25 bg-[#7c6cff]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#a89cff]">
+      <p className="mb-3 inline-flex rounded-lg border border-[#D5F662]/25 bg-[#D5F662]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#D5F662]">
         {eyebrow}
       </p>
       <h2 className="text-balance text-3xl font-semibold leading-tight text-white sm:text-4xl">{title}</h2>
@@ -300,16 +300,14 @@ function CheckList({ items }: { items: string[] }) {
 
 export default function HamadFlowCasePage() {
   return (
-    <main className="overflow-hidden bg-[#050b14] text-white">
+    <main id="main-content" className="case-page text-white">
       <JsonLd data={caseStructuredData} />
       <section className="relative px-4 pb-14 pt-32 sm:px-6 lg:pt-40">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(34,211,238,0.18),transparent_24rem),radial-gradient(circle_at_82%_18%,rgba(124,108,255,0.22),transparent_24rem)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:64px_64px] opacity-35" />
 
         <div className="relative mx-auto max-w-[86rem]">
           <Link href="/#cases" className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition hover:text-white">
             <ArrowLeft className="size-4" />
-            Voltar ao portfólio
+            Voltar aos projetos
           </Link>
 
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
@@ -333,7 +331,7 @@ export default function HamadFlowCasePage() {
                   href={HAMADFLOW_DEMO_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#6d5dfc] via-[#38bdf8] to-[#29f1c3] px-5 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(34,211,238,0.24)] transition hover:-translate-y-0.5"
+                  className="button button-primary case-primary"
                 >
                   Acessar demo
                   <ArrowUpRight className="size-4" />
@@ -342,29 +340,28 @@ export default function HamadFlowCasePage() {
                   href={HAMADFLOW_GITHUB_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#8b7cff]/60 hover:bg-white/[0.07]"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#D5F662]/60 hover:bg-white/[0.07]"
                 >
                   <Github className="size-4" />
                   Ver GitHub
                 </a>
                 <Link
                   href="/#cases"
-                  className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#8b7cff]/60 hover:bg-white/[0.07]"
+                  className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#D5F662]/60 hover:bg-white/[0.07]"
                 >
-                  Voltar ao portfólio
+                  Voltar aos projetos
                 </Link>
               </div>
             </div>
 
-            <figure className="rounded-[1.6rem] border border-white/10 bg-[#0b1220]/80 p-3 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+            <figure className="rounded-xl border border-white/10 bg-[#101C36]/80 p-3  ">
               <Image
                 src="/images/cases/hamadflow/hamadflow-demo-cover.svg"
                 alt="Arte do dashboard demonstrativo HamadFlow Demo"
                 width={1600}
                 height={1100}
-                loading="eager"
-                fetchPriority="high"
-                className="h-auto w-full rounded-[1.1rem] border border-white/10 object-cover"
+                priority
+                className="h-auto w-full rounded-xl border border-white/10 object-cover"
               />
               <figcaption className="px-2 pt-3 text-sm text-slate-400">Representação visual do painel demo e do workflow com IA.</figcaption>
             </figure>
@@ -374,7 +371,7 @@ export default function HamadFlowCasePage() {
 
       <section className="px-4 py-10 sm:px-6">
         <div className="mx-auto grid max-w-[86rem] gap-6 lg:grid-cols-2">
-          <article className="rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-8">
+          <article className="rounded-xl border border-white/10 bg-[#0B1529]/72 p-6   sm:p-8">
             <SectionHeader eyebrow="O problema" title="Organizar freela também é parte do produto." />
             <p className="text-base leading-8 text-slate-300">
               Como freelancer, uma das maiores dificuldades não está apenas em desenvolver o projeto, mas em organizar o processo comercial:
@@ -387,7 +384,7 @@ export default function HamadFlowCasePage() {
             </p>
           </article>
 
-          <article className="rounded-[1.6rem] border border-cyan-300/20 bg-cyan-300/[0.035] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-8">
+          <article className="rounded-xl border border-white/20 bg-cyan-300/[0.035] p-6   sm:p-8">
             <SectionHeader eyebrow="A solução" title="Um workflow comercial centralizado." />
             <p className="text-base leading-8 text-slate-300">
               O HamadFlow foi criado para centralizar esse fluxo em um painel único. A ideia é transformar um pedido de orçamento em um
@@ -408,8 +405,8 @@ export default function HamadFlowCasePage() {
             {features.map((feature) => {
               const Icon = feature.icon;
               return (
-                <article key={feature.title} className="group min-h-[13rem] rounded-[1.2rem] border border-white/10 bg-white/[0.04] p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/45 hover:bg-white/[0.065]">
-                  <span className="mb-5 grid size-12 place-items-center rounded-2xl border border-cyan-300/25 bg-cyan-300/10 text-cyan-100 transition group-hover:scale-105">
+                <article key={feature.title} className="group min-h-[13rem] rounded-xl border border-white/10 bg-white/[0.04] p-6 transition duration-200 hover:-translate-y-1 hover:border-cyan-300/45 hover:bg-white/[0.065]">
+                  <span className="mb-5 grid size-12 place-items-center rounded-2xl border border-cyan-300/25 bg-white/5 text-[#D5F662] transition group-hover:scale-105">
                     <Icon className="size-6" />
                   </span>
                   <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
@@ -422,7 +419,7 @@ export default function HamadFlowCasePage() {
       </section>
 
       <section className="px-4 py-10 sm:px-6">
-        <div className="mx-auto max-w-[86rem] rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-8">
+        <div className="mx-auto max-w-[86rem] rounded-xl border border-white/10 bg-[#0B1529]/72 p-6   sm:p-8">
           <SectionHeader
             eyebrow="Fluxo do sistema"
             title="Do pedido recebido até a entrega organizada."
@@ -430,8 +427,8 @@ export default function HamadFlowCasePage() {
           />
           <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
             {flowSteps.map((step, index) => (
-              <article key={step} className="relative rounded-[1.1rem] border border-white/10 bg-white/[0.04] p-5">
-                <span className="grid size-10 place-items-center rounded-full border border-[#7c6cff]/35 bg-[#7c6cff]/15 text-sm font-semibold text-[#c9c1ff]">
+              <article key={step} className="relative rounded-xl border border-white/10 bg-white/[0.04] p-5">
+                <span className="grid size-10 place-items-center rounded-lg border border-[#D5F662]/35 bg-[#D5F662]/15 text-sm font-semibold text-[#c9c1ff]">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-5 text-base font-semibold text-white">{step}</h3>
@@ -455,8 +452,8 @@ export default function HamadFlowCasePage() {
             {techCards.map((card) => {
               const Icon = card.icon;
               return (
-                <article key={card.title} className="min-h-[12.5rem] rounded-[1.2rem] border border-white/10 bg-white/[0.04] p-6">
-                  <span className="mb-5 grid size-12 place-items-center rounded-2xl border border-[#7c6cff]/30 bg-[#7c6cff]/10 text-[#a99cff]">
+                <article key={card.title} className="min-h-[12.5rem] rounded-xl border border-white/10 bg-white/[0.04] p-6">
+                  <span className="mb-5 grid size-12 place-items-center rounded-2xl border border-[#D5F662]/30 bg-[#D5F662]/10 text-[#D5F662]">
                     <Icon className="size-6" />
                   </span>
                   <h3 className="text-lg font-semibold text-white">{card.title}</h3>
@@ -470,7 +467,7 @@ export default function HamadFlowCasePage() {
 
       <section className="px-4 py-10 sm:px-6">
         <div className="mx-auto grid max-w-[86rem] gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-          <article className="rounded-[1.6rem] border border-emerald-300/20 bg-emerald-300/[0.035] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-8">
+          <article className="rounded-xl border border-emerald-300/20 bg-emerald-300/[0.035] p-6   sm:p-8">
             <SectionHeader eyebrow="Segurança" title="Demo pública sem expor dados reais." />
             <p className="mb-6 text-base leading-8 text-slate-300">
               A versão publicada no portfólio não usa dados reais. Ela possui banco separado, usuário demo, dados fictícios e integração real
@@ -479,7 +476,7 @@ export default function HamadFlowCasePage() {
             <CheckList items={securityItems} />
           </article>
 
-          <article className="rounded-[1.6rem] border border-[#7c6cff]/20 bg-[#7c6cff]/[0.035] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-8">
+          <article className="rounded-xl border border-[#D5F662]/20 bg-[#D5F662]/[0.035] p-6   sm:p-8">
             <SectionHeader eyebrow="O que aprendi" title="Produto, UX e arquitetura trabalhando juntos." />
             <p className="mb-6 text-base leading-8 text-slate-300">
               Com esse projeto, aprofundei conceitos de arquitetura full-stack, modelagem de banco, autenticação, fluxos comerciais, geração
@@ -492,7 +489,7 @@ export default function HamadFlowCasePage() {
       </section>
 
       <section className="px-4 py-10 sm:px-6">
-        <div className="mx-auto max-w-[86rem] rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-8">
+        <div className="mx-auto max-w-[86rem] rounded-xl border border-white/10 bg-[#0B1529]/72 p-6   sm:p-8">
           <SectionHeader
             eyebrow="Galeria do projeto"
             title="Prints reais da demo navegável."
@@ -504,12 +501,12 @@ export default function HamadFlowCasePage() {
 
       <section className="px-4 py-10 sm:px-6">
         <div className="mx-auto grid max-w-[86rem] gap-6 lg:grid-cols-2">
-          <article className="rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-8">
+          <article className="rounded-xl border border-white/10 bg-[#0B1529]/72 p-6   sm:p-8">
             <SectionHeader eyebrow="Próximos passos" title="Evoluções planejadas para a demo." />
             <CheckList items={nextSteps} />
           </article>
 
-          <article className="rounded-[1.6rem] border border-cyan-300/20 bg-[radial-gradient(circle_at_18%_18%,rgba(34,211,238,0.16),transparent_22rem),#07101d] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-8">
+          <article className="rounded-xl border border-white/20 bg-[#0B1529] p-6   sm:p-8">
             <SectionHeader eyebrow="Resultado" title="Uma demo navegável com fluxo completo." />
             <p className="mb-6 text-base leading-8 text-slate-300">
               O resultado é uma demo navegável que mostra um fluxo completo de gestão de freelas, reforçando minhas habilidades em
@@ -520,7 +517,7 @@ export default function HamadFlowCasePage() {
                 href={HAMADFLOW_DEMO_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#6d5dfc] to-[#38bdf8] px-5 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(109,93,252,0.3)] transition hover:-translate-y-0.5"
+                className="button button-primary case-primary"
               >
                 Acessar HamadFlow Demo
                 <ArrowUpRight className="size-4" />
@@ -529,14 +526,14 @@ export default function HamadFlowCasePage() {
                 href={HAMADFLOW_GITHUB_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#8b7cff]/60 hover:bg-white/[0.07]"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#D5F662]/60 hover:bg-white/[0.07]"
               >
                 <Github className="size-4" />
                 Ver GitHub
               </a>
               <Link
                 href="/#cases"
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#8b7cff]/60 hover:bg-white/[0.07]"
+                className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#D5F662]/60 hover:bg-white/[0.07]"
               >
                 Voltar aos projetos
               </Link>

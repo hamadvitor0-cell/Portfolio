@@ -22,9 +22,9 @@ import {
 type ContactBudgetFormProps = { whatsappHref: string };
 type SubmitState = "idle" | "loading" | "success" | "error";
 
-const labelClass = "text-sm font-semibold text-slate-200";
-const fieldClass = "mt-2 min-h-12 w-full rounded-xl border border-white/12 bg-[#050b14] px-4 py-3 text-base text-white outline-none transition placeholder:text-slate-600 focus:border-[#ff7546]/70 focus:ring-2 focus:ring-[#ff7546]/20";
-const errorClass = "mt-1 text-sm text-rose-300";
+const labelClass = "font-semibold";
+const fieldClass = "contact-field";
+const errorClass = "form-error";
 
 export function ContactBudgetForm({ whatsappHref }: ContactBudgetFormProps) {
   const [messageLength, setMessageLength] = useState(0);
@@ -33,6 +33,7 @@ export function ContactBudgetForm({ whatsappHref }: ContactBudgetFormProps) {
   const [errors, setErrors] = useState<ContactLeadErrors>({});
   const submissionIdRef = useRef<string | null>(null);
   const startedAtRef = useRef(0);
+  const submittingRef = useRef(false);
 
   useEffect(() => {
     startedAtRef.current = Date.now();
@@ -40,6 +41,7 @@ export function ContactBudgetForm({ whatsappHref }: ContactBudgetFormProps) {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submittingRef.current) return;
     const form = event.currentTarget;
     const formData = new FormData(form);
     const projectType = String(formData.get("projectType") ?? "");
@@ -76,6 +78,8 @@ export function ContactBudgetForm({ whatsappHref }: ContactBudgetFormProps) {
       setErrors(validation.errors);
       setFeedback("Revise os campos destacados antes de enviar.");
       setStatus("error");
+      const firstError = Object.keys(validation.errors)[0];
+      if (firstError) form.querySelector<HTMLElement>(`[name="${firstError}"]`)?.focus();
       void trackEvent("form_error", { reason: "validation", fields: Object.keys(validation.errors), location: "contact-form" });
       return;
     }
@@ -83,6 +87,7 @@ export function ContactBudgetForm({ whatsappHref }: ContactBudgetFormProps) {
     setErrors({});
     setFeedback("");
     setStatus("loading");
+    submittingRef.current = true;
 
     try {
       const response = await fetch("/api/contact", {
@@ -115,50 +120,52 @@ export function ContactBudgetForm({ whatsappHref }: ContactBudgetFormProps) {
       setFeedback("Não consegui enviar agora. Você pode tentar novamente ou chamar no WhatsApp.");
       setStatus("error");
       void trackEvent("form_error", { reason: "network", location: "contact-form" });
+    } finally {
+      submittingRef.current = false;
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate data-analytics-form="contact-budget" data-analytics-label="Pedido de orçamento" data-analytics-location="contact-form" className="rounded-2xl border border-white/10 bg-[#060d17] p-4 sm:p-6">
-      <div className="grid gap-5 sm:grid-cols-2">
+    <form onSubmit={handleSubmit} noValidate aria-busy={status === "loading"} data-analytics-form="contact-budget" data-analytics-label="Pedido de orçamento" data-analytics-location="contact-form" className="contact-form">
+      <div className="form-grid">
         <div>
-          <label className={labelClass} htmlFor="lead-name">Nome <span aria-hidden="true" className="text-[#ff7546]">*</span></label>
+          <label className={labelClass} htmlFor="lead-name">Nome <span aria-hidden="true" className="text-[#D5F662]">*</span></label>
           <input id="lead-name" name="name" required className={fieldClass} placeholder="Seu nome" maxLength={80} autoComplete="name" aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "lead-name-error" : undefined} />
           {errors.name ? <p id="lead-name-error" className={errorClass}>{errors.name}</p> : null}
         </div>
         <div>
-          <label className={labelClass} htmlFor="lead-contact">E-mail ou WhatsApp <span aria-hidden="true" className="text-[#ff7546]">*</span></label>
+          <label className={labelClass} htmlFor="lead-contact">E-mail ou WhatsApp <span aria-hidden="true" className="text-[#D5F662]">*</span></label>
           <input id="lead-contact" name="contact" required className={fieldClass} placeholder="voce@email.com ou (41) 99999-9999" maxLength={120} autoComplete="email" aria-invalid={Boolean(errors.contact)} aria-describedby={errors.contact ? "lead-contact-error" : undefined} />
           {errors.contact ? <p id="lead-contact-error" className={errorClass}>{errors.contact}</p> : null}
         </div>
         <div>
-          <label className={labelClass} htmlFor="lead-company">Empresa ou organização <span className="font-normal text-slate-500">(opcional)</span></label>
-          <input id="lead-company" name="companyName" className={fieldClass} placeholder="Nome da organização" maxLength={120} autoComplete="organization" aria-invalid={Boolean(errors.companyName)} />
-          {errors.companyName ? <p className={errorClass}>{errors.companyName}</p> : null}
+          <label className={labelClass} htmlFor="lead-company">Empresa ou organização <span className="font-normal text-[#B9C2D0]">(opcional)</span></label>
+          <input id="lead-company" name="companyName" className={fieldClass} placeholder="Nome da organização" maxLength={120} autoComplete="organization" aria-invalid={Boolean(errors.companyName)} aria-describedby={errors.companyName ? "lead-company-error" : undefined} />
+          {errors.companyName ? <p id="lead-company-error" className={errorClass}>{errors.companyName}</p> : null}
         </div>
         <div>
-          <label className={labelClass} htmlFor="lead-project-type">Tipo de projeto <span aria-hidden="true" className="text-[#ff7546]">*</span></label>
-          <select id="lead-project-type" name="projectType" required className={fieldClass} defaultValue="" aria-invalid={Boolean(errors.projectType)}>
+          <label className={labelClass} htmlFor="lead-project-type">Tipo de projeto <span aria-hidden="true" className="text-[#D5F662]">*</span></label>
+          <select id="lead-project-type" name="projectType" required className={fieldClass} defaultValue="" aria-invalid={Boolean(errors.projectType)} aria-describedby={errors.projectType ? "lead-project-type-error" : undefined}>
             <option value="" disabled>Selecione</option>
             {projectTypeOptions.map((option) => <option key={option} value={option}>{option}</option>)}
           </select>
-          {errors.projectType ? <p className={errorClass}>{errors.projectType}</p> : null}
+          {errors.projectType ? <p id="lead-project-type-error" className={errorClass}>{errors.projectType}</p> : null}
         </div>
-        <div className="sm:col-span-2">
-          <label className={labelClass} htmlFor="lead-budget">Faixa de orçamento <span className="font-normal text-slate-500">(opcional)</span></label>
-          <select id="lead-budget" name="budget" className={fieldClass} defaultValue="" aria-invalid={Boolean(errors.budget)}>
+        <div className="form-full">
+          <label className={labelClass} htmlFor="lead-budget">Faixa de orçamento <span className="font-normal text-[#B9C2D0]">(opcional)</span></label>
+          <select id="lead-budget" name="budget" className={fieldClass} defaultValue="" aria-invalid={Boolean(errors.budget)} aria-describedby={errors.budget ? "lead-budget-error" : undefined}>
             <option value="">Prefiro conversar primeiro</option>
             {budgetOptions.map((option) => <option key={option} value={option}>{option}</option>)}
           </select>
-          {errors.budget ? <p className={errorClass}>{errors.budget}</p> : null}
+          {errors.budget ? <p id="lead-budget-error" className={errorClass}>{errors.budget}</p> : null}
         </div>
-        <div className="sm:col-span-2">
+        <div className="form-full">
           <div className="flex items-end justify-between gap-3">
-            <label className={labelClass} htmlFor="lead-message">Resumo do problema ou ideia <span aria-hidden="true" className="text-[#ff7546]">*</span></label>
-            <span className="text-xs text-slate-500">{messageLength}/{messageMaxLength}</span>
+            <label className={labelClass} htmlFor="lead-message">Resumo do problema ou ideia <span aria-hidden="true" className="text-[#D5F662]">*</span></label>
+            <span className="text-xs text-[#B9C2D0]">{messageLength}/{messageMaxLength}</span>
           </div>
-          <textarea id="lead-message" name="message" required className={`${fieldClass} min-h-32 resize-y leading-6`} placeholder="Conte o que hoje dá trabalho e o que você espera organizar ou colocar no ar." maxLength={messageMaxLength} onChange={(event) => setMessageLength(event.target.value.length)} aria-invalid={Boolean(errors.message)} />
-          {errors.message ? <p className={errorClass}>{errors.message}</p> : null}
+          <textarea id="lead-message" name="message" required className={`${fieldClass} min-h-32 resize-y leading-6`} placeholder="Conte o que hoje dá trabalho e o que você espera organizar ou colocar no ar." maxLength={messageMaxLength} onChange={(event) => setMessageLength(event.target.value.length)} aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? "lead-message-error" : undefined} />
+          {errors.message ? <p id="lead-message-error" className={errorClass}>{errors.message}</p> : null}
         </div>
       </div>
 
@@ -167,22 +174,22 @@ export function ContactBudgetForm({ whatsappHref }: ContactBudgetFormProps) {
         <input id="lead-website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <label className="mt-5 flex cursor-pointer items-start gap-3 text-sm leading-6 text-slate-400">
-        <input type="checkbox" name="consent" required className="mt-1 size-4 shrink-0 accent-[#ff7044]" aria-invalid={Boolean(errors.consent)} />
+      <label className="consent-label mt-5 flex cursor-pointer items-start gap-3">
+        <input type="checkbox" name="consent" required className="mt-1 size-4 shrink-0 accent-[#D5F662]" aria-invalid={Boolean(errors.consent)} aria-describedby={errors.consent ? "lead-consent-error" : undefined} />
         <span>{contactConsentLabel} <Link href="/privacidade" className="text-slate-200 underline decoration-white/30 underline-offset-4 hover:text-white">Como seus dados são usados.</Link></span>
       </label>
-      {errors.consent ? <p className={errorClass}>{errors.consent}</p> : null}
+      {errors.consent ? <p id="lead-consent-error" className={errorClass}>{errors.consent}</p> : null}
 
       <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-        <button type="submit" disabled={status === "loading"} className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#ff9738] via-[#ff6238] to-[#dc3348] px-5 text-sm font-bold text-[#080b12] transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0">
-          {status === "loading" ? <><Loader2 className="size-4 animate-spin" /> Enviando...</> : <>Enviar projeto <Send className="size-4" /></>}
+        <button type="submit" disabled={status === "loading"} className="button button-primary flex-1">
+          {status === "loading" ? <><Loader2 className="size-4 animate-spin" aria-hidden="true" /> Enviando...</> : <>Enviar meu projeto <Send className="size-4" aria-hidden="true" /></>}
         </button>
-        <a href={whatsappHref} target="_blank" rel="noreferrer" data-analytics-event="whatsapp_click" data-analytics-label="WhatsApp" data-analytics-location="contact-form" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/15 px-5 text-sm font-bold text-white transition hover:border-[#ff7546]/60"><MessageCircle className="size-4" /> WhatsApp</a>
+        <a href={whatsappHref} target="_blank" rel="noreferrer" data-analytics-event="whatsapp_click" data-analytics-label="WhatsApp" data-analytics-location="contact-form" className="button button-outline"><MessageCircle className="size-4" aria-hidden="true" /> WhatsApp</a>
       </div>
 
-      <p className="mt-4 text-xs leading-5 text-slate-500">Campos marcados com * são obrigatórios. Não envio spam nem compartilho seus dados para publicidade.</p>
+      <p className="form-hint mt-4">Campos marcados com * são obrigatórios. Seus dados são usados para responder sobre o projeto.</p>
       <div aria-live="polite" aria-atomic="true">
-        {feedback ? <p className={`mt-4 rounded-xl border px-4 py-3 text-sm leading-6 ${status === "success" ? "border-emerald-400/25 bg-emerald-400/10 text-emerald-100" : "border-rose-300/25 bg-rose-300/10 text-rose-100"}`} role="status">{feedback}</p> : null}
+        {feedback ? <p className={`form-feedback ${status === "success" ? "success" : ""}`} role="status">{feedback}</p> : null}
       </div>
     </form>
   );

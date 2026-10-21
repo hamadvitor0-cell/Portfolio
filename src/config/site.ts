@@ -18,43 +18,44 @@ export type IconName =
 export type IconMap = Record<IconName, LucideIcon>;
 
 const whatsappMessage =
-  "Olá, Vitor! Vi seu portfólio e gostaria de conversar sobre um projeto.";
+  "Olá! Conheci a Viham Dev e gostaria de conversar sobre um projeto.";
+
+const whatsappHref = `https://wa.me/5541991416887?text=${encodeURIComponent(whatsappMessage)}`;
 
 export const HAMADFLOW_DEMO_URL = "https://hamadflow-demo.vercel.app/";
 export const HAMADFLOW_GITHUB_URL = "https://github.com/hamadvitor0-cell/hamadflow-demo";
 
 export const siteConfig = {
   // Identidade principal exibida no portfólio.
-  name: "Vitor Hamad",
+  name: "Viham Dev",
   role: "Desenvolvedor Web",
   location: "Curitiba · Atendimento remoto",
   email: "hamadvitor0@gmail.com",
-  availability: "Sistemas web sob medida · Curitiba e atendimento remoto",
-  headerCta: "Avaliar meu projeto",
+  availability: "Sites e sistemas sob medida · Curitiba e atendimento remoto",
+  headerCta: "Conversar sobre um projeto",
 
   whatsapp: {
     number: "+55 41 99141-6887",
     href: "https://wa.me/5541991416887",
     message: whatsappMessage,
-    messageHref:
-      "https://wa.me/5541991416887?text=Ol%C3%A1%2C%20Vitor%21%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+    messageHref: whatsappHref
   },
 
   nav: [
-    { label: "Soluções", href: "/#solucoes" },
-    { label: "Cases", href: "/#cases" },
+    { label: "Projetos", href: "/#cases" },
+    { label: "Serviços", href: "/#solucoes" },
     { label: "Processo", href: "/#processo" },
-    { label: "Sobre", href: "/#sobre" },
-    { label: "FAQ", href: "/#faq" }
+    { label: "Sobre", href: "/#sobre" }
   ],
 
   seo: {
-    title: "Vitor Hamad | Sistemas web sob medida",
+    title: "Viham Dev | Sites e sistemas sob medida",
     description:
-      "Sistemas web, painéis administrativos, MVPs e sites profissionais para organizar processos e transformar ideias em produtos publicados com clareza.",
+      "Sites profissionais, painéis e sistemas web sob medida para o seu negócio. Desenvolvimento por Vitor Hamad, de Curitiba para todo o Brasil.",
     siteUrl: "https://www.vitorhamad.me",
     ogImage: "/og.png",
     keywords: [
+      "Viham Dev",
       "Vitor Hamad",
       "desenvolvedor web full stack",
       "sistemas web sob medida",
@@ -69,37 +70,37 @@ export const siteConfig = {
 
   theme: {
     light: {
-      background: "5 10 18",
-      foreground: "247 249 255",
-      muted: "151 164 188",
-      subtle: "17 24 37",
-      surface: "10 17 29",
-      border: "38 49 69",
-      accent: "255 111 61",
-      accentSoft: "78 31 28"
+      background: "16 28 54",
+      foreground: "247 248 245",
+      muted: "185 194 208",
+      subtle: "11 21 41",
+      surface: "20 34 60",
+      border: "42 56 80",
+      accent: "213 246 98",
+      accentSoft: "39 51 47"
     },
     dark: {
-      background: "5 10 18",
-      foreground: "247 249 255",
-      muted: "151 164 188",
-      subtle: "17 24 37",
-      surface: "10 17 29",
-      border: "38 49 69",
-      accent: "255 111 61",
-      accentSoft: "78 31 28"
+      background: "16 28 54",
+      foreground: "247 248 245",
+      muted: "185 194 208",
+      subtle: "11 21 41",
+      surface: "20 34 60",
+      border: "42 56 80",
+      accent: "213 246 98",
+      accentSoft: "39 51 47"
     }
   },
 
   hero: {
-    headline: "Transformo planilhas e processos manuais em sistemas web simples de usar.",
+    headline: "Sites para apresentar. Sistemas para organizar.",
     description:
-      "Do diagnóstico ao deploy: desenvolvo painéis administrativos, bancos de dados, automações, MVPs e sites profissionais para empresas e organizações.",
+      "Desenvolvemos sites, painéis e aplicações web sob medida para o seu negócio. Do planejamento à publicação, você fala diretamente com quem desenvolve.",
     art: {
       src: "/images/cases/cj/admin-dashboard.png",
       alt: "Dashboard real do sistema do Centro da Juventude com dados de alunos, oficinas e operação"
     },
-    primaryCta: { label: "Avaliar meu projeto", href: "#contato" },
-    secondaryCta: { label: "Ver case real", href: "#case-principal" },
+    primaryCta: { label: "Conversar sobre um projeto", href: "#contato" },
+    secondaryCta: { label: "Conhecer os projetos", href: "#cases" },
     floatingProjects: [
       "/images/project-atlas.svg",
       "/images/project-orbit.svg",
@@ -175,12 +176,12 @@ export const siteConfig = {
 
   projects: [
     {
-      title: "Centro da Juventude Almirante Tamandaré",
-      category: "Sistema full stack institucional",
+      title: "Centro da Juventude de Almirante Tamandaré",
+      category: "Plataforma institucional",
       year: "2026",
       description:
-        "Plataforma web desenvolvida para o Centro da Juventude, incluindo autenticação, painel administrativo, gerenciamento de conteúdo, banco de dados e interface moderna responsiva.",
-      image: "/images/cj-logo-sent-transparent.png",
+        "Inscrições, oficinas, alunos, chamadas e frequência em uma plataforma que dá à equipe uma visão organizada da operação.",
+      image: "/images/cases/cj/admin-dashboard.png",
       imageFit: "contain",
       href: "/cases/centro-da-juventude",
       liveUrl: "https://cjtamandare.vercel.app/",
@@ -196,11 +197,11 @@ export const siteConfig = {
     },
     {
       title: "HamadFlow Demo",
-      category: "SaaS para gestão de freelas com IA",
+      category: "Aplicação web · Projeto autoral",
       year: "2026",
       description:
-        "HamadFlow Demo é uma versão pública e segura do meu painel interno para gestão de freelas. O sistema simula um fluxo completo onde pedidos de orçamento viram clientes, briefings, projetos, propostas, contratos e pagamentos, com apoio de IA e dados fictícios.",
-      image: "/images/cases/hamadflow/hamadflow-demo-cover.svg",
+        "Do primeiro contato à entrega. Clientes, briefings, propostas, contratos, projetos e pagamentos em um só fluxo.",
+      image: "/images/cases/hamadflow/screenshots/dashboard.png",
       imageFit: "cover",
       href: "/cases/hamadflow",
       liveUrl: HAMADFLOW_DEMO_URL,
@@ -378,7 +379,7 @@ export const siteConfig = {
   socialLinks: [
     {
       label: "WhatsApp",
-      href: "https://wa.me/5541991416887?text=Ol%C3%A1%2C%20Vitor%21%20Vi%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto.",
+      href: whatsappHref,
       icon: "MessageCircle" as IconName
     },
     {

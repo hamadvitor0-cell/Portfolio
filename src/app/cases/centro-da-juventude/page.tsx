@@ -28,12 +28,12 @@ import { CaseSummaryNav } from "@/components/case-summary-nav";
 import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
-  title: "Case Centro da Juventude | Vitor Hamad",
+  title: "Case Centro da Juventude | Viham Dev",
   description:
     "Estudo de caso de sistema web full stack para gestão de inscrições, alunos, chamadas, frequência, relatórios, Google Sheets e IA.",
   alternates: { canonical: "/cases/centro-da-juventude" },
   openGraph: {
-    title: "Case Centro da Juventude | Vitor Hamad",
+    title: "Case Centro da Juventude | Viham Dev",
     description:
       "Estudo de caso de sistema web full stack para gestão de inscrições, alunos, chamadas, frequência, relatórios, Google Sheets e IA.",
     url: `${siteConfig.seo.siteUrl}/cases/centro-da-juventude`,
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Case Centro da Juventude | Vitor Hamad",
+    title: "Case Centro da Juventude | Viham Dev",
     description: "Sistema web full stack para centralizar inscrições, alunos, oficinas, frequência e relatórios.",
     images: ["/images/cases/cj/admin-dashboard.png"],
   },
@@ -52,10 +52,10 @@ const caseStructuredData = [
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "Sistema Centro da Juventude Almirante Tamandaré",
+    name: "Sistema Centro da Juventude de Almirante Tamandaré",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
-    url: "https://cjtamandare.vercel.app/",
+    url: siteConfig.projects[0].liveUrl,
     image: `${siteConfig.seo.siteUrl}/images/cases/cj/admin-dashboard.png`,
     author: { "@type": "Person", name: "Vitor Hamad", url: siteConfig.seo.siteUrl },
     description: "Sistema web para centralizar inscrições, alunos, oficinas, chamadas, frequência, suporte e relatórios.",
@@ -71,17 +71,12 @@ const caseStructuredData = [
   },
 ];
 
-const badges = ["Projeto real em produção", "Full Stack", "Painel Administrativo", "Google Sheets API", "IA", "PostgreSQL", "Vercel"];
+const badges = ["Sistema em produção", "Plataforma institucional", "Desenvolvimento completo"];
 
 const impactMetrics = [
-  { value: "735+", label: "alunos ativos acompanhados" },
+  { value: "735+", label: "alunos acompanhados" },
   { value: "28+", label: "oficinas cadastradas" },
-  { value: "68+", label: "turmas configuradas" },
-  { value: "50+", label: "planilhas processadas" },
-  { value: "660+", label: "frequências registradas" },
-  { value: "126+", label: "chamadas criadas" },
-  { value: "426", label: "registros de lista de espera" },
-  { value: "IA", label: "relatórios com recomendações" }
+  { value: "660+", label: "frequências registradas" }
 ];
 
 const summaryItems = [
@@ -349,7 +344,7 @@ const participation = [
 
 function Badge({ children }: { children: string }) {
   return (
-    <span className="rounded-full border border-[#7c6cff]/25 bg-[#7c6cff]/10 px-3 py-1 text-xs font-semibold text-[#b7a8ff]">
+    <span className="rounded-lg border border-[#D5F662]/25 bg-[#D5F662]/10 px-3 py-1 text-xs font-semibold text-[#D5F662]">
       {children}
     </span>
   );
@@ -358,7 +353,7 @@ function Badge({ children }: { children: string }) {
 function SectionHeader({ eyebrow, title, description }: { eyebrow: string; title: string; description?: string }) {
   return (
     <div className="mb-8 max-w-3xl">
-      <p className="mb-3 inline-flex rounded-full border border-[#7c6cff]/25 bg-[#7c6cff]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#a89cff]">
+      <p className="mb-3 inline-flex rounded-lg border border-[#D5F662]/25 bg-[#D5F662]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#D5F662]">
         {eyebrow}
       </p>
       <h2 className="text-balance text-3xl font-semibold leading-tight text-white sm:text-4xl">{title}</h2>
@@ -382,16 +377,14 @@ function CheckList({ items }: { items: string[] }) {
 
 export default function CentroDaJuventudeCasePage() {
   return (
-    <main className="overflow-hidden bg-[#050b14] text-white">
+    <main id="main-content" className="case-page text-white">
       <JsonLd data={caseStructuredData} />
       <section className="relative px-4 pb-14 pt-32 sm:px-6 lg:pt-40">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(34,211,238,0.16),transparent_24rem),radial-gradient(circle_at_82%_18%,rgba(124,108,255,0.2),transparent_24rem)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:64px_64px] opacity-35" />
 
         <div className="relative mx-auto max-w-[86rem]">
           <Link href="/#cases" className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-300 transition hover:text-white">
             <ArrowLeft className="size-4" />
-            Voltar ao portfólio
+            Voltar aos projetos
           </Link>
 
           <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
@@ -402,7 +395,7 @@ export default function CentroDaJuventudeCasePage() {
                 ))}
               </div>
               <h1 className="max-w-4xl text-balance text-5xl font-semibold leading-[0.95] tracking-normal text-white sm:text-6xl lg:text-7xl">
-                Centro da Juventude Almirante Tamandaré
+                Centro da Juventude de Almirante Tamandaré
               </h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
                 Sistema web completo para gestão de inscrições, alunos, oficinas, chamadas, frequência, suporte, relatórios,
@@ -410,33 +403,31 @@ export default function CentroDaJuventudeCasePage() {
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href="https://cjtamandare.vercel.app/"
+                  href={siteConfig.projects[0].liveUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#0ea5e9] via-[#10b981] to-[#22d3ee] px-5 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(14,165,233,0.24)] transition hover:-translate-y-0.5"
+                  className="button button-primary case-primary"
                 >
                   Ver projeto online
                   <ArrowUpRight className="size-4" />
                 </a>
                 <Link
                   href="/#cases"
-                  className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#8b7cff]/60 hover:bg-white/[0.07]"
+                  className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#D5F662]/60 hover:bg-white/[0.07]"
                 >
-                  Voltar ao portfólio
+                  Voltar aos projetos
                 </Link>
               </div>
             </div>
 
-            <figure className="rounded-[1.6rem] border border-white/10 bg-[#0b1220]/80 p-3 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+            <figure className="rounded-xl border border-white/10 bg-[#101C36]/80 p-3  ">
               <Image
                 src="/images/cases/cj/admin-dashboard.png"
                 alt="Dashboard administrativo do sistema Centro da Juventude"
                 width={1920}
                 height={900}
-                loading="eager"
-                fetchPriority="high"
-                unoptimized
-                className="h-auto w-full rounded-[1.1rem] border border-white/10 object-cover"
+                priority
+                className="h-auto w-full rounded-xl border border-white/10 object-cover"
               />
               <figcaption className="px-2 pt-3 text-sm text-slate-400">Dashboard administrativo com indicadores agregados do sistema.</figcaption>
             </figure>
@@ -449,12 +440,12 @@ export default function CentroDaJuventudeCasePage() {
       </section>
 
       <section id="project-summary" className="scroll-mt-28 px-4 py-10 sm:px-6">
-        <div className="mx-auto max-w-[86rem] rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-7">
+        <div className="mx-auto max-w-[86rem] rounded-xl border border-white/10 bg-[#0B1529]/72 p-5   sm:p-7">
           <SectionHeader eyebrow="Resumo rápido" title="Da gestão manual para uma plataforma centralizada." />
           <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="rounded-[1.2rem] border border-white/10 bg-white/[0.04] p-6">
+            <div className="rounded-xl border border-white/10 bg-white/[0.04] p-6">
               <p className="text-base leading-8 text-slate-300">
-                O Centro da Juventude Almirante Tamandaré precisava centralizar processos que antes dependiam de planilhas,
+                O Centro da Juventude de Almirante Tamandaré precisava centralizar processos que antes dependiam de planilhas,
                 controles manuais e consultas espalhadas. Desenvolvi um sistema web para organizar inscrições, alunos, turmas,
                 chamadas, frequência, suporte, relatórios e dados administrativos em uma única plataforma.
               </p>
@@ -466,13 +457,13 @@ export default function CentroDaJuventudeCasePage() {
             <div className="grid gap-3 sm:grid-cols-2">
               {impactMetrics.map((metric) => (
                 <article key={metric.label} className="rounded-[1rem] border border-white/10 bg-white/[0.04] p-5">
-                  <strong className="block text-3xl font-semibold text-[#7c6cff]">{metric.value}</strong>
+                  <strong className="block text-3xl font-semibold text-[#D5F662]">{metric.value}</strong>
                   <span className="mt-2 block text-sm leading-6 text-slate-300">{metric.label}</span>
                 </article>
               ))}
             </div>
           </div>
-          <p className="mt-4 text-xs text-slate-500">Métricas apresentadas como dados agregados do sistema, sem identificação individual.</p>
+          <p className="mt-4 text-xs text-slate-400">Registro de resultados apresentado neste estudo de caso, sem identificação individual. Os indicadores são estáticos e não representam dados em tempo real.</p>
         </div>
       </section>
 
@@ -487,9 +478,9 @@ export default function CentroDaJuventudeCasePage() {
             {beforeAfter.map((column) => (
               <article
                 key={column.title}
-                className={`rounded-[1.45rem] border p-6 shadow-[0_26px_80px_rgba(0,0,0,0.26)] backdrop-blur-xl sm:p-7 ${column.tone}`}
+                className={`rounded-xl border p-6   sm:p-7 ${column.tone}`}
               >
-                <span className={`inline-flex rounded-full border px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] ${column.badgeTone}`}>
+                <span className={`inline-flex rounded-lg border px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] ${column.badgeTone}`}>
                   {column.badge}
                 </span>
                 <h3 className="mt-5 text-2xl font-semibold text-white">{column.title}</h3>
@@ -508,7 +499,7 @@ export default function CentroDaJuventudeCasePage() {
               </article>
             ))}
           </div>
-          <p className="mt-5 rounded-[1.15rem] border border-white/10 bg-white/[0.035] px-5 py-4 text-sm leading-7 text-slate-300">
+          <p className="mt-5 rounded-xl border border-white/10 bg-white/[0.035] px-5 py-4 text-sm leading-7 text-slate-300">
             Com a centralização, a equipe ganhou mais controle sobre a operação, reduziu retrabalho e passou a acompanhar indicadores importantes com mais clareza.
           </p>
         </div>
@@ -521,8 +512,8 @@ export default function CentroDaJuventudeCasePage() {
             {features.map((feature) => {
               const Icon = feature.icon;
               return (
-                <article key={feature.title} className="group min-h-[13rem] rounded-[1.2rem] border border-white/10 bg-white/[0.04] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#7c6cff]/50 hover:bg-white/[0.065]">
-                  <span className="mb-5 grid size-12 place-items-center rounded-2xl border border-[#7c6cff]/30 bg-[#7c6cff]/10 text-[#a99cff] transition group-hover:scale-105">
+                <article key={feature.title} className="group min-h-[13rem] rounded-xl border border-white/10 bg-white/[0.04] p-6 transition duration-200 hover:-translate-y-1 hover:border-[#D5F662]/50 hover:bg-white/[0.065]">
+                  <span className="mb-5 grid size-12 place-items-center rounded-2xl border border-[#D5F662]/30 bg-[#D5F662]/10 text-[#D5F662] transition group-hover:scale-105">
                     <Icon className="size-6" />
                   </span>
                   <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
@@ -546,7 +537,7 @@ export default function CentroDaJuventudeCasePage() {
       </section>
 
       <section id="ai-management" className="scroll-mt-28 px-4 py-10 sm:px-6">
-        <div className="mx-auto max-w-[86rem] rounded-[1.6rem] border border-[#7c6cff]/20 bg-[radial-gradient(circle_at_18%_18%,rgba(124,108,255,0.18),transparent_24rem),#07101d] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-8">
+        <div className="mx-auto max-w-[86rem] rounded-xl border border-[#D5F662]/20 bg-[#0B1529] p-6   sm:p-8">
           <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
             <div>
               <SectionHeader
@@ -563,8 +554,8 @@ export default function CentroDaJuventudeCasePage() {
               {aiManagementCards.map((card) => {
                 const Icon = card.icon;
                 return (
-                  <article key={card.title} className="rounded-[1.15rem] border border-white/10 bg-white/[0.04] p-5">
-                    <span className="mb-5 grid size-11 place-items-center rounded-2xl border border-[#7c6cff]/30 bg-[#7c6cff]/10 text-[#a99cff]">
+                  <article key={card.title} className="rounded-xl border border-white/10 bg-white/[0.04] p-5">
+                    <span className="mb-5 grid size-11 place-items-center rounded-2xl border border-[#D5F662]/30 bg-[#D5F662]/10 text-[#D5F662]">
                       <Icon className="size-5" />
                     </span>
                     <h3 className="text-base font-semibold text-white">{card.title}</h3>
@@ -578,7 +569,7 @@ export default function CentroDaJuventudeCasePage() {
       </section>
 
       <section id="architecture" className="scroll-mt-28 px-4 py-10 sm:px-6">
-        <div className="mx-auto max-w-[86rem] rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-7">
+        <div className="mx-auto max-w-[86rem] rounded-xl border border-white/10 bg-[#0B1529]/72 p-5   sm:p-7">
           <SectionHeader
             eyebrow="Arquitetura"
             title="Como o sistema foi estruturado."
@@ -588,15 +579,15 @@ export default function CentroDaJuventudeCasePage() {
             {techStacks.map((stack) => {
               const Icon = stack.icon;
               return (
-                <article key={stack.title} className="flex min-h-[13.5rem] flex-col rounded-[1.15rem] border border-white/10 bg-white/[0.04] p-6">
-                  <span className="mb-5 grid size-12 place-items-center rounded-2xl border border-[#7c6cff]/30 bg-[#7c6cff]/10 text-[#a99cff]">
+                <article key={stack.title} className="flex min-h-[13.5rem] flex-col rounded-xl border border-white/10 bg-white/[0.04] p-6">
+                  <span className="mb-5 grid size-12 place-items-center rounded-2xl border border-[#D5F662]/30 bg-[#D5F662]/10 text-[#D5F662]">
                     <Icon className="size-6" />
                   </span>
                   <h3 className="text-lg font-semibold text-white">{stack.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-slate-300">{stack.description}</p>
                   <ul className="mt-auto flex flex-wrap gap-2 pt-5">
                     {stack.items.map((item) => (
-                      <li key={item} className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-semibold text-slate-300">
+                      <li key={item} className="inline-flex rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-semibold text-slate-300">
                         {item}
                       </li>
                     ))}
@@ -613,7 +604,7 @@ export default function CentroDaJuventudeCasePage() {
           <SectionHeader eyebrow="Principais desafios" title="O que exigiu mais cuidado técnico e de produto." />
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {challenges.map((challenge) => (
-              <article key={challenge.title} className="rounded-[1.2rem] border border-white/10 bg-white/[0.04] p-6">
+              <article key={challenge.title} className="rounded-xl border border-white/10 bg-white/[0.04] p-6">
                 <h3 className="text-lg font-semibold text-white">{challenge.title}</h3>
                 <p className="mt-3 text-[0.95rem] leading-7 text-slate-300">{challenge.description}</p>
               </article>
@@ -624,7 +615,7 @@ export default function CentroDaJuventudeCasePage() {
 
       <section id="results" className="scroll-mt-28 px-4 py-10 sm:px-6">
         <div className="mx-auto grid max-w-[86rem] gap-6 lg:grid-cols-2">
-          <article className="rounded-[1.6rem] border border-white/10 bg-[#07101d]/72 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-8">
+          <article className="rounded-xl border border-white/10 bg-[#0B1529]/72 p-6   sm:p-8">
             <SectionHeader eyebrow="Resultados alcançados" title="Operação mais organizada e acompanhável." />
             <p className="mb-6 text-base leading-8 text-slate-300">
               O sistema passou a centralizar a gestão operacional do Centro da Juventude, facilitando o acompanhamento de inscrições,
@@ -634,7 +625,7 @@ export default function CentroDaJuventudeCasePage() {
             <CheckList items={results} />
           </article>
 
-          <article id="participation" className="scroll-mt-28 rounded-[1.6rem] border border-[#7c6cff]/20 bg-[#7c6cff]/[0.035] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-8">
+          <article id="participation" className="scroll-mt-28 rounded-xl border border-[#D5F662]/20 bg-[#D5F662]/[0.035] p-6   sm:p-8">
             <SectionHeader eyebrow="Minha participação" title="Atuação de ponta a ponta." />
             <p className="mb-6 text-base leading-8 text-slate-300">
               Fui responsável por todas as etapas do projeto, desde a estrutura visual e experiência de uso até backend, banco de dados,
@@ -646,10 +637,10 @@ export default function CentroDaJuventudeCasePage() {
       </section>
 
       <section className="px-4 py-12 sm:px-6">
-        <div className="mx-auto max-w-[86rem] rounded-[1.6rem] border border-white/10 bg-[radial-gradient(circle_at_20%_20%,rgba(124,108,255,0.2),transparent_22rem),#07101d] p-7 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-xl sm:p-10">
+        <div className="mx-auto max-w-[86rem] rounded-xl border border-white/10 bg-[#0B1529] p-7   sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="mb-3 inline-flex rounded-full border border-[#7c6cff]/25 bg-[#7c6cff]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#a89cff]">
+              <p className="mb-3 inline-flex rounded-lg border border-[#D5F662]/25 bg-[#D5F662]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#D5F662]">
                 Próximo projeto
               </p>
               <h2 className="text-balance text-3xl font-semibold text-white sm:text-5xl">Quer um sistema parecido?</h2>
@@ -662,14 +653,14 @@ export default function CentroDaJuventudeCasePage() {
                 href={siteConfig.whatsapp.messageHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#6d5dfc] to-[#9b7cff] px-5 text-sm font-semibold text-white shadow-[0_18px_50px_rgba(109,93,252,0.35)] transition hover:-translate-y-0.5"
+                className="button button-primary case-primary"
               >
                 Falar comigo
                 <ArrowUpRight className="size-4" />
               </a>
               <Link
                 href="/#cases"
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#8b7cff]/60 hover:bg-white/[0.07]"
+                className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/12 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:border-[#D5F662]/60 hover:bg-white/[0.07]"
               >
                 Ver outros projetos
               </Link>
