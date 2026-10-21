@@ -16,7 +16,6 @@ export default function CurriculoPage() {
       <div className="mx-auto max-w-4xl">
         <Link href="/#sobre" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-300 hover:text-white"><ArrowLeft className="size-4" />Voltar ao site</Link>
         <div className="mt-8 rounded-xl border border-white/10 bg-[#0B1529] p-6 sm:p-10">
-          <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#D5F662]">Para recrutadores</p>
           <h1 className="font-display mt-3 text-4xl font-extrabold tracking-[-0.04em] text-white sm:text-5xl">Vitor Hamad — Desenvolvedor Web</h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">Estudante de Análise e Desenvolvimento de Sistemas na PUCPR, com experiência prática em aplicações full stack, painéis administrativos, bancos de dados e deploy.</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

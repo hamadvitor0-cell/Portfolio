@@ -63,3 +63,10 @@ Os endereços públicos do site atual, Centro da Juventude, HamadFlow Demo e rep
 As credenciais locais `HAMADFLOW_LEADS_ENDPOINT` e `HAMADFLOW_LEAD_SECRET` não foram fornecidas. O envio efetivo não foi testado contra a operação privada. O comportamento existente de indisponibilidade permanece honesto, com alternativa por WhatsApp. As variáveis esperadas continuam documentadas em `.env.example`.
 
 Não havia Lighthouse instalado; nenhuma pontuação de desempenho ou auditoria WCAG completa foi presumida. A inspeção visual e os testes funcionais descritos acima são a evidência de validação disponível.
+
+## Ajustes após a publicação
+
+- Removidas a assinatura pequena do hero, as microlegendas decorativas, as categorias repetidas e outros rótulos secundários. Informações úteis permanecem com tamanho mínimo de 14 px na home, incluindo ações, avisos e formulário.
+- Adicionadas entradas suaves no hero, revelação discreta durante a rolagem quando suportada e movimentos mínimos nos projetos ao passar o mouse. Os efeitos usam CSS, sem nova biblioteca; `prefers-reduced-motion` desativa as animações e deslocamentos decorativos. O conteúdo continua visível durante toda a animação.
+- O PDF enviado pelo proprietário substitui o currículo em `/VitorHamad_Curriculo.pdf`, preservando os links existentes. Arquivo de uma página, conferido visualmente e publicado sem alteração dos bytes; SHA-256 `e744a444766b69e90fa03c1ac0fbcfcdf6596297074dfe9d16d8f4cfdc6b0813`.
+- Validados efeitos normais, preferência por movimento reduzido, tamanho dos textos nas seis larguras e igualdade entre o anexo e o PDF servido localmente. As verificações funcionais de navegação, formulário, galerias e rotas também passaram.

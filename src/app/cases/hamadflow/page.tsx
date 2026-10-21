@@ -276,7 +276,7 @@ function Badge({ children }: { children: string }) {
 function SectionHeader({ eyebrow, title, description }: { eyebrow: string; title: string; description?: string }) {
   return (
     <div className="mb-8 max-w-3xl">
-      <p className="mb-3 inline-flex rounded-lg border border-[#D5F662]/25 bg-[#D5F662]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#D5F662]">
+      <p className="mb-3 inline-flex rounded-lg border border-[#D5F662]/25 bg-[#D5F662]/10 px-3 py-1 text-sm font-semibold uppercase tracking-[0.16em] text-[#D5F662]">
         {eyebrow}
       </p>
       <h2 className="text-balance text-3xl font-semibold leading-tight text-white sm:text-4xl">{title}</h2>
