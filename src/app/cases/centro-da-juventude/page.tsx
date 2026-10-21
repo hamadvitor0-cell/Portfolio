@@ -353,7 +353,7 @@ function Badge({ children }: { children: string }) {
 function SectionHeader({ eyebrow, title, description }: { eyebrow: string; title: string; description?: string }) {
   return (
     <div className="mb-8 max-w-3xl">
-      <p className="mb-3 inline-flex rounded-lg border border-[#D5F662]/25 bg-[#D5F662]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#D5F662]">
+      <p className="mb-3 inline-flex rounded-lg border border-[#D5F662]/25 bg-[#D5F662]/10 px-3 py-1 text-sm font-semibold uppercase tracking-[0.16em] text-[#D5F662]">
         {eyebrow}
       </p>
       <h2 className="text-balance text-3xl font-semibold leading-tight text-white sm:text-4xl">{title}</h2>
@@ -480,7 +480,7 @@ export default function CentroDaJuventudeCasePage() {
                 key={column.title}
                 className={`rounded-xl border p-6   sm:p-7 ${column.tone}`}
               >
-                <span className={`inline-flex rounded-lg border px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] ${column.badgeTone}`}>
+                <span className={`inline-flex rounded-lg border px-3 py-1 text-sm font-semibold uppercase tracking-[0.14em] ${column.badgeTone}`}>
                   {column.badge}
                 </span>
                 <h3 className="mt-5 text-2xl font-semibold text-white">{column.title}</h3>
@@ -640,7 +640,7 @@ export default function CentroDaJuventudeCasePage() {
         <div className="mx-auto max-w-[86rem] rounded-xl border border-white/10 bg-[#0B1529] p-7   sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="mb-3 inline-flex rounded-lg border border-[#D5F662]/25 bg-[#D5F662]/10 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-[#D5F662]">
+              <p className="mb-3 inline-flex rounded-lg border border-[#D5F662]/25 bg-[#D5F662]/10 px-3 py-1 text-sm font-semibold uppercase tracking-[0.16em] text-[#D5F662]">
                 Próximo projeto
               </p>
               <h2 className="text-balance text-3xl font-semibold text-white sm:text-5xl">Quer um sistema parecido?</h2>
