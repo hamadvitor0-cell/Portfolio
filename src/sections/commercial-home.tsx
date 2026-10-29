@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Github, Mail, MessageCircle, Plus } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail, MessageCircle, Plus } from "lucide-react";
 import { ContactBudgetForm } from "@/components/contact-budget-form";
 import { siteConfig } from "@/config/site";
 import { ConceptProjectCard } from "@/components/concept-project-card";
@@ -25,7 +25,7 @@ const faqs = [
 ];
 
 export function ProjectsSection() {
-  const [cj, hamadflow] = siteConfig.projects;
+  const [cj] = siteConfig.projects;
   return (
     <section id="cases" className="projects-section paper-section" aria-labelledby="projects-title">
       <div className="site-container">
@@ -44,10 +44,6 @@ export function ProjectsSection() {
             <div><h3>{cj.title}</h3></div>
             <div><p>{cj.description}</p><div className="project-links"><Link className="text-link" href={cj.href} data-analytics-event="project_click" data-analytics-project="centro-da-juventude" data-analytics-location="main-case">Conhecer o projeto <ArrowRight size={17} aria-hidden="true" /></Link><a className="subtle-link" href={cj.liveUrl} target="_blank" rel="noreferrer" data-analytics-event="demo_click" data-analytics-project="centro-da-juventude" data-analytics-location="main-case">Visitar projeto <ArrowUpRight size={16} aria-hidden="true" /></a></div></div>
           </div>
-        </article>
-        <article className="secondary-project">
-          <Link href={hamadflow.href} className="hamadflow-visual" aria-label="Conhecer o projeto HamadFlow Demo"><Image src={hamadflow.image} alt="Dashboard do HamadFlow Demo com projetos, propostas, contratos e pagamentos fictícios" width={1920} height={1080} sizes="(max-width: 767px) 90vw, 46vw" /></Link>
-          <div className="secondary-project-copy"><h3>{hamadflow.title}</h3><p>{hamadflow.description}</p><p className="demo-note">Demonstração pública com dados fictícios.</p><div className="project-links"><Link href={hamadflow.href} className="text-link" data-analytics-event="project_click" data-analytics-project="hamadflow" data-analytics-location="other-project">Estudo de caso <ArrowRight size={17} aria-hidden="true" /></Link><a href={hamadflow.liveUrl} target="_blank" rel="noreferrer" className="subtle-link" data-analytics-event="demo_click" data-analytics-project="hamadflow" data-analytics-location="other-project">Ver demo <ArrowUpRight size={16} aria-hidden="true" /></a><a href={hamadflow.repoUrl} target="_blank" rel="noreferrer" className="icon-link" aria-label="Código do HamadFlow no GitHub" data-analytics-event="github_click" data-analytics-location="other-project"><Github size={19} aria-hidden="true" /></a></div></div>
         </article>
       </div>
     </section>

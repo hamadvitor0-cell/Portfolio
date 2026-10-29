@@ -19,6 +19,7 @@ page.on("response", (response) => { if (response.url().includes("/_next/image") 
 const results = [];
 const widths = [320,360,390,768,1024,1440];
 const routes = ["/", "/cases/mordida", "/cases/corte14", "/cases/centro-da-juventude", "/cases/hamadflow", "/curriculo", "/privacidade", "/pagina-inexistente-qa"];
+const notFoundRoutes = new Set(["/cases/hamadflow", "/pagina-inexistente-qa"]);
 async function loadImages() {
   await page.evaluate(async () => {
     for (const img of document.images) { img.loading = "eager"; }
@@ -30,7 +31,9 @@ try {
   for (const path of routes) {
     await page.setViewportSize({ width: 1440, height: 1000 });
     const response = await page.goto(`${base}${path}`, { waitUntil: "networkidle" });
-    assert.equal(response.status(), path.includes("inexistente") ? 404 : 200, `Route ${path}`);
+    assert.equal(response.status(), notFoundRoutes.has(path) ? 404 : 200, `Route ${path}`);
+    assert.doesNotMatch(await page.locator("main").innerText(), /hamadflow/i, `Removed demo is absent from ${path}`);
+    assert.equal(await page.locator('a[href*="hamadflow"]').count(), 0, `No links to the removed demo on ${path}`);
     await loadImages();
     for (const width of widths) {
       await page.setViewportSize({ width, height: width < 768 ? 844 : 1000 });
@@ -44,7 +47,7 @@ try {
       assert.deepEqual(state.duplicateIds, [], `Unique IDs: ${path}`);
       assert.deepEqual(state.missingImages, [], `Image loading: ${path}`);
       results.push({ path, ...state });
-      if ((path === "/" || path.startsWith("/cases/")) && [390,1440].includes(width)) {
+      if ((path === "/" || (path.startsWith("/cases/") && !notFoundRoutes.has(path))) && [390,1440].includes(width)) {
         const slug = path === "/" ? "home" : path.split("/").at(-1);
         await page.screenshot({ path: `artifacts/${slug}-${width}.png`, fullPage: true });
         if (path === "/") {
@@ -128,7 +131,7 @@ try {
   assert.equal(await page.locator("#lead-message").inputValue(), "");
   console.log("PASS: empty, invalid, failure, network, loading, duplicate prevention and successful form states, using mocked responses.");
 
-  for (const path of ["/cases/centro-da-juventude","/cases/hamadflow","/cases/corte14","/cases/mordida"]) {
+  for (const path of ["/cases/centro-da-juventude","/cases/corte14","/cases/mordida"]) {
     await page.goto(`${base}${path}`, { waitUntil: "networkidle" });
     const gallery = page.getByRole("region", { name: "Galeria de telas do projeto" });
     const caption = gallery.locator(".gallery-caption h3");
@@ -147,9 +150,9 @@ try {
     assert.equal(await dialog.isVisible(), false);
     assert.equal(await zoom.evaluate((element) => element === document.activeElement), true);
   }
-  console.log("PASS: all four galleries, keyboard navigation, image enlargement, Escape and focus return.");
+  console.log("PASS: all three galleries, keyboard navigation, image enlargement, Escape and focus return.");
   await page.goto(`${base}/#cases`, { waitUntil: "networkidle" });
-  assert.deepEqual(await page.locator("#cases article h3").allTextContents(), ["MORDIDA! — Smash House", "Corte 14 — Barber Club", "Centro da Juventude de Almirante Tamandaré", "HamadFlow Demo"]);
+  assert.deepEqual(await page.locator("#cases article h3").allTextContents(), ["MORDIDA! — Smash House", "Corte 14 — Barber Club", "Centro da Juventude de Almirante Tamandaré"]);
   assert.equal(await page.locator(".corte14-project").count(), 1);
   assert.match(await page.locator(".corte14-project").innerText(), /Projeto conceitual/i);
   const demoLink = page.getByRole("link", { name: "Visualizar site Corte 14 (abre em nova aba)", exact: true });
@@ -218,9 +221,12 @@ try {
   assert.equal(pdf.status(), 200);
   assert.match(pdf.headers()["content-type"], /pdf/);
   const sitemap = await context.request.get(`${base}/sitemap.xml`);
-  assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/hamadflow/);
+  assert.doesNotMatch(await sitemap.text(), /hamadflow/i);
   assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/corte14/);
   assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/mordida/);
+  for (const path of ["/images/cases/hamadflow/hamadflow-demo-cover.svg", "/images/cases/hamadflow/screenshots/dashboard.png"]) {
+    assert.equal((await context.request.get(`${base}${path}`)).status(), 404, `Removed demo asset is unavailable: ${path}`);
+  }
   const robots = await context.request.get(`${base}/robots.txt`);
   assert.match(await robots.text(), /Disallow: \/api\//);
   for (const width of widths) {

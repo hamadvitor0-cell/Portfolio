@@ -24,9 +24,6 @@ const whatsappMessage =
 
 const whatsappHref = `https://wa.me/5541991416887?text=${encodeURIComponent(whatsappMessage)}`;
 
-export const HAMADFLOW_DEMO_URL = "https://hamadflow-demo.vercel.app/";
-export const HAMADFLOW_GITHUB_URL = "https://github.com/hamadvitor0-cell/hamadflow-demo";
-
 export type ConceptProject = {
   slug: string;
   linkName: string;
@@ -263,32 +260,6 @@ export const siteConfig = {
         "Banco de dados",
         "Autenticação",
         "Painel administrativo"
-      ]
-    },
-    {
-      title: "HamadFlow Demo",
-      category: "Aplicação web · Projeto autoral",
-      year: "2026",
-      description:
-        "Do primeiro contato à entrega. Clientes, briefings, propostas, contratos, projetos e pagamentos em um só fluxo.",
-      image: "/images/cases/hamadflow/screenshots/dashboard.png",
-      imageFit: "cover",
-      href: "/cases/hamadflow",
-      liveUrl: HAMADFLOW_DEMO_URL,
-      repoUrl: HAMADFLOW_GITHUB_URL,
-      liveLabel: "Ver demo",
-      caseLabel: "Estudo de caso",
-      tags: [
-        "Next.js",
-        "TypeScript",
-        "PostgreSQL",
-        "Prisma",
-        "Gemini",
-        "IA",
-        "PDF",
-        "Vercel",
-        "SaaS",
-        "Dashboard"
       ]
     },
     {

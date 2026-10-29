@@ -24,7 +24,7 @@ export default function CurriculoPage() {
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             <section className="rounded-2xl border border-white/10 bg-white/[0.025] p-6"><h2 className="text-lg font-bold text-white">Formação</h2><p className="mt-3 text-sm leading-7 text-slate-400">Técnico em Análise e Desenvolvimento de Sistemas e graduação em andamento na PUCPR EAD.</p></section>
-            <section className="rounded-2xl border border-white/10 bg-white/[0.025] p-6"><h2 className="text-lg font-bold text-white">Experiência prática</h2><p className="mt-3 text-sm leading-7 text-slate-400">Centro da Juventude, HamadFlow e este portfólio demonstram desenvolvimento, produto, integração e publicação.</p></section>
+            <section className="rounded-2xl border border-white/10 bg-white/[0.025] p-6"><h2 className="text-lg font-bold text-white">Experiência prática</h2><p className="mt-3 text-sm leading-7 text-slate-400">Centro da Juventude, MORDIDA!, Corte 14 e este portfólio demonstram desenvolvimento, produto, integração e publicação.</p></section>
           </div>
         </div>
       </div>

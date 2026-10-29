@@ -1,8 +1,8 @@
 # MORDIDA! — Smash House
 
 Projeto conceitual adicionado em primeiro lugar nos trabalhos selecionados,
-seguido por Corte 14, Centro da Juventude e HamadFlow. Todos os projetos
-anteriores permanecem cadastrados. A página de detalhes fica em `/cases/mordida`.
+seguido por Corte 14 e Centro da Juventude. A página de detalhes fica em
+`/cases/mordida`.
 
 ## Fontes verificadas
 
@@ -56,7 +56,7 @@ execução fica em `artifacts/mordida-captures.json`, ignorado pelo Git.
 
 TypeScript, lint e build seguem os scripts existentes. `scripts/verify-site.mjs`
 abrange as oito rotas em seis larguras (320, 360, 390, 768, 1024 e 1440 px),
-além das quatro galerias, teclado/foco, imagens, metadados, ordem dos projetos,
+além das três galerias, teclado/foco, imagens, metadados, ordem dos projetos,
 links externos, CTAs, layout equivalente a zoom de navegador a 200% e preferência
 por movimento reduzido. A simulação de zoom usa viewport de 720 CSS px e DPR 2,
 permitindo que as media queries se adaptem como no zoom do navegador; não usa

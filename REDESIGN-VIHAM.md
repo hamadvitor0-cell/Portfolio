@@ -16,7 +16,7 @@ A home anterior concentrava a oferta em sistemas, usava acentos laranja/vermelho
 - `src/components/site-header.tsx` e `site-footer.tsx`: navegação e fechamento com a logo aprovada.
 - `src/components/case-image-carousel.tsx` e `src/lib/dialog.ts`: galeria, ampliação, teclado, foco e Escape.
 - `src/components/contact-budget-form.tsx`: apresentação, erros associados aos campos, foco no primeiro erro e bloqueio de envio duplicado.
-- Páginas de Centro da Juventude, HamadFlow, currículo, privacidade e 404: identidade compartilhada e rotas preservadas.
+- Páginas de Centro da Juventude, currículo, privacidade e 404: identidade compartilhada.
 
 O endpoint `/api/contact` e o contrato com o HamadFlow foram preservados, incluindo valores internos dos selects, consentimento, honeypot, tempo mínimo, identificador de envio e eventos de analytics. Os testes não enviam leads ou eventos para produção.
 
@@ -25,7 +25,7 @@ O endpoint `/api/contact` e o contrato com o HamadFlow foram preservados, inclui
 - A logo PNG anexada foi somente recortada nas margens, preservando o desenho. A versão compacta está em `public/images/brand/viham-dev.webp`, sem vetorização ou reconstrução tipográfica.
 - O fundo azul da logo raster é integrado à superfície com composição `lighten`. Os tokens mantêm o azul `#101C36` e o verde-lima `#D5F662`; as cores originais da marca não foram recoloridas.
 - O favicon PNG usa um fragmento da marca aprovada. A capa de Facebook foi adaptada por enquadramento para `public/og.png`; não é usada como hero.
-- Screenshots reais de Centro da Juventude e HamadFlow e a foto existente de Vitor foram reaproveitados. Nenhuma imagem de produto, pessoa ou equipe foi inventada.
+- Screenshots reais de Centro da Juventude e a foto existente de Vitor foram reaproveitados. Nenhuma imagem de produto, pessoa ou equipe foi inventada.
 - Manrope variável é servida localmente, com licença OFL em `src/app/fonts/OFL.txt`. Não há requisição a Google Fonts na navegação ou durante a build.
 - `scripts/prepare-brand.mjs` documenta a preparação dos assets. Ele recebe os caminhos da logo e da capa originais como argumentos; não faz parte da build.
 
@@ -56,7 +56,7 @@ Verificações de navegador:
 
 As capturas e o relatório completo são gravados em `artifacts/`, diretório ignorado pelo Git. `home-1440.png` e `home-390.png` mostram as páginas completas; `hero-*.png` documentam a abertura nas seis larguras. As capturas dos cases também estão nessa pasta.
 
-Os endereços públicos do site atual, Centro da Juventude, HamadFlow Demo e repositório da demo responderam HTTP 200 na checagem de links. Isso confirma a resposta dos endereços, sem auditar as aplicações externas.
+Os endereços públicos do site e do Centro da Juventude responderam HTTP 200 na checagem de links. Isso confirma a resposta dos endereços, sem auditar as aplicações externas.
 
 ## Limites e configuração
 
