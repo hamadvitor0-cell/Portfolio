@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Github, Mail, MessageCircle, Plus } from "lucide-react";
 import { ContactBudgetForm } from "@/components/contact-budget-form";
-import { siteConfig } from "@/config/site";
+import { corte14Project, siteConfig } from "@/config/site";
 
 const services = [
   { title: "Sites e landing pages", description: "Uma presença digital à altura do seu negócio. Para apresentar sua empresa, serviço ou oferta e facilitar o próximo contato.", scope: "Interface personalizada · Versão mobile · Formulários · Publicação" },
@@ -29,6 +29,36 @@ export function ProjectsSection() {
     <section id="cases" className="projects-section paper-section" aria-labelledby="projects-title">
       <div className="site-container">
         <div className="section-topline"><h2 id="projects-title">Trabalhos selecionados.</h2></div>
+        <article className="featured-project corte14-project" aria-labelledby="corte14-title">
+          <Link
+            href={corte14Project.href}
+            className="corte14-visual"
+            aria-label="Explorar o projeto conceitual Corte 14 — Barber Club"
+            data-analytics-event="project_click"
+            data-analytics-project="corte14"
+            data-analytics-location="featured-image"
+          >
+            <Image src={corte14Project.image} alt={corte14Project.imageAlt} width={1250} height={712} sizes="(max-width: 767px) 90vw, (max-width: 1440px) 92vw, 1248px" />
+            <span className="corte14-image-link" aria-hidden="true"><ArrowUpRight size={22} /></span>
+          </Link>
+          <div className="project-caption">
+            <div>
+              <p className="corte14-meta">{corte14Project.year} <span aria-hidden="true">/</span> {corte14Project.kind}</p>
+              <h3 id="corte14-title">{corte14Project.title}</h3>
+              <p className="corte14-category">{corte14Project.category}</p>
+              <ul className="corte14-tech" aria-label="Tecnologias utilizadas no Corte 14">
+                {corte14Project.tags.map((tag) => <li key={tag}>{tag}</li>)}
+              </ul>
+            </div>
+            <div>
+              <p>{corte14Project.description}</p>
+              <div className="project-links">
+                <a href={corte14Project.liveUrl} target="_blank" rel="noopener noreferrer" className="button button-primary" aria-label="Visualizar site Corte 14 (abre em nova aba)" data-analytics-event="demo_click" data-analytics-project="corte14" data-analytics-location="main-case">Visualizar site <ArrowUpRight size={17} aria-hidden="true" /></a>
+                <Link href={corte14Project.href} className="text-link" data-analytics-event="case_view" data-analytics-project="corte14" data-analytics-location="main-case">Explorar projeto <ArrowRight size={17} aria-hidden="true" /></Link>
+              </div>
+            </div>
+          </div>
+        </article>
         <article id="case-principal" className="featured-project">
           <Link href={cj.href} className="project-visual" aria-label="Conhecer o projeto Centro da Juventude" data-analytics-event="project_click" data-analytics-project="centro-da-juventude" data-analytics-location="featured-image">
             <div className="project-visual-label"><span className="project-status"><span className="status-dot" /> Sistema em produção</span></div>

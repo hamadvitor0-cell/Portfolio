@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, Expand, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { trapDialogFocus } from "@/lib/dialog";
 
-export type CaseSlide = { src: string; title: string; caption: string };
+export type CaseSlide = { src: string; title: string; caption: string; width?: number; height?: number };
 
 export function CaseImageCarousel({ slides }: { slides: CaseSlide[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -38,12 +38,12 @@ export function CaseImageCarousel({ slides }: { slides: CaseSlide[] }) {
       const delta = (event.changedTouches[0]?.clientX ?? touchStart.current) - touchStart.current;
       if (Math.abs(delta) > 44) goTo(activeIndex + (delta > 0 ? -1 : 1));
       touchStart.current = null;
-    }}><Image src={activeSlide.src} alt={activeSlide.title} width={1920} height={1080} sizes="(max-width: 1300px) 92vw, 1248px" /></button>
+    }}><Image src={activeSlide.src} alt={activeSlide.title} width={activeSlide.width ?? 1920} height={activeSlide.height ?? 1080} sizes="(max-width: 1300px) 92vw, 1248px" /></button>
     <div className="gallery-caption" aria-live="polite" aria-atomic="true"><span>{String(activeIndex + 1).padStart(2,"0")} / {String(slides.length).padStart(2,"0")}</span><h3>{activeSlide.title}</h3><p>{activeSlide.caption}</p></div>
     <div className="gallery-thumbnails" aria-label="Selecionar tela">{slides.map((slide,index) => <button key={slide.src} type="button" aria-label={`Selecionar ${slide.title}`} aria-current={index === activeIndex ? "true" : undefined} onClick={() => goTo(index)}><Image src={slide.src} alt="" width={220} height={124} sizes="110px" /></button>)}</div>
     <dialog ref={dialog} className="image-dialog" aria-label={`Tela ampliada: ${activeSlide.title}`} onKeyDown={trapDialogFocus} onCancel={() => setExpanded(false)} onClose={() => setExpanded(false)}>
       <div className="gallery-toolbar"><span className="text-sm">{activeSlide.title}</span><div className="gallery-controls">{controls}<button type="button" aria-label="Fechar imagem ampliada" onClick={() => setExpanded(false)}><X size={20} aria-hidden="true" /></button></div></div>
-      <Image src={activeSlide.src} alt={activeSlide.title} width={1920} height={1080} sizes="96vw" className="gallery-image-full" />
+      <Image src={activeSlide.src} alt={activeSlide.title} width={activeSlide.width ?? 1920} height={activeSlide.height ?? 1080} sizes="96vw" className="gallery-image-full" />
     </dialog>
   </div>;
 }

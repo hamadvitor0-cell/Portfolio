@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import corte14Cover from "../../public/projects/corte14-cover.webp";
 
 export type IconName =
   | "Code2"
@@ -24,6 +25,26 @@ const whatsappHref = `https://wa.me/5541991416887?text=${encodeURIComponent(what
 
 export const HAMADFLOW_DEMO_URL = "https://hamadflow-demo.vercel.app/";
 export const HAMADFLOW_GITHUB_URL = "https://github.com/hamadvitor0-cell/hamadflow-demo";
+
+export const corte14Project = {
+  title: "Corte 14 — Barber Club",
+  category: "Website institucional",
+  kind: "Projeto conceitual",
+  year: "2026",
+  description:
+    "Uma experiência digital criada para uma barbearia fictícia, combinando identidade visual marcante, fotografia, animações e navegação intuitiva.",
+  overview:
+    "Um projeto conceitual desenvolvido para explorar uma abordagem mais criativa de sites institucionais. O Corte 14 une estética contemporânea, apresentação de serviços e uma experiência visual pensada para diferentes dispositivos.",
+  image: corte14Cover.src,
+  imageAlt:
+    "Página inicial do Corte 14 com o título Não é só um corte, fotografia em preto e branco e botão Reservar horário",
+  imageFit: "cover",
+  href: "/cases/corte14",
+  liveUrl: "https://corte14-barber-club.vercel.app/",
+  liveLabel: "Visualizar site",
+  caseLabel: "Explorar projeto",
+  tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP"],
+};
 
 export const siteConfig = {
   // Identidade principal exibida no portfólio.
@@ -221,6 +242,9 @@ export const siteConfig = {
         "SaaS",
         "Dashboard"
       ]
+    },
+    {
+      ...corte14Project
     },
     {
       title: "Portfólio profissional",

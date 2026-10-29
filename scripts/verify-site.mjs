@@ -18,7 +18,7 @@ page.on("pageerror", (error) => errors.push(error.message));
 page.on("response", (response) => { if (response.url().includes("/_next/image") && response.status() >= 400) failures.push(`Image ${response.status()}: ${response.url()}`); });
 const results = [];
 const widths = [320,360,390,768,1024,1440];
-const routes = ["/", "/cases/centro-da-juventude", "/cases/hamadflow", "/curriculo", "/privacidade", "/pagina-inexistente-qa"];
+const routes = ["/", "/cases/corte14", "/cases/centro-da-juventude", "/cases/hamadflow", "/curriculo", "/privacidade", "/pagina-inexistente-qa"];
 async function loadImages() {
   await page.evaluate(async () => {
     for (const img of document.images) { img.loading = "eager"; }
@@ -47,7 +47,10 @@ try {
       if ((path === "/" || path.startsWith("/cases/")) && [390,1440].includes(width)) {
         const slug = path === "/" ? "home" : path.split("/").at(-1);
         await page.screenshot({ path: `artifacts/${slug}-${width}.png`, fullPage: true });
-        if (path === "/") await page.screenshot({ path: `artifacts/hero-${width}.png` });
+        if (path === "/") {
+          await page.screenshot({ path: `artifacts/hero-${width}.png` });
+          await page.locator(".corte14-project").screenshot({ path: `artifacts/corte14-card-${width}.png` });
+        }
       }
     }
     console.log(`PASS: ${path} at all six widths, assets, heading and IDs.`);
@@ -124,7 +127,7 @@ try {
   assert.equal(await page.locator("#lead-message").inputValue(), "");
   console.log("PASS: empty, invalid, failure, network, loading, duplicate prevention and successful form states, using mocked responses.");
 
-  for (const path of ["/cases/centro-da-juventude","/cases/hamadflow"]) {
+  for (const path of ["/cases/centro-da-juventude","/cases/hamadflow","/cases/corte14"]) {
     await page.goto(`${base}${path}`, { waitUntil: "networkidle" });
     const gallery = page.getByRole("region", { name: "Galeria de telas do projeto" });
     const caption = gallery.locator(".gallery-caption h3");
@@ -143,7 +146,28 @@ try {
     assert.equal(await dialog.isVisible(), false);
     assert.equal(await zoom.evaluate((element) => element === document.activeElement), true);
   }
-  console.log("PASS: both galleries, keyboard navigation, image enlargement, Escape and focus return.");
+  console.log("PASS: all three galleries, keyboard navigation, image enlargement, Escape and focus return.");
+  await page.goto(`${base}/#cases`, { waitUntil: "networkidle" });
+  assert.match(await page.locator("#cases article").first().innerText(), /Corte 14/);
+  assert.match(await page.locator(".corte14-project").innerText(), /Projeto conceitual/i);
+  const demoLink = page.getByRole("link", { name: "Visualizar site Corte 14 (abre em nova aba)", exact: true });
+  assert.equal(await demoLink.getAttribute("href"), "https://corte14-barber-club.vercel.app/");
+  assert.equal(await demoLink.getAttribute("target"), "_blank");
+  assert.match(await demoLink.getAttribute("rel"), /noopener/);
+  assert.match(await demoLink.getAttribute("rel"), /noreferrer/);
+  await page.getByRole("link", { name: "Explorar projeto", exact: true }).click();
+  await page.waitForURL("**/cases/corte14");
+  assert.match(await page.title(), /Corte 14/);
+  assert.match(await page.locator('link[rel="canonical"]').getAttribute("href"), /\/cases\/corte14$/);
+  const corteGallery = page.getByRole("region", { name: "Galeria de telas do projeto" });
+  await corteGallery.getByRole("button", { name: "Selecionar Corte 14 — página inicial no celular", exact: true }).click();
+  const mobileImage = corteGallery.locator(".gallery-image-button img");
+  assert.equal(await mobileImage.getAttribute("width"), "360");
+  assert.equal(await mobileImage.getAttribute("height"), "812");
+  await page.getByRole("link", { name: "Quero um site para minha empresa", exact: true }).click();
+  await page.waitForURL("**/#contato");
+  assert.ok(await page.locator("#contato").isVisible());
+  console.log("PASS: Corte 14 featured card, conceptual label, external demo link, case navigation, metadata, mobile gallery dimensions and existing contact flow.");
   await page.goto(base, { waitUntil: "networkidle" });
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.evaluate(() => { document.documentElement.style.zoom = "2"; });
@@ -154,6 +178,7 @@ try {
   assert.match(pdf.headers()["content-type"], /pdf/);
   const sitemap = await context.request.get(`${base}/sitemap.xml`);
   assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/hamadflow/);
+  assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/corte14/);
   const robots = await context.request.get(`${base}/robots.txt`);
   assert.match(await robots.text(), /Disallow: \/api\//);
   for (const width of widths) {
