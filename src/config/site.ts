@@ -1,5 +1,6 @@
 import type { LucideIcon } from "lucide-react";
 import corte14Cover from "../../public/projects/corte14-cover.webp";
+import mordidaCover from "../../public/projects/mordida/cover.webp";
 
 export type IconName =
   | "Code2"
@@ -26,7 +27,27 @@ const whatsappHref = `https://wa.me/5541991416887?text=${encodeURIComponent(what
 export const HAMADFLOW_DEMO_URL = "https://hamadflow-demo.vercel.app/";
 export const HAMADFLOW_GITHUB_URL = "https://github.com/hamadvitor0-cell/hamadflow-demo";
 
+export type ConceptProject = {
+  slug: string;
+  linkName: string;
+  title: string;
+  category: string;
+  kind: string;
+  year: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  imageWidth: number;
+  imageHeight: number;
+  href: string;
+  liveUrl: string;
+  tags: readonly string[];
+  highlights?: readonly string[];
+};
+
 export const corte14Project = {
+  slug: "corte14",
+  linkName: "Corte 14",
   title: "Corte 14 — Barber Club",
   category: "Website institucional",
   kind: "Projeto conceitual",
@@ -36,6 +57,8 @@ export const corte14Project = {
   overview:
     "Um projeto conceitual desenvolvido para explorar uma abordagem mais criativa de sites institucionais. O Corte 14 une estética contemporânea, apresentação de serviços e uma experiência visual pensada para diferentes dispositivos.",
   image: corte14Cover.src,
+  imageWidth: corte14Cover.width,
+  imageHeight: corte14Cover.height,
   imageAlt:
     "Página inicial do Corte 14 com o título Não é só um corte, fotografia em preto e branco e botão Reservar horário",
   imageFit: "cover",
@@ -43,6 +66,31 @@ export const corte14Project = {
   liveUrl: "https://corte14-barber-club.vercel.app/",
   liveLabel: "Visualizar site",
   caseLabel: "Explorar projeto",
+  tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP"],
+};
+
+export const mordidaProject = {
+  slug: "mordida",
+  linkName: "MORDIDA!",
+  title: "MORDIDA! — Smash House",
+  category: "Website interativo / Experiência digital",
+  kind: "Projeto conceitual",
+  year: "2026",
+  description:
+    "Uma experiência digital para uma hamburgueria fictícia, combinando animações, identidade visual marcante e um cardápio interativo.",
+  overview:
+    "O MORDIDA! é um projeto conceitual de hamburgueria desenvolvido para explorar o equilíbrio entre design, animação e funcionalidade. A experiência combina uma apresentação visual envolvente com recursos interativos que permitem explorar produtos e simular pedidos.",
+  image: mordidaCover.src,
+  imageWidth: mordidaCover.width,
+  imageHeight: mordidaCover.height,
+  imageAlt:
+    "Hero real do MORDIDA! com hambúrguer central, ingredientes em movimento, fundo vermelho e o título A fome não espera",
+  imageFit: "cover",
+  href: "/cases/mordida",
+  liveUrl: "https://mordida-smash-house.vercel.app/",
+  liveLabel: "Visualizar site",
+  caseLabel: "Explorar projeto",
+  highlights: ["Cardápio com filtros", "Produtos personalizáveis", "Carrinho e pedidos demonstrativos"],
   tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP"],
 };
 
@@ -242,6 +290,9 @@ export const siteConfig = {
         "SaaS",
         "Dashboard"
       ]
+    },
+    {
+      ...mordidaProject
     },
     {
       ...corte14Project

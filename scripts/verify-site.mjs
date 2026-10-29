@@ -18,7 +18,7 @@ page.on("pageerror", (error) => errors.push(error.message));
 page.on("response", (response) => { if (response.url().includes("/_next/image") && response.status() >= 400) failures.push(`Image ${response.status()}: ${response.url()}`); });
 const results = [];
 const widths = [320,360,390,768,1024,1440];
-const routes = ["/", "/cases/corte14", "/cases/centro-da-juventude", "/cases/hamadflow", "/curriculo", "/privacidade", "/pagina-inexistente-qa"];
+const routes = ["/", "/cases/mordida", "/cases/corte14", "/cases/centro-da-juventude", "/cases/hamadflow", "/curriculo", "/privacidade", "/pagina-inexistente-qa"];
 async function loadImages() {
   await page.evaluate(async () => {
     for (const img of document.images) { img.loading = "eager"; }
@@ -50,6 +50,7 @@ try {
         if (path === "/") {
           await page.screenshot({ path: `artifacts/hero-${width}.png` });
           await page.locator(".corte14-project").screenshot({ path: `artifacts/corte14-card-${width}.png` });
+          await page.locator(".mordida-project").screenshot({ path: `artifacts/mordida-card-${width}.png` });
         }
       }
     }
@@ -127,7 +128,7 @@ try {
   assert.equal(await page.locator("#lead-message").inputValue(), "");
   console.log("PASS: empty, invalid, failure, network, loading, duplicate prevention and successful form states, using mocked responses.");
 
-  for (const path of ["/cases/centro-da-juventude","/cases/hamadflow","/cases/corte14"]) {
+  for (const path of ["/cases/centro-da-juventude","/cases/hamadflow","/cases/corte14","/cases/mordida"]) {
     await page.goto(`${base}${path}`, { waitUntil: "networkidle" });
     const gallery = page.getByRole("region", { name: "Galeria de telas do projeto" });
     const caption = gallery.locator(".gallery-caption h3");
@@ -146,16 +147,17 @@ try {
     assert.equal(await dialog.isVisible(), false);
     assert.equal(await zoom.evaluate((element) => element === document.activeElement), true);
   }
-  console.log("PASS: all three galleries, keyboard navigation, image enlargement, Escape and focus return.");
+  console.log("PASS: all four galleries, keyboard navigation, image enlargement, Escape and focus return.");
   await page.goto(`${base}/#cases`, { waitUntil: "networkidle" });
-  assert.match(await page.locator("#cases article").first().innerText(), /Corte 14/);
+  assert.deepEqual(await page.locator("#cases article h3").allTextContents(), ["MORDIDA! — Smash House", "Corte 14 — Barber Club", "Centro da Juventude de Almirante Tamandaré", "HamadFlow Demo"]);
+  assert.equal(await page.locator(".corte14-project").count(), 1);
   assert.match(await page.locator(".corte14-project").innerText(), /Projeto conceitual/i);
   const demoLink = page.getByRole("link", { name: "Visualizar site Corte 14 (abre em nova aba)", exact: true });
   assert.equal(await demoLink.getAttribute("href"), "https://corte14-barber-club.vercel.app/");
   assert.equal(await demoLink.getAttribute("target"), "_blank");
   assert.match(await demoLink.getAttribute("rel"), /noopener/);
   assert.match(await demoLink.getAttribute("rel"), /noreferrer/);
-  await page.getByRole("link", { name: "Explorar projeto", exact: true }).click();
+  await page.locator(".corte14-project").getByRole("link", { name: "Explorar projeto", exact: true }).click();
   await page.waitForURL("**/cases/corte14");
   assert.match(await page.title(), /Corte 14/);
   assert.match(await page.locator('link[rel="canonical"]').getAttribute("href"), /\/cases\/corte14$/);
@@ -168,17 +170,57 @@ try {
   await page.waitForURL("**/#contato");
   assert.ok(await page.locator("#contato").isVisible());
   console.log("PASS: Corte 14 featured card, conceptual label, external demo link, case navigation, metadata, mobile gallery dimensions and existing contact flow.");
+  await page.goto(`${base}/#cases`, { waitUntil: "networkidle" });
+  const mordidaCard = page.locator(".mordida-project");
+  assert.match(await mordidaCard.innerText(), /Projeto conceitual/i);
+  assert.match(await mordidaCard.innerText(), /Produtos personalizáveis/);
+  const mordidaDemo = mordidaCard.getByRole("link", { name: "Visualizar site MORDIDA! (abre em nova aba)", exact: true });
+  assert.equal(await mordidaDemo.getAttribute("href"), "https://mordida-smash-house.vercel.app/");
+  assert.equal(await mordidaDemo.getAttribute("target"), "_blank");
+  assert.match(await mordidaDemo.getAttribute("rel"), /noopener/);
+  assert.match(await mordidaDemo.getAttribute("rel"), /noreferrer/);
+  await mordidaDemo.focus();
+  assert.equal(await mordidaDemo.evaluate((element) => element.matches(":focus-visible") && getComputedStyle(element).outlineStyle !== "none"), true, "Mordida demo has a visible keyboard focus");
+  await mordidaCard.getByRole("link", { name: "Explorar projeto", exact: true }).click();
+  await page.waitForURL("**/cases/mordida");
+  assert.match(await page.title(), /MORDIDA!/);
+  assert.match(await page.locator('meta[name="description"]').getAttribute("content"), /conceitual/);
+  assert.match(await page.locator('link[rel="canonical"]').getAttribute("href"), /\/cases\/mordida$/);
+  assert.match(await page.locator("main").innerText(), /nenhum pedido real é realizado/i);
+  const mordidaGallery = page.getByRole("region", { name: "Galeria de telas do projeto" });
+  const slideSources = await mordidaGallery.locator(".gallery-thumbnails img").evaluateAll((images) => images.map((img) => img.getAttribute("src")));
+  assert.equal(new Set(slideSources).size, 4, "Four distinct Mordida screenshots");
+  await mordidaGallery.getByRole("button", { name: "Selecionar MORDIDA! — página inicial no celular", exact: true }).click();
+  const mordidaMobileImage = mordidaGallery.locator(".gallery-image-button img");
+  assert.equal(await mordidaMobileImage.getAttribute("width"), "390");
+  assert.equal(await mordidaMobileImage.getAttribute("height"), "844");
+  await mordidaGallery.getByRole("button", { name: "Selecionar Carrinho demonstrativo do MORDIDA!", exact: true }).click();
+  assert.match(await mordidaGallery.locator(".gallery-caption").innerText(), /bacon extra e sem picles/i);
+  await page.getByRole("link", { name: "Vamos criar seu site", exact: true }).click();
+  await page.waitForURL("**/#contato");
+  assert.ok(await page.locator("#contato").isVisible());
+  console.log("PASS: MORDIDA! order, existing projects, conceptual label, interactive features, external link, keyboard focus, metadata, four real screenshots, mobile dimensions and commercial CTA.");
   await page.goto(base, { waitUntil: "networkidle" });
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.evaluate(() => { document.documentElement.style.zoom = "2"; });
-  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1), true, "200% zoom has no horizontal overflow");
-  await page.evaluate(() => { document.documentElement.style.zoom = "1"; });
+  // Browser zoom halves the CSS viewport and doubles DPR. CSS `zoom` does not
+  // update media queries, so it incorrectly keeps the desktop navbar at 720px.
+  const zoomContext = await browser.newContext({ viewport: { width: 720, height: 500 }, deviceScaleFactor: 2, reducedMotion: "reduce" });
+  await zoomContext.route("**/api/analytics", (route) => route.fulfill({ status: 200, contentType: "application/json", body: "{}" }));
+  const zoomPage = await zoomContext.newPage();
+  try {
+    await zoomPage.goto(base, { waitUntil: "networkidle" });
+    const zoomState = await zoomPage.evaluate(() => ({ scrollWidth: document.documentElement.scrollWidth, clientWidth: document.documentElement.clientWidth }));
+    assert.ok(zoomState.scrollWidth <= zoomState.clientWidth + 1, `200% browser-zoom equivalent has no horizontal overflow: ${JSON.stringify(zoomState)}`);
+    assert.equal(await zoomPage.getByRole("button", { name: "Abrir menu de navegação" }).isVisible(), true, "Zoom reflows navigation for the smaller CSS viewport");
+    await zoomPage.screenshot({ path: "artifacts/zoom-200-equivalent.png" });
+  } finally { await zoomContext.close(); }
   const pdf = await context.request.get(`${base}/VitorHamad_Curriculo.pdf`);
   assert.equal(pdf.status(), 200);
   assert.match(pdf.headers()["content-type"], /pdf/);
   const sitemap = await context.request.get(`${base}/sitemap.xml`);
   assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/hamadflow/);
   assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/corte14/);
+  assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/mordida/);
   const robots = await context.request.get(`${base}/robots.txt`);
   assert.match(await robots.text(), /Disallow: \/api\//);
   for (const width of widths) {
@@ -188,6 +230,6 @@ try {
   }
   assert.deepEqual(errors, [], "No browser runtime errors");
   assert.deepEqual(failures, [], "No failed optimized images");
-  await writeFile("artifacts/verification.json", JSON.stringify({ checkedAt: new Date().toISOString(), base, results, browserErrors: errors, failedImages: failures, form: "mocked; no production leads", motion: "reduce", zoom: "200%", status: "passed" }, null, 2));
-  console.log("PASS: 200% zoom, reduced motion, PDF, sitemap, robots and browser errors. Report saved to artifacts/verification.json.");
+  await writeFile("artifacts/verification.json", JSON.stringify({ checkedAt: new Date().toISOString(), base, results, browserErrors: errors, failedImages: failures, form: "mocked; no production leads", motion: "reduce", zoom: "200% equivalent: 720 CSS pixels at DPR 2", status: "passed" }, null, 2));
+  console.log("PASS: 200% browser-zoom equivalent layout, reduced motion, PDF, sitemap, robots and browser errors. Report saved to artifacts/verification.json.");
 } finally { await browser.close(); }

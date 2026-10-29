@@ -82,29 +82,29 @@ const structuredData = [
 
 export default function Corte14CasePage() {
   return (
-    <main id="main-content" className="case-page corte14-case">
+    <main id="main-content" className="case-page concept-case">
       <JsonLd data={structuredData} />
-      <section className="corte14-case-intro" aria-labelledby="corte14-case-title">
-        <Link href="/#cases" className="text-link corte14-back"><ArrowLeft size={17} aria-hidden="true" />Voltar aos projetos</Link>
-        <div className="corte14-case-heading">
+      <section className="concept-case-intro" aria-labelledby="corte14-case-title">
+        <Link href="/#cases" className="text-link concept-back"><ArrowLeft size={17} aria-hidden="true" />Voltar aos projetos</Link>
+        <div className="concept-case-heading">
           <div>
-            <p className="corte14-meta">{project.year} <span aria-hidden="true">/</span> {project.kind}</p>
+            <p className="concept-meta">{project.year} <span aria-hidden="true">/</span> {project.kind}</p>
             <h1 id="corte14-case-title">{project.title}</h1>
-            <p className="corte14-case-subtitle">Identidade, movimento e experiência digital.</p>
+            <p className="concept-case-subtitle">Identidade, movimento e experiência digital.</p>
           </div>
-          <div className="corte14-case-intro-copy">
+          <div className="concept-case-intro-copy">
             <p>{project.overview}</p>
             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="button button-primary case-primary" aria-label="Visualizar site Corte 14 (abre em nova aba)" data-analytics-event="demo_click" data-analytics-project="corte14" data-analytics-location="case-hero">Visualizar site <ArrowUpRight size={18} aria-hidden="true" /></a>
           </div>
         </div>
-        <figure className="corte14-case-cover">
+        <figure className="concept-case-cover">
           <Image src={project.image} alt={project.imageAlt} width={1250} height={712} sizes="(max-width: 1300px) 94vw, 1248px" loading="eager" />
           <figcaption>Website institucional · Demonstração autoral · 2026</figcaption>
         </figure>
       </section>
 
-      <section className="corte14-case-section" aria-labelledby="corte14-concept-title">
-        <div className="corte14-case-columns">
+      <section className="concept-case-section" aria-labelledby="corte14-concept-title">
+        <div className="concept-case-columns">
           <div>
             <h2 id="corte14-concept-title">Um negócio imaginado.<br />Uma experiência para explorar.</h2>
             <p>O Corte 14 nasceu como uma demonstração de como um site institucional pode ir além de uma página convencional. O conceito explora uma identidade visual marcante, grandes fotografias, tipografia expressiva e interações que tornam a navegação mais envolvente.</p>
@@ -112,36 +112,36 @@ export default function Corte14CasePage() {
           <div>
             <h3>Objetivo do projeto</h3>
             <p>Demonstrar como uma presença digital bem desenvolvida pode apresentar a personalidade de um negócio, organizar seus serviços e criar uma experiência memorável para o visitante.</p>
-            <p className="corte14-concept-note">A barbearia, a marca e os profissionais são fictícios. As imagens presentes no site foram geradas por IA para o conceito. Este é um trabalho de demonstração de design e desenvolvimento.</p>
+            <p className="concept-notice">A barbearia, a marca e os profissionais são fictícios. As imagens presentes no site foram geradas por IA para o conceito. Este é um trabalho de demonstração de design e desenvolvimento.</p>
           </div>
         </div>
       </section>
 
-      <section className="corte14-case-section" aria-labelledby="corte14-features-title">
+      <section className="concept-case-section" aria-labelledby="corte14-features-title">
         <h2 id="corte14-features-title">O que você pode experimentar.</h2>
-        <dl className="corte14-highlights">
+        <dl className="concept-highlights">
           {highlights.map((item) => <div key={item.title}><dt>{item.title}</dt><dd>{item.description}</dd></div>)}
         </dl>
-        <div className="corte14-booking-note">
+        <div className="concept-demo-note">
           <h3>Agendamento demonstrativo</h3>
           <p>O visitante pode escolher serviço, profissional, data e horário e conferir um resumo. O fluxo é uma simulação local: nenhuma reserva real é criada, nenhum dado é enviado e nenhuma cobrança é realizada.</p>
         </div>
       </section>
 
-      <section className="corte14-case-section" aria-labelledby="corte14-gallery-title">
+      <section className="concept-case-section" aria-labelledby="corte14-gallery-title">
         <h2 id="corte14-gallery-title">O projeto em tela.</h2>
-        <p className="corte14-section-description">Capturas reais da versão publicada, no desktop e no celular.</p>
+        <p className="concept-section-description">Capturas reais da versão publicada, no desktop e no celular.</p>
         <CaseImageCarousel slides={slides} />
       </section>
 
-      <section className="corte14-case-section" aria-labelledby="corte14-tech-title">
-        <div className="corte14-case-columns">
+      <section className="concept-case-section" aria-labelledby="corte14-tech-title">
+        <div className="concept-case-columns">
           <div><h2 id="corte14-tech-title">Tecnologias utilizadas.</h2><p>Next.js e React estruturam a interface, com TypeScript e Tailwind CSS. GSAP e ScrollTrigger coordenam as animações de entrada e rolagem.</p></div>
-          <div><ul className="corte14-tech" aria-label="Tecnologias utilizadas no Corte 14">{project.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul><p>O site é exportado como páginas estáticas e publicado na Vercel. A simulação funciona no navegador.</p></div>
+          <div><ul className="concept-tech" aria-label="Tecnologias utilizadas no Corte 14">{project.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul><p>O site é exportado como páginas estáticas e publicado na Vercel. A simulação funciona no navegador.</p></div>
         </div>
       </section>
 
-      <section className="corte14-case-section corte14-case-contact" aria-labelledby="corte14-contact-title">
+      <section className="concept-case-section concept-case-contact" aria-labelledby="corte14-contact-title">
         <div><h2 id="corte14-contact-title">Gostou desse projeto?</h2><p>Seu negócio também pode ter um site com identidade própria, pensado para apresentar seus serviços e facilitar o contato com novos clientes.</p></div>
         {/* Native navigation replaces the home fragment reliably after a client-side case visit. */}
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
