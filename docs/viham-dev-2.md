@@ -81,3 +81,13 @@ Resultado da versão final: lint, TypeScript e build aprovados; 81 combinações
 O fluxo de publicação continua sendo commit/push na `main` do repositório existente e deploy automático do mesmo projeto Vercel. Sem novo projeto, domínio ou alteração de DNS.
 
 Limites da verificação: testes de navegador em Edge/Chromium e em viewports simuladas, sem dispositivos físicos, Safari/Firefox ou avaliação Lighthouse. O formulário é validado com respostas simuladas, sem criar pedidos reais em produção.
+
+## Seleção das janelas do hero
+
+O texto decorativo junto à prévia foi removido. As três posições originais agora são papéis (`primary`, `left`, `right`): clicar em uma prévia troca sua posição com a principal, mantendo a terceira janela no lugar. MORDIDA! continua sendo a seleção inicial. Imagens e componentes permanecem montados durante as trocas.
+
+A transição de 650 ms usa Framer Motion. Layout, perspectiva da seleção, scroll, drift do ponteiro e hover têm camadas distintas. O scroll mistura o papel principal com o secundário, incluindo seleções feitas com a cena já avançada; as secundárias mantêm visibilidade. Cada janela forma uma camada de empilhamento própria, e os wrappers transparentes não capturam cliques.
+
+As prévias são botões nativos com nomes acessíveis, `aria-pressed`, foco visível e ativação por Enter/Espaço. A seleção funciona por toque e com movimento reduzido e não navega para os sites. Os acessos às demonstrações continuam no showroom.
+
+`node scripts/verify-hero-windows.mjs` verifica cliques expostos sem forçar alvos cobertos, transição intermediária, repetição, nove trocas rápidas, teclado, parallax/scroll por seleção, nove larguras, toque em áreas expostas e movimento reduzido. O relatório fica em `artifacts/hero-windows/verification.json`. Para conferir a publicação sem enviar leads, use `QA_URL=https://www.vitorhamad.me` e `QA_PRODUCTION=1`; esse modo restringe a matriz de larguras a 390/1440 px. Analytics e contato são interceptados nos dois modos.

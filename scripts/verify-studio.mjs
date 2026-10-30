@@ -62,7 +62,7 @@ try {
   await page.waitForTimeout(1000);
   const reset = await parallax.getAttribute("style");
   assert.notEqual(moved, reset, "Pointer leave returns the scene toward its rest position");
-  const front = page.locator(".window-mordida");
+  const front = page.locator('.floating-window[data-slot="primary"] .window-select');
   const frontBefore = (await front.boundingBox()).width;
   await page.evaluate(() => scrollTo({ top: 380, behavior: "instant" }));
   await page.waitForTimeout(400);
