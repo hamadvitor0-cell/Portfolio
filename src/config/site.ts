@@ -185,16 +185,16 @@ export const siteConfig = {
   },
 
   hero: {
-    headline: "Seu negócio merece um site à altura.",
-    headlineLines: ["Seu negócio", "merece um site", "à altura."],
+    headline: "Sites que não passam despercebidos.",
+    headlineLines: ["Sites que não", "passam", "despercebidos."],
     description:
-      "Transforme o que você faz em uma presença digital que transmite confiança. Criamos sites profissionais e sistemas sob medida para apresentar seu negócio, facilitar contatos e organizar sua rotina.",
+      "Design, código e interatividade para transformar ideias em experiências digitais que fazem a diferença.",
     art: {
       src: "/images/hero/viham-web-studio.webp",
       alt: "Ilustração de um site profissional em computador e celular, com elementos na identidade da Viham Dev"
     },
-    primaryCta: { label: "Quero meu site profissional", href: "#contato" },
-    secondaryCta: { label: "Ver projetos reais", href: "#cases" },
+    primaryCta: { label: "Explorar projetos", href: "#cases" },
+    secondaryCta: { label: "Criar meu site", href: "#contato" },
     floatingProjects: [
       "/images/project-atlas.svg",
       "/images/project-orbit.svg",

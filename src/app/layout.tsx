@@ -7,6 +7,7 @@ import { AnalyticsTracker } from "@/components/analytics-tracker";
 import { VercelAnalytics } from "@/components/vercel-analytics";
 import { JsonLd } from "@/components/json-ld";
 import "./globals.css";
+import "./studio.css";
 
 const manrope = localFont({ src: "./fonts/manrope.ttf", variable: "--font-manrope", weight: "400 800", display: "swap" });
 

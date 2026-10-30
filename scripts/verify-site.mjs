@@ -17,7 +17,7 @@ const errors = [];
 page.on("pageerror", (error) => errors.push(error.message));
 page.on("response", (response) => { if (response.url().includes("/_next/image") && response.status() >= 400) failures.push(`Image ${response.status()}: ${response.url()}`); });
 const results = [];
-const widths = [320,360,375,390,430,768,1024,1440];
+const widths = [320,360,375,390,430,768,1024,1440,1920];
 const routes = ["/", "/cases/fatia12", "/cases/mordida", "/cases/corte14", "/cases/centro-da-juventude", "/cases/hamadflow", "/curriculo", "/privacidade", "/pagina-inexistente-qa"];
 const notFoundRoutes = new Set(["/cases/hamadflow", "/pagina-inexistente-qa"]);
 async function loadImages() {
@@ -76,7 +76,7 @@ try {
   await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   assert.equal(await menu.isVisible(), false);
   const serviceTop = await page.locator("#solucoes").evaluate((element) => element.getBoundingClientRect().top);
-  assert.ok(serviceTop >= -5 && serviceTop < 80, `Service anchor remains visible: ${serviceTop}`);
+  assert.ok(serviceTop >= 70 && serviceTop <= 110, `Service anchor remains visible below the sticky header: ${serviceTop}`);
   const anchors = await page.evaluate(() => ["home","solucoes","cases","case-principal","processo","sobre","faq","contato"].every((id) => document.getElementById(id)));
   assert.equal(anchors, true);
   await page.getByText("Como funciona o orçamento?", { exact: true }).click();
@@ -153,10 +153,11 @@ try {
   }
   console.log("PASS: all four galleries, keyboard navigation, image enlargement, Escape and focus return.");
   await page.goto(`${base}/#cases`, { waitUntil: "networkidle" });
-  assert.deepEqual(await page.locator("#cases article h3").allTextContents(), ["FATIA 12 — Pizza Studio", "MORDIDA! — Smash House", "Corte 14 — Barber Club", "Centro da Juventude de Almirante Tamandaré"]);
+  assert.deepEqual(await page.locator("#cases article h3").allTextContents(), ["MORDIDA!Smash House.", "FATIA 12Pizza Studio.", "CORTE 14Barber Club."]);
+  assert.equal(await page.locator("#case-principal article h3").innerText(), "Centro da Juventude de Almirante Tamandaré");
   assert.equal(await page.locator(".corte14-project").count(), 1);
   assert.match(await page.locator(".corte14-project").innerText(), /Projeto conceitual/i);
-  const demoLink = page.getByRole("link", { name: "Visualizar site Corte 14 (abre em nova aba)", exact: true });
+  const demoLink = page.getByRole("link", { name: "Abrir site Corte 14 (abre em nova aba)", exact: true });
   assert.equal(await demoLink.getAttribute("href"), "https://corte14-barber-club.vercel.app/");
   assert.equal(await demoLink.getAttribute("target"), "_blank");
   assert.match(await demoLink.getAttribute("rel"), /noopener/);
@@ -178,7 +179,7 @@ try {
   const mordidaCard = page.locator(".mordida-project");
   assert.match(await mordidaCard.innerText(), /Projeto conceitual/i);
   assert.match(await mordidaCard.innerText(), /Produtos personalizáveis/);
-  const mordidaDemo = mordidaCard.getByRole("link", { name: "Visualizar site MORDIDA! (abre em nova aba)", exact: true });
+  const mordidaDemo = mordidaCard.getByRole("link", { name: "Abrir site MORDIDA! (abre em nova aba)", exact: true });
   assert.equal(await mordidaDemo.getAttribute("href"), "https://mordida-smash-house.vercel.app/");
   assert.equal(await mordidaDemo.getAttribute("target"), "_blank");
   assert.match(await mordidaDemo.getAttribute("rel"), /noopener/);
@@ -211,7 +212,7 @@ try {
   assert.match(await fatiaCard.innerText(), /Seleção visual de 12 sabores/);
   assert.match(await fatiaCard.innerText(), /Embalagem 3D e carrinho demonstrativo/);
   assert.equal(await page.locator("canvas, iframe").count(), 0, "The portfolio does not load the demo's 3D scene");
-  const fatiaDemo = fatiaCard.getByRole("link", { name: "Visualizar projeto FATIA 12 (abre em nova aba)", exact: true });
+  const fatiaDemo = fatiaCard.getByRole("link", { name: "Abrir site FATIA 12 (abre em nova aba)", exact: true });
   assert.equal(await fatiaDemo.getAttribute("href"), "https://fatia12-pizza-studio.vercel.app/");
   assert.equal(await fatiaDemo.getAttribute("target"), "_blank");
   assert.match(await fatiaDemo.getAttribute("rel"), /noopener/);
