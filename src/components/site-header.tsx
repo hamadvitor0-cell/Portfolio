@@ -29,15 +29,18 @@ export function SiteHeader() {
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) if (entry.isIntersecting) setActive(`/#${entry.target.id}`);
     }, { rootMargin: "-15% 0px -65% 0px" });
-    for (const item of siteConfig.nav) {
-      const element = document.querySelector(item.href.replace("/", ""));
-      if (element) observer.observe(element);
-    }
-    for (const id of ["home", "faq", "contato"]) {
-      const element = document.getElementById(id);
-      if (element) observer.observe(element);
-    }
-    return () => observer.disconnect();
+    const observeSections = () => {
+      observer.disconnect();
+      for (const id of [...siteConfig.nav.map((item) => item.href.split("#")[1]), "home", "faq", "contato"]) {
+        const element = document.getElementById(id);
+        if (element) observer.observe(element);
+      }
+    };
+    observeSections();
+    const mutations = new MutationObserver(observeSections);
+    const main = document.getElementById("main-content");
+    if (main) mutations.observe(main, { subtree: true, attributes: true, attributeFilter: ["id"] });
+    return () => { observer.disconnect(); mutations.disconnect(); };
   }, [pathname]);
 
   useEffect(() => {
@@ -64,12 +67,12 @@ export function SiteHeader() {
   return <>
     <header className={`site-header${scrolled ? " is-scrolled" : ""}`}><div className="site-container header-inner">
       <Link href="/" className="brand-link" aria-label="Viham Dev — início"><Image src="/images/brand/viham-dev.webp" alt="Viham Dev" width={1055} height={474} priority className="brand-logo" /></Link>
-      <nav className="desktop-nav" aria-label="Navegação principal">{siteConfig.nav.map((item) => <Link key={item.href} href={item.href} aria-current={pathname === "/" && active === item.href ? "location" : undefined}>{item.label}</Link>)}</nav>
+      <nav className="desktop-nav" aria-label="Navegação principal">{siteConfig.nav.map((item) => { const NavLink = item.href === "/#cases" ? "a" : Link; return <NavLink key={item.href} href={item.href} aria-current={pathname === "/" && active === item.href ? "location" : undefined}>{item.label}</NavLink>; })}</nav>
       <Link href="/#contato" className="button button-outline header-cta" data-analytics-event="cta_click" data-analytics-label={siteConfig.headerCta} data-analytics-location="header-desktop">{siteConfig.headerCta}<ArrowUpRight size={17} aria-hidden="true" /></Link>
       <button ref={trigger} type="button" className="menu-trigger" aria-label="Abrir menu de navegação" aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(true)}><Menu size={23} aria-hidden="true" /></button>
     </div></header>
     <dialog ref={menu} id="mobile-navigation" className="mobile-menu" aria-label="Navegação móvel" onKeyDown={trapDialogFocus} onCancel={() => setOpen(false)} onClose={() => setOpen(false)} onClick={(event) => { if (event.target === event.currentTarget) setOpen(false); }}>
-      <div className="mobile-menu-inner"><div className="mobile-menu-top"><span>Explorar a Viham Dev</span><button type="button" aria-label="Fechar menu de navegação" onClick={() => setOpen(false)}><X size={23} aria-hidden="true" /></button></div><nav aria-label="Navegação móvel">{siteConfig.nav.map((item, index) => <Link key={item.href} href={item.href} onClick={() => setOpen(false)}><span>0{index + 1}</span>{item.label}<ArrowUpRight size={22} aria-hidden="true" /></Link>)}<Link href="/#contato" className="button button-primary" onClick={() => setOpen(false)} data-analytics-event="cta_click" data-analytics-label={siteConfig.headerCta} data-analytics-location="header-mobile">{siteConfig.headerCta}<ArrowUpRight size={18} aria-hidden="true" /></Link></nav></div>
+      <div className="mobile-menu-inner"><div className="mobile-menu-top"><span>Explorar a Viham Dev</span><button type="button" aria-label="Fechar menu de navegação" onClick={() => setOpen(false)}><X size={23} aria-hidden="true" /></button></div><nav aria-label="Navegação móvel">{siteConfig.nav.map((item, index) => { const NavLink = item.href === "/#cases" ? "a" : Link; return <NavLink key={item.href} href={item.href} onClick={() => setOpen(false)}><span>0{index + 1}</span>{item.label}<ArrowUpRight size={22} aria-hidden="true" /></NavLink>; })}<Link href="/#contato" className="button button-primary" onClick={() => setOpen(false)} data-analytics-event="cta_click" data-analytics-label={siteConfig.headerCta} data-analytics-location="header-mobile">{siteConfig.headerCta}<ArrowUpRight size={18} aria-hidden="true" /></Link></nav></div>
     </dialog>
   </>;
 }

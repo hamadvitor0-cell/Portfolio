@@ -4,7 +4,6 @@ import { ArrowRight, ArrowUpRight, Mail, MessageCircle, Plus } from "lucide-reac
 import { ContactBudgetForm } from "@/components/contact-budget-form";
 import { MagneticButton } from "@/components/magnetic-button";
 import { ProcessTimeline, StudioMarquee } from "@/components/studio-motion";
-import { ProjectShowcase } from "@/components/project-showcase";
 import { siteConfig } from "@/config/site";
 
 const services = [
@@ -19,8 +18,6 @@ const faqs = [
   { question: "Posso usar meu domínio e ter acesso ao código?", answer: "A configuração do domínio, hospedagem, repositório e entrega dos acessos é alinhada conforme a contratação e registrada na proposta do projeto." },
   { question: "Existe manutenção depois da entrega?", answer: "Suporte, hospedagem quando aplicável, manutenção e pequenas alterações podem fazer parte de uma contratação recorrente. As condições são combinadas na proposta; mudanças maiores recebem um novo escopo." },
 ];
-
-export function ProjectsSection() { return <ProjectShowcase />; }
 
 export function RealProjectSection() {
   const [cj] = siteConfig.projects;

@@ -1,5 +1,7 @@
 # Viham Dev 2.0 — Interactive Digital Studio
 
+Este documento registra a primeira etapa do redesign. A transição e a galeria atuais estão descritas em [Hero → galeria de projetos](hero-showroom-journey.md), que substitui os comportamentos anteriores de ampliação e showroom longo.
+
 Redesign da homepage no repositório e na publicação existentes, em 30/10/2026.
 
 ## Direção e conteúdo

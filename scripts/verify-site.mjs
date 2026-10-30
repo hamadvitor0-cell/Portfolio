@@ -27,6 +27,14 @@ async function loadImages() {
     await document.fonts.ready;
   });
 }
+async function assertDemo(url) {
+  const link = page.locator('a[href="' + url + '"]').first();
+  assert.equal(await link.getAttribute("target"), "_blank");
+  assert.match(await link.getAttribute("rel"), /noopener/);
+  assert.match(await link.getAttribute("rel"), /noreferrer/);
+  await link.focus(); await page.keyboard.press("Tab"); await page.keyboard.press("Shift+Tab");
+  assert.equal(await link.evaluate((element) => element === document.activeElement && element.matches(":focus-visible") && getComputedStyle(element).outlineStyle !== "none"), true);
+}
 try {
   for (const path of routes) {
     await page.setViewportSize({ width: 1440, height: 1000 });
@@ -153,17 +161,13 @@ try {
   }
   console.log("PASS: all four galleries, keyboard navigation, image enlargement, Escape and focus return.");
   await page.goto(`${base}/#cases`, { waitUntil: "networkidle" });
-  assert.deepEqual(await page.locator("#cases article h3").allTextContents(), ["MORDIDA!Smash House.", "FATIA 12Pizza Studio.", "CORTE 14Barber Club."]);
+  assert.deepEqual(await page.locator("#cases article h3").allTextContents(), ["CORTE 14Barber Club.", "FATIA 12Pizza Studio.", "MORDIDA!Smash House."]);
   assert.equal(await page.locator("#case-principal article h3").innerText(), "Centro da Juventude de Almirante Tamandaré");
   assert.equal(await page.locator(".corte14-project").count(), 1);
   assert.match(await page.locator(".corte14-project").innerText(), /Projeto conceitual/i);
-  const demoLink = page.getByRole("link", { name: "Abrir site Corte 14 (abre em nova aba)", exact: true });
-  assert.equal(await demoLink.getAttribute("href"), "https://corte14-barber-club.vercel.app/");
-  assert.equal(await demoLink.getAttribute("target"), "_blank");
-  assert.match(await demoLink.getAttribute("rel"), /noopener/);
-  assert.match(await demoLink.getAttribute("rel"), /noreferrer/);
   await page.locator(".corte14-project").getByRole("link", { name: "Explorar projeto", exact: true }).click();
   await page.waitForURL("**/cases/corte14");
+  await assertDemo("https://corte14-barber-club.vercel.app/");
   assert.match(await page.title(), /Corte 14/);
   assert.match(await page.locator('link[rel="canonical"]').getAttribute("href"), /\/cases\/corte14$/);
   const corteGallery = page.getByRole("region", { name: "Galeria de telas do projeto" });
@@ -178,16 +182,10 @@ try {
   await page.goto(`${base}/#cases`, { waitUntil: "networkidle" });
   const mordidaCard = page.locator(".mordida-project");
   assert.match(await mordidaCard.innerText(), /Projeto conceitual/i);
-  assert.match(await mordidaCard.innerText(), /Produtos personalizáveis/);
-  const mordidaDemo = mordidaCard.getByRole("link", { name: "Abrir site MORDIDA! (abre em nova aba)", exact: true });
-  assert.equal(await mordidaDemo.getAttribute("href"), "https://mordida-smash-house.vercel.app/");
-  assert.equal(await mordidaDemo.getAttribute("target"), "_blank");
-  assert.match(await mordidaDemo.getAttribute("rel"), /noopener/);
-  assert.match(await mordidaDemo.getAttribute("rel"), /noreferrer/);
-  await mordidaDemo.focus();
-  assert.equal(await mordidaDemo.evaluate((element) => element.matches(":focus-visible") && getComputedStyle(element).outlineStyle !== "none"), true, "Mordida demo has a visible keyboard focus");
+  assert.match(await mordidaCard.innerText(), /funcionalidades comerciais interativas/);
   await mordidaCard.getByRole("link", { name: "Explorar projeto", exact: true }).click();
   await page.waitForURL("**/cases/mordida");
+  await assertDemo("https://mordida-smash-house.vercel.app/");
   assert.match(await page.title(), /MORDIDA!/);
   assert.match(await page.locator('meta[name="description"]').getAttribute("content"), /conceitual/);
   assert.match(await page.locator('link[rel="canonical"]').getAttribute("href"), /\/cases\/mordida$/);
@@ -209,20 +207,12 @@ try {
   const fatiaCard = page.locator(".fatia12-project");
   assert.equal(await fatiaCard.count(), 1);
   assert.match(await fatiaCard.innerText(), /Projeto conceitual/i);
-  assert.match(await fatiaCard.innerText(), /Seleção visual de 12 sabores/);
-  assert.match(await fatiaCard.innerText(), /Embalagem 3D e carrinho demonstrativo/);
+  assert.match(await fatiaCard.innerText(), /escolha de sabores/);
+  assert.match(await fatiaCard.innerText(), /experiência visual interativa/);
   assert.equal(await page.locator("canvas, iframe").count(), 0, "The portfolio does not load the demo's 3D scene");
-  const fatiaDemo = fatiaCard.getByRole("link", { name: "Abrir site FATIA 12 (abre em nova aba)", exact: true });
-  assert.equal(await fatiaDemo.getAttribute("href"), "https://fatia12-pizza-studio.vercel.app/");
-  assert.equal(await fatiaDemo.getAttribute("target"), "_blank");
-  assert.match(await fatiaDemo.getAttribute("rel"), /noopener/);
-  assert.match(await fatiaDemo.getAttribute("rel"), /noreferrer/);
-  await fatiaDemo.focus();
-  await page.keyboard.press("Tab");
-  await page.keyboard.press("Shift+Tab");
-  assert.equal(await fatiaDemo.evaluate((element) => element === document.activeElement && element.matches(":focus-visible") && getComputedStyle(element).outlineStyle !== "none"), true, "Fatia 12 supports visible keyboard focus");
   await fatiaCard.getByRole("link", { name: "Explorar projeto", exact: true }).click();
   await page.waitForURL("**/cases/fatia12");
+  await assertDemo("https://fatia12-pizza-studio.vercel.app/");
   assert.equal(await page.title(), "FATIA 12 — Pizza Studio | Viham Dev");
   assert.match(await page.locator('meta[name="description"]').getAttribute("content"), /seleção interativa de 12 sabores/);
   assert.match(await page.locator('link[rel="canonical"]').getAttribute("href"), /\/cases\/fatia12$/);

@@ -4,7 +4,6 @@ import {
   AboutSection,
   ContactSection,
   FaqSection,
-  ProjectsSection,
   ProcessSection,
   SolutionsSection,
   RealProjectSection,
@@ -16,7 +15,6 @@ export default function Home() {
     <main id="main-content" className="studio-home">
       <ScrollProgress />
       <HeroSection />
-      <ProjectsSection />
       <RealProjectSection />
       <TextMarquee />
       <SolutionsSection />
