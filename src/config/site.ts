@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import corte14Cover from "../../public/projects/corte14-cover.webp";
 import mordidaCover from "../../public/projects/mordida/cover.webp";
+import fatia12Cover from "../../public/projects/fatia12/cover.webp";
 
 export type IconName =
   | "Code2"
@@ -38,6 +39,7 @@ export type ConceptProject = {
   imageHeight: number;
   href: string;
   liveUrl: string;
+  liveLabel?: string;
   tags: readonly string[];
   highlights?: readonly string[];
 };
@@ -89,6 +91,31 @@ export const mordidaProject = {
   caseLabel: "Explorar projeto",
   highlights: ["Cardápio com filtros", "Produtos personalizáveis", "Carrinho e pedidos demonstrativos"],
   tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "GSAP"],
+};
+
+export const fatia12Project = {
+  slug: "fatia12",
+  linkName: "FATIA 12",
+  title: "FATIA 12 — Pizza Studio",
+  category: "Website interativo / Experiência 3D",
+  kind: "Projeto conceitual",
+  year: "2026",
+  description:
+    "Uma experiência interativa de pizzaria, onde o visitante explora 12 sabores em uma pizza digital, com animações e uma forma criativa de escolher seu pedido.",
+  overview:
+    "O FATIA 12 é um projeto conceitual desenvolvido para explorar novas possibilidades de interação em websites comerciais. A experiência apresenta uma pizza interativa com 12 sabores diferentes, permitindo ao visitante selecionar uma fatia e visualizar a pizza completa daquele sabor, com ingredientes, preço e recursos de pedido.",
+  image: fatia12Cover.src,
+  imageWidth: fatia12Cover.width,
+  imageHeight: fatia12Cover.height,
+  imageAlt:
+    "Hero real do FATIA 12, com o título Qual é a sua fatia, marca Pizza Studio e pizza 3D dividida em 12 sabores sobre fundo creme",
+  imageFit: "cover",
+  href: "/cases/fatia12",
+  liveUrl: "https://fatia12-pizza-studio.vercel.app/",
+  liveLabel: "Visualizar projeto",
+  caseLabel: "Explorar projeto",
+  highlights: ["Seleção visual de 12 sabores", "Transformação da pizza inteira", "Embalagem 3D e carrinho demonstrativo"],
+  tags: ["Next.js", "React", "TypeScript", "Three.js", "React Three Fiber", "GSAP", "Tailwind CSS"],
 };
 
 export const siteConfig = {
@@ -261,6 +288,9 @@ export const siteConfig = {
         "Autenticação",
         "Painel administrativo"
       ]
+    },
+    {
+      ...fatia12Project
     },
     {
       ...mordidaProject

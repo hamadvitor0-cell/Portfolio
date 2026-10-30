@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { ConceptProject } from "@/config/site";
 
 export function ConceptProjectCard({ project }: { project: ConceptProject }) {
+  const liveLabel = project.liveLabel ?? "Visualizar site";
   return (
     <article className={`featured-project concept-project ${project.slug}-project`} aria-labelledby={`${project.slug}-title`}>
       <Link
@@ -37,7 +38,7 @@ export function ConceptProjectCard({ project }: { project: ConceptProject }) {
           <p>{project.description}</p>
           {project.highlights ? <ul className="concept-project-highlights" aria-label={`Destaques do ${project.linkName}`}>{project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}</ul> : null}
           <div className="project-links">
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="button button-primary" aria-label={`Visualizar site ${project.linkName} (abre em nova aba)`} data-analytics-event="demo_click" data-analytics-project={project.slug} data-analytics-location="main-case">Visualizar site <ArrowUpRight size={17} aria-hidden="true" /></a>
+            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="button button-primary" aria-label={`${liveLabel} ${project.linkName} (abre em nova aba)`} data-analytics-event="demo_click" data-analytics-project={project.slug} data-analytics-location="main-case">{liveLabel} <ArrowUpRight size={17} aria-hidden="true" /></a>
             <Link href={project.href} className="text-link" data-analytics-event="case_view" data-analytics-project={project.slug} data-analytics-location="main-case">Explorar projeto <ArrowRight size={17} aria-hidden="true" /></Link>
           </div>
         </div>

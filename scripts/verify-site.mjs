@@ -17,8 +17,8 @@ const errors = [];
 page.on("pageerror", (error) => errors.push(error.message));
 page.on("response", (response) => { if (response.url().includes("/_next/image") && response.status() >= 400) failures.push(`Image ${response.status()}: ${response.url()}`); });
 const results = [];
-const widths = [320,360,390,768,1024,1440];
-const routes = ["/", "/cases/mordida", "/cases/corte14", "/cases/centro-da-juventude", "/cases/hamadflow", "/curriculo", "/privacidade", "/pagina-inexistente-qa"];
+const widths = [320,360,375,390,430,768,1024,1440];
+const routes = ["/", "/cases/fatia12", "/cases/mordida", "/cases/corte14", "/cases/centro-da-juventude", "/cases/hamadflow", "/curriculo", "/privacidade", "/pagina-inexistente-qa"];
 const notFoundRoutes = new Set(["/cases/hamadflow", "/pagina-inexistente-qa"]);
 async function loadImages() {
   await page.evaluate(async () => {
@@ -54,10 +54,11 @@ try {
           await page.screenshot({ path: `artifacts/hero-${width}.png` });
           await page.locator(".corte14-project").screenshot({ path: `artifacts/corte14-card-${width}.png` });
           await page.locator(".mordida-project").screenshot({ path: `artifacts/mordida-card-${width}.png` });
+          await page.locator(".fatia12-project").screenshot({ path: `artifacts/fatia12-card-${width}.png` });
         }
       }
     }
-    console.log(`PASS: ${path} at all six widths, assets, heading and IDs.`);
+    console.log(`PASS: ${path} at all ${widths.length} widths, assets, heading and IDs.`);
   }
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(base, { waitUntil: "networkidle" });
@@ -131,7 +132,7 @@ try {
   assert.equal(await page.locator("#lead-message").inputValue(), "");
   console.log("PASS: empty, invalid, failure, network, loading, duplicate prevention and successful form states, using mocked responses.");
 
-  for (const path of ["/cases/centro-da-juventude","/cases/corte14","/cases/mordida"]) {
+  for (const path of ["/cases/centro-da-juventude","/cases/corte14","/cases/mordida","/cases/fatia12"]) {
     await page.goto(`${base}${path}`, { waitUntil: "networkidle" });
     const gallery = page.getByRole("region", { name: "Galeria de telas do projeto" });
     const caption = gallery.locator(".gallery-caption h3");
@@ -150,9 +151,9 @@ try {
     assert.equal(await dialog.isVisible(), false);
     assert.equal(await zoom.evaluate((element) => element === document.activeElement), true);
   }
-  console.log("PASS: all three galleries, keyboard navigation, image enlargement, Escape and focus return.");
+  console.log("PASS: all four galleries, keyboard navigation, image enlargement, Escape and focus return.");
   await page.goto(`${base}/#cases`, { waitUntil: "networkidle" });
-  assert.deepEqual(await page.locator("#cases article h3").allTextContents(), ["MORDIDA! — Smash House", "Corte 14 — Barber Club", "Centro da Juventude de Almirante Tamandaré"]);
+  assert.deepEqual(await page.locator("#cases article h3").allTextContents(), ["FATIA 12 — Pizza Studio", "MORDIDA! — Smash House", "Corte 14 — Barber Club", "Centro da Juventude de Almirante Tamandaré"]);
   assert.equal(await page.locator(".corte14-project").count(), 1);
   assert.match(await page.locator(".corte14-project").innerText(), /Projeto conceitual/i);
   const demoLink = page.getByRole("link", { name: "Visualizar site Corte 14 (abre em nova aba)", exact: true });
@@ -203,6 +204,44 @@ try {
   await page.waitForURL("**/#contato");
   assert.ok(await page.locator("#contato").isVisible());
   console.log("PASS: MORDIDA! order, existing projects, conceptual label, interactive features, external link, keyboard focus, metadata, four real screenshots, mobile dimensions and commercial CTA.");
+  await page.goto(`${base}/#cases`, { waitUntil: "networkidle" });
+  const fatiaCard = page.locator(".fatia12-project");
+  assert.equal(await fatiaCard.count(), 1);
+  assert.match(await fatiaCard.innerText(), /Projeto conceitual/i);
+  assert.match(await fatiaCard.innerText(), /Seleção visual de 12 sabores/);
+  assert.match(await fatiaCard.innerText(), /Embalagem 3D e carrinho demonstrativo/);
+  assert.equal(await page.locator("canvas, iframe").count(), 0, "The portfolio does not load the demo's 3D scene");
+  const fatiaDemo = fatiaCard.getByRole("link", { name: "Visualizar projeto FATIA 12 (abre em nova aba)", exact: true });
+  assert.equal(await fatiaDemo.getAttribute("href"), "https://fatia12-pizza-studio.vercel.app/");
+  assert.equal(await fatiaDemo.getAttribute("target"), "_blank");
+  assert.match(await fatiaDemo.getAttribute("rel"), /noopener/);
+  assert.match(await fatiaDemo.getAttribute("rel"), /noreferrer/);
+  await fatiaDemo.focus();
+  await page.keyboard.press("Tab");
+  await page.keyboard.press("Shift+Tab");
+  assert.equal(await fatiaDemo.evaluate((element) => element === document.activeElement && element.matches(":focus-visible") && getComputedStyle(element).outlineStyle !== "none"), true, "Fatia 12 supports visible keyboard focus");
+  await fatiaCard.getByRole("link", { name: "Explorar projeto", exact: true }).click();
+  await page.waitForURL("**/cases/fatia12");
+  assert.equal(await page.title(), "FATIA 12 — Pizza Studio | Viham Dev");
+  assert.match(await page.locator('meta[name="description"]').getAttribute("content"), /seleção interativa de 12 sabores/);
+  assert.match(await page.locator('link[rel="canonical"]').getAttribute("href"), /\/cases\/fatia12$/);
+  assert.match(await page.locator("main").innerText(), /Nenhum pedido real é enviado/);
+  assert.match(await page.locator("main").innerText(), /cada item do carrinho é uma pizza inteira de um único sabor/);
+  assert.equal(await page.locator("canvas, iframe").count(), 0, "The case uses screenshots instead of loading WebGL");
+  const fatiaGallery = page.getByRole("region", { name: "Galeria de telas do projeto" });
+  const fatiaSources = await fatiaGallery.locator(".gallery-thumbnails img").evaluateAll((images) => images.map((img) => img.getAttribute("src")));
+  assert.equal(new Set(fatiaSources).size, 4, "Four distinct real Fatia 12 captures");
+  await fatiaGallery.getByRole("button", { name: "Selecionar FATIA 12 — hero no celular", exact: true }).click();
+  assert.equal(await fatiaGallery.locator(".gallery-image-button img").getAttribute("width"), "390");
+  assert.equal(await fatiaGallery.locator(".gallery-image-button img").getAttribute("height"), "844");
+  await fatiaGallery.getByRole("button", { name: "Selecionar Pepperoni — sabor selecionado", exact: true }).click();
+  assert.match(await fatiaGallery.locator(".gallery-caption").innerText(), /cobertura de Pepperoni/);
+  await fatiaGallery.getByRole("button", { name: "Selecionar Carrinho demonstrativo do FATIA 12", exact: true }).click();
+  assert.match(await fatiaGallery.locator(".gallery-caption").innerText(), /borda recheada/);
+  await page.getByRole("link", { name: "Solicitar um projeto", exact: true }).click();
+  await page.waitForURL("**/#contato");
+  assert.ok(await page.locator("#lead-name").isVisible());
+  console.log("PASS: FATIA 12 featured card, safe external link, keyboard focus, metadata, four real captures, mobile gallery, no embedded WebGL and existing contact CTA.");
   await page.goto(base, { waitUntil: "networkidle" });
   await page.setViewportSize({ width: 1440, height: 1000 });
   // Browser zoom halves the CSS viewport and doubles DPR. CSS `zoom` does not
@@ -224,6 +263,7 @@ try {
   assert.doesNotMatch(await sitemap.text(), /hamadflow/i);
   assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/corte14/);
   assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/mordida/);
+  assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/fatia12/);
   for (const path of ["/images/cases/hamadflow/hamadflow-demo-cover.svg", "/images/cases/hamadflow/screenshots/dashboard.png"]) {
     assert.equal((await context.request.get(`${base}${path}`)).status(), 404, `Removed demo asset is unavailable: ${path}`);
   }
