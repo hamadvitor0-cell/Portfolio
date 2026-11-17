@@ -118,6 +118,24 @@ export const fatia12Project = {
   tags: ["Next.js", "React", "TypeScript", "Three.js", "React Three Fiber", "GSAP", "Tailwind CSS"],
 };
 
+export const freedomProject = {
+  slug: "freedom-personalizados",
+  title: "Freedom Personalizados",
+  category: "Site de cliente real",
+  kind: "Cliente real",
+  year: "2026",
+  description:
+    "Uma presença digital para a Freedom Personalizados. Projeto desenvolvido para um cliente real, com site publicado em domínio próprio.",
+  image: "/projects/freedom-cover.svg",
+  imageAlt: "Capa tipográfica do projeto Freedom Personalizados",
+  imageFit: "cover",
+  href: "https://freedompersonalizados.tech/",
+  liveUrl: "https://freedompersonalizados.tech/",
+  liveLabel: "Visitar site do cliente",
+  caseLabel: "Conhecer o site",
+  tags: ["Cliente real", "Site publicado", "Domínio próprio"],
+};
+
 export const siteConfig = {
   // Identidade principal exibida no portfólio.
   name: "Viham Dev",
@@ -288,6 +306,9 @@ export const siteConfig = {
         "Autenticação",
         "Painel administrativo"
       ]
+    },
+    {
+      ...freedomProject
     },
     {
       ...fatia12Project

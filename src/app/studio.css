@@ -77,6 +77,14 @@
 .real-browser-bar > span:first-child { width: 5px; height: 5px; background: #5a7061; border-radius: 50%; }
 .real-browser-bar svg { margin-left: auto; }
 .real-project-visual .real-public-screen { position: absolute; right: -20px; bottom: -40px; width: 44%; border: 5px solid var(--paper); border-radius: 7px; box-shadow: 0 10px 25px #1722391a; }
+.client-project { padding: clamp(20px,3vw,48px); gap: clamp(24px,4vw,64px); border: 1px solid #c5cec2; border-radius: 8px; background: #e7ecdf; }
+.client-project + .real-project-content { padding-top: 35px; border-top: 1px solid #ced6d3; }
+.client-project-badge { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 9px; padding: 8px 12px; border: 1px solid #a8b89b; border-radius: 3px; background: #f3f7eb; color: #304a30; font-size: 11px; font-weight: 700; letter-spacing: .04em; }
+.real-project-copy .client-project-domain { overflow-wrap: anywhere; font-size: 12px; color: var(--ink); }
+.client-project-visual { display: block; width: 100%; max-width: 100%; overflow: hidden; background: var(--brand-navy); border-color: #172239; }
+.client-project-visual > img { height: auto; border-radius: 0; }
+.client-project-visit { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 54px; padding: 12px 20px; color: var(--paper); font-size: 12px; font-weight: 650; }
+.client-project-visual:hover .client-project-visit { color: var(--brand-lime); }
 .studio-marquee { position: relative; background: var(--brand-lime); color: var(--brand-navy); padding: 25px 0; overflow: hidden; }
 .marquee-control { position: absolute; right: 12px; bottom: 8px; width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--ink); background: var(--brand-lime); color: var(--ink); border-radius: 3px; }
 .marquee-control:focus-visible { outline-color: var(--ink); }
