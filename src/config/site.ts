@@ -125,15 +125,15 @@ export const freedomProject = {
   kind: "Cliente real",
   year: "2026",
   description:
-    "Uma presença digital para a Freedom Personalizados. Projeto desenvolvido para um cliente real, com site publicado em domínio próprio.",
-  image: "/projects/freedom-cover.svg",
-  imageAlt: "Capa tipográfica do projeto Freedom Personalizados",
+    "Impressão 3D e gravação a laser em uma experiência que apresenta os produtos e convida o visitante a personalizar sua ideia.",
+  image: "/projects/freedom/hero.webp",
+  imageAlt: "Página inicial da Freedom Personalizados com o título Sua ideia. Ganha forma. e copo, tábua e chaveiro personalizados",
   imageFit: "cover",
   href: "https://freedompersonalizados.tech/",
   liveUrl: "https://freedompersonalizados.tech/",
   liveLabel: "Visitar site do cliente",
   caseLabel: "Conhecer o site",
-  tags: ["Cliente real", "Site publicado", "Domínio próprio"],
+  tags: ["Cliente real", "Personalização interativa", "Impressão 3D e laser"],
 };
 
 export const siteConfig = {
