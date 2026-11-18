@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Mail, MessageCircle, Plus } from "lucide-react";
+import { ArrowUpRight, Mail, MessageCircle, Plus } from "lucide-react";
 import { ContactBudgetForm } from "@/components/contact-budget-form";
 import { MagneticButton } from "@/components/magnetic-button";
 import { ProcessTimeline, StudioMarquee } from "@/components/studio-motion";
@@ -20,7 +20,6 @@ const faqs = [
 ];
 
 export function RealProjectSection() {
-  const [cj] = siteConfig.projects;
   return <section id="case-principal" className="studio-real paper-section" aria-labelledby="real-project-title"><div className="site-container">
     <div className="studio-section-label">04 / PROJETOS EM USO REAL</div>
     <div className="real-project-heading"><h2 id="real-project-title">NÃO É SÓ SOBRE<br /><span>APARÊNCIA.</span></h2><p>Sites e sistemas desenvolvidos para negócios e instituições reais.</p></div>
@@ -46,9 +45,6 @@ export function RealProjectSection() {
           {freedomProject.liveLabel} <ArrowUpRight size={20} aria-hidden="true" />
         </a>
       </div>
-    </article>
-    <article className="real-project-content"><div className="real-project-copy"><span className="project-status"><span className="status-dot" /> Plataforma institucional</span><h3>{cj.title}</h3><p>{cj.description}</p><ul><li>Gestão de alunos, oficinas e turmas</li><li>Chamadas e controle de frequência</li><li>Portal público e acessos administrativos</li></ul><div className="project-links"><Link className="text-link" href={cj.href} data-analytics-event="project_click" data-analytics-project="centro-da-juventude" data-analytics-location="main-case">Conhecer o projeto <ArrowRight size={17} aria-hidden="true" /></Link><a className="text-link" href={cj.liveUrl} target="_blank" rel="noopener noreferrer" data-analytics-event="demo_click" data-analytics-project="centro-da-juventude" data-analytics-location="main-case">Visitar projeto <ArrowUpRight size={16} aria-hidden="true" /></a></div></div>
-      <Link href={cj.href} className="real-project-visual" aria-label="Conhecer o projeto Centro da Juventude" data-analytics-event="project_click" data-analytics-project="centro-da-juventude" data-analytics-location="featured-image"><div className="real-browser-bar" aria-hidden="true"><span /><span>Centro da Juventude / Painel administrativo</span><ArrowUpRight size={16} /></div><Image src={cj.image} alt="Painel real do Centro da Juventude, com a visão de alunos, oficinas, turmas e frequência" width={1919} height={909} sizes="(max-width: 1023px) 90vw, 60vw" /><Image className="real-public-screen" src="/images/cases/cj/public-home-light.png" alt="Portal público do Centro da Juventude de Almirante Tamandaré" width={1902} height={905} sizes="(max-width: 767px) 44vw, 350px" /></Link>
     </article>
   </div></section>;
 }

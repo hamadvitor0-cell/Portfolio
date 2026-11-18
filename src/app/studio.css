@@ -78,7 +78,6 @@
 .real-browser-bar svg { margin-left: auto; }
 .real-project-visual .real-public-screen { position: absolute; right: -20px; bottom: -40px; width: 44%; border: 5px solid var(--paper); border-radius: 7px; box-shadow: 0 10px 25px #1722391a; }
 .client-project { margin-top: 64px; overflow: hidden; border: 1px solid #26334a; border-radius: 10px; background: var(--brand-navy); color: var(--paper); }
-.client-project + .real-project-content { padding-top: 35px; border-top: 1px solid #ced6d3; }
 .client-project-visual { display: block; background: #f8f6ef; }
 .client-project-browser { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 22px; background: #18243b; color: #c0cbdb; font-size: 11px; }
 .client-project-dots { display: flex; gap: 5px; }
