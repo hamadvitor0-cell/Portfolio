@@ -58,6 +58,18 @@
 .hero-colophon { margin-top: auto; padding: 36px 0 25px; display: flex; align-items: center; justify-content: space-between; color: #9fadc2; font-size: 10px; }
 .hero-colophon a { display: inline-flex; gap: 16px; align-items: center; min-height: 44px; color: var(--paper); }
 .hero-colophon > svg { color: var(--brand-lime); }
+.vertex-feature { background: #080f1e; padding: 0 0 clamp(50px, 7vw, 106px); }
+.vertex-feature-layout { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); align-items: center; gap: clamp(30px, 6vw, 100px); border-top: 1px solid var(--line-dark); padding-top: clamp(40px, 6vw, 90px); }
+.vertex-feature .concept-meta { color: var(--muted-dark); }
+.vertex-feature h2 { font-size: clamp(34px, 4.9vw, 76px); line-height: 1.05; }
+.vertex-feature .studio-kicker { margin-top: 12px; color: var(--brand-lime); text-transform: uppercase; }
+.vertex-feature-description { margin-top: 20px; max-width: 39ch; color: var(--muted-dark); }
+.vertex-feature .project-links { gap: 10px 24px; margin-top: 24px; }
+.vertex-feature-cover { border-color: var(--line-dark); }
+.vertex-feature-cover > img { aspect-ratio: auto; }
+@media (max-width: 767px) {
+  .vertex-feature-layout { grid-template-columns: minmax(0, 1fr); }
+}
 .studio-real { padding: 100px 0 110px; }
 .studio-real .studio-section-label { color: var(--muted-light); }
 .real-project-heading { display: flex; gap: 50px; justify-content: space-between; align-items: end; }

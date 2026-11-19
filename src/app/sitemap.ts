@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/config/site";
+import { siteConfig, vertexResidencesProject } from "@/config/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     { path: "", priority: 1, changeFrequency: "monthly" as const },
+    { path: vertexResidencesProject.href, priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/cases/fatia12", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/cases/mordida", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/cases/corte14", priority: 0.9, changeFrequency: "monthly" as const },

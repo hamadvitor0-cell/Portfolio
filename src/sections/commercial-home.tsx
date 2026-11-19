@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Mail, MessageCircle, Plus } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail, MessageCircle, Plus } from "lucide-react";
 import { ContactBudgetForm } from "@/components/contact-budget-form";
 import { MagneticButton } from "@/components/magnetic-button";
 import { ProcessTimeline, StudioMarquee } from "@/components/studio-motion";
-import { freedomProject, siteConfig } from "@/config/site";
+import { freedomProject, siteConfig, vertexResidencesProject } from "@/config/site";
 
 const services = [
   { title: "Sites e landing pages", description: "Uma presença digital à altura do seu negócio. Para apresentar sua empresa, serviço ou oferta e facilitar o próximo contato.", scope: "Interface personalizada · Versão mobile · Formulários · Publicação" },
@@ -18,6 +18,35 @@ const faqs = [
   { question: "Posso usar meu domínio e ter acesso ao código?", answer: "A configuração do domínio, hospedagem, repositório e entrega dos acessos é alinhada conforme a contratação e registrada na proposta do projeto." },
   { question: "Existe manutenção depois da entrega?", answer: "Suporte, hospedagem quando aplicável, manutenção e pequenas alterações podem fazer parte de uma contratação recorrente. As condições são combinadas na proposta; mudanças maiores recebem um novo escopo." },
 ];
+
+export function VertexProjectSection() {
+  const project = vertexResidencesProject;
+
+  return (
+    <section id="vertex-residences" className="vertex-feature" aria-labelledby="vertex-feature-title">
+      <div className="site-container vertex-feature-layout">
+        <div className="vertex-feature-copy">
+          <p className="concept-meta">{project.year} <span aria-hidden="true">/</span> {project.kind}</p>
+          <h2 id="vertex-feature-title">{project.title}</h2>
+          <p className="studio-kicker">{project.category}</p>
+          <p className="vertex-feature-description">{project.description}</p>
+          <div className="project-links">
+            <a href={project.href} className="button button-primary" data-analytics-event="project_click" data-analytics-project={project.slug} data-analytics-location="featured-case">
+              Explorar case <ArrowRight size={17} aria-hidden="true" />
+            </a>
+            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-link" aria-label="Visitar Vertex Residences (abre em nova aba)" data-analytics-event="demo_click" data-analytics-project={project.slug} data-analytics-location="featured-case">
+              Visitar site <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+        <a href={project.href} className="concept-visual vertex-feature-cover" aria-label="Explorar o case Vertex Residences" data-analytics-event="project_click" data-analytics-project={project.slug} data-analytics-location="featured-image">
+          <Image src={project.image} alt={project.imageAlt} width={project.imageWidth} height={project.imageHeight} sizes="(max-width: 767px) 94vw, (max-width: 1696px) 57vw, 950px" />
+          <span className="concept-image-link" aria-hidden="true"><ArrowUpRight size={21} /></span>
+        </a>
+      </div>
+    </section>
+  );
+}
 
 export function RealProjectSection() {
   return <section id="case-principal" className="studio-real paper-section" aria-labelledby="real-project-title"><div className="site-container">

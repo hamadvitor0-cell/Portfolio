@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import corte14Cover from "../../public/projects/corte14-cover.webp";
 import mordidaCover from "../../public/projects/mordida/cover.webp";
 import fatia12Cover from "../../public/projects/fatia12/cover.webp";
+import vertexCover from "../../public/projects/vertex-residences/cover.webp";
 
 export type IconName =
   | "Code2"
@@ -135,6 +136,25 @@ export const freedomProject = {
   caseLabel: "Conhecer o site",
   tags: ["Cliente real", "Personalização interativa", "Impressão 3D e laser"],
 };
+
+export const vertexResidencesProject = {
+  slug: "vertex-residences",
+  linkName: "Vertex Residences",
+  title: "Vertex Residences",
+  category: "Experiência imobiliária interativa",
+  kind: "Projeto conceitual",
+  year: "2026",
+  description:
+    "Um lançamento imobiliário fictício que convida a explorar uma torre em 3D, comparar plantas e fazer um tour pelo apartamento.",
+  image: vertexCover.src,
+  imageWidth: vertexCover.width,
+  imageHeight: vertexCover.height,
+  imageAlt: "Página inicial do Vertex Residences com uma torre residencial em 3D ao anoitecer e o título O próximo horizonte",
+  imageFit: "cover",
+  href: "/cases/vertex-residences",
+  liveUrl: "https://vertex-residences.vercel.app/",
+  tags: ["React", "WebGL", "Design responsivo"],
+} satisfies ConceptProject & { imageFit: "cover" };
 
 export const siteConfig = {
   // Identidade principal exibida no portfólio.
@@ -310,6 +330,7 @@ export const siteConfig = {
     {
       ...freedomProject
     },
+    vertexResidencesProject,
     {
       ...fatia12Project
     },

@@ -54,7 +54,7 @@ try {
   await page.locator('#home[data-cinematic="true"]').waitFor();
   assert.equal(await page.locator('.journey-select[aria-pressed="true"]').getAttribute('data-journey-control'),'mordida');
   assert.equal(await page.locator('.studio-showroom').count(),0);
-  assert.equal(await page.locator('#home').evaluate(e=>e.nextElementSibling.id),'case-principal');
+  assert.equal(await page.locator('#home').evaluate(e=>e.nextElementSibling.id),'vertex-residences');
   await highlight(page,'fatia12');await highlight(page,'corte14');await highlight(page,'mordida');
   const scenePoint=await point(page.getByRole('button',{name:'Destacar projeto MORDIDA!',exact:true}));
   await page.mouse.move(scenePoint.x,scenePoint.y);await page.waitForTimeout(700);

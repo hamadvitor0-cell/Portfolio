@@ -7,6 +7,7 @@ import {
   ProcessSection,
   SolutionsSection,
   RealProjectSection,
+  VertexProjectSection,
   TextMarquee,
 } from "@/sections/commercial-home";
 
@@ -15,6 +16,7 @@ export default function Home() {
     <main id="main-content" className="studio-home">
       <ScrollProgress />
       <HeroSection />
+      <VertexProjectSection />
       <RealProjectSection />
       <TextMarquee />
       <SolutionsSection />

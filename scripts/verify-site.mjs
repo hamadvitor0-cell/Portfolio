@@ -18,7 +18,7 @@ page.on("pageerror", (error) => errors.push(error.message));
 page.on("response", (response) => { if (response.url().includes("/_next/image") && response.status() >= 400) failures.push(`Image ${response.status()}: ${response.url()}`); });
 const results = [];
 const widths = [320,360,375,390,430,768,1024,1440,1920];
-const routes = ["/", "/cases/fatia12", "/cases/mordida", "/cases/corte14", "/cases/centro-da-juventude", "/cases/hamadflow", "/curriculo", "/privacidade", "/pagina-inexistente-qa"];
+const routes = ["/", "/cases/vertex-residences", "/cases/fatia12", "/cases/mordida", "/cases/corte14", "/cases/centro-da-juventude", "/cases/hamadflow", "/curriculo", "/privacidade", "/pagina-inexistente-qa"];
 const notFoundRoutes = new Set(["/cases/hamadflow", "/pagina-inexistente-qa"]);
 async function loadImages() {
   await page.evaluate(async () => {
@@ -140,7 +140,7 @@ try {
   assert.equal(await page.locator("#lead-message").inputValue(), "");
   console.log("PASS: empty, invalid, failure, network, loading, duplicate prevention and successful form states, using mocked responses.");
 
-  for (const path of ["/cases/centro-da-juventude","/cases/corte14","/cases/mordida","/cases/fatia12"]) {
+  for (const path of ["/cases/centro-da-juventude","/cases/corte14","/cases/mordida","/cases/fatia12","/cases/vertex-residences"]) {
     await page.goto(`${base}${path}`, { waitUntil: "networkidle" });
     const gallery = page.getByRole("region", { name: "Galeria de telas do projeto" });
     const caption = gallery.locator(".gallery-caption h3");
@@ -159,10 +159,10 @@ try {
     assert.equal(await dialog.isVisible(), false);
     assert.equal(await zoom.evaluate((element) => element === document.activeElement), true);
   }
-  console.log("PASS: all four galleries, keyboard navigation, image enlargement, Escape and focus return.");
+  console.log("PASS: all five galleries, keyboard navigation, image enlargement, Escape and focus return.");
   await page.goto(`${base}/#cases`, { waitUntil: "networkidle" });
   assert.deepEqual(await page.locator("#cases article h3").allTextContents(), ["CORTE 14Barber Club.", "FATIA 12Pizza Studio.", "MORDIDA!Smash House."]);
-  assert.equal(await page.locator("#case-principal article h3").innerText(), "Centro da Juventude de Almirante Tamandaré");
+  assert.equal(await page.locator("#case-principal article h3").innerText(), "Freedom Personalizados");
   assert.equal(await page.locator(".corte14-project").count(), 1);
   assert.match(await page.locator(".corte14-project").innerText(), /Projeto conceitual/i);
   await page.locator(".corte14-project").getByRole("link", { name: "Explorar projeto", exact: true }).click();
@@ -233,6 +233,23 @@ try {
   await page.waitForURL("**/#contato");
   assert.ok(await page.locator("#lead-name").isVisible());
   console.log("PASS: FATIA 12 featured card, safe external link, keyboard focus, metadata, four real captures, mobile gallery, no embedded WebGL and existing contact CTA.");
+  await page.goto(`${base}/#cases`, { waitUntil: "networkidle" });
+  const vertexFeature = page.getByRole("region", { name: "Vertex Residences" });
+  await assertDemo("https://vertex-residences.vercel.app/");
+  await vertexFeature.getByRole("link", { name: "Explorar case", exact: true }).click();
+  await page.waitForURL("**/cases/vertex-residences");
+  assert.equal(await page.title(), "Vertex Residences | Viham Dev");
+  assert.equal(await page.locator('link[rel="canonical"]').getAttribute("href"), "https://www.vitorhamad.me/cases/vertex-residences");
+  assert.equal(await page.locator("canvas, iframe").count(), 0);
+  await assertDemo("https://vertex-residences.vercel.app/");
+  const vertexGallery = page.getByRole("region", { name: "Galeria de telas do projeto" });
+  assert.equal(await vertexGallery.locator(".gallery-thumbnails button").count(), 3);
+  await vertexGallery.getByRole("button", { name: "Selecionar Living integrado no tour 3D", exact: true }).click();
+  assert.match(await vertexGallery.locator(".gallery-caption").innerText(), /seis ambientes/);
+  await page.getByRole("link", { name: "Voltar aos projetos", exact: true }).click();
+  await page.waitForURL("**/#cases");
+  assert.ok(await page.getByRole("heading", { name: /TRÊS IDEIAS/ }).isVisible());
+  console.log("PASS: Vertex feature, case navigation, safe external links, metadata, real captures and return link.");
   await page.goto(base, { waitUntil: "networkidle" });
   await page.setViewportSize({ width: 1440, height: 1000 });
   // Browser zoom halves the CSS viewport and doubles DPR. CSS `zoom` does not
@@ -255,6 +272,7 @@ try {
   assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/corte14/);
   assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/mordida/);
   assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/fatia12/);
+  assert.match(await sitemap.text(), /https:\/\/www.vitorhamad.me\/cases\/vertex-residences/);
   for (const path of ["/images/cases/hamadflow/hamadflow-demo-cover.svg", "/images/cases/hamadflow/screenshots/dashboard.png"]) {
     assert.equal((await context.request.get(`${base}${path}`)).status(), 404, `Removed demo asset is unavailable: ${path}`);
   }
